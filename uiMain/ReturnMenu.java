@@ -2,8 +2,8 @@ package uiMain;
 
 import java.util.Scanner;
 
-import gestorAplicacion.usuario.Comprador;
-import gestorAplicacion.usuario.Vendedor;
+import usuario.Comprador;
+import usuario.Vendedor;
 
 public class ReturnMenu {
     private Comprador comprador;  // Instancia de Comprador

@@ -1,8 +1,8 @@
 package uiMain;
 
-import gestorAplicacion.tienda.Tienda;
-import gestorAplicacion.usuario.Comprador;
-import gestorAplicacion.usuario.Vendedor;
+import tienda.Tienda;
+import usuario.Comprador;
+import usuario.Vendedor;
 
 import java.util.Scanner;
 

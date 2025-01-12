@@ -2,7 +2,7 @@ package uiMain;
 
 import java.util.Scanner;
 
-import gestorAplicacion.usuario.Comprador;
+import usuario.Comprador;
 
 public class VoucherMenu {
     private Comprador comprador;

@@ -5,12 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import gestorAplicacion.compras.CarritoCompras;
-import gestorAplicacion.pasarelaPago.Transaccion;
-import gestorAplicacion.usuario.Comprador;
-import gestorAplicacion.usuario.Notificacion;
-import gestorAplicacion.usuario.Vendedor;
-import gestorAplicacion.tienda.Producto;
+import compras.CarritoCompras;
+import pasarelaPago.Transaccion;
+import usuario.Comprador;
+import usuario.Notificacion;
+import usuario.Vendedor;
+import tienda.Producto;
 
 public class BuyProcess {
     private Comprador comprador;

@@ -1,7 +1,7 @@
-package gestorAplicacion.tienda;
+package tienda;
 
 import java.util.ArrayList;
-import gestorAplicacion.compras.Reseña;
+import compras.Reseña;
 
 public class Producto {
     int cantidad;

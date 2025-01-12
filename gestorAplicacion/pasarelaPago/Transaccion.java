@@ -1,8 +1,8 @@
-package gestorAplicacion.pasarelaPago;
+package pasarelaPago;
 
-import gestorAplicacion.usuario.Comprador;
-import gestorAplicacion.usuario.Usuario;
-import gestorAplicacion.usuario.Vendedor;
+import usuario.Comprador;
+import usuario.Usuario;
+import usuario.Vendedor;
 
 public class Transaccion {
 	private Usuario usuarioRemitente;

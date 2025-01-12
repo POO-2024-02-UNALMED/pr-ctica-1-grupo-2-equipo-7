@@ -1,11 +1,11 @@
-package gestorAplicacion.usuario;
+package usuario;
 
 import java.util.ArrayList;
-import gestorAplicacion.compras.CarritoCompras;
-import gestorAplicacion.compras.HistorialCompras;
-import gestorAplicacion.pasarelaPago.CuentaBancaria;
-import gestorAplicacion.pasarelaPago.Factura;
-import gestorAplicacion.tienda.Producto;
+import compras.CarritoCompras;
+import compras.HistorialCompras;
+import pasarelaPago.CuentaBancaria;
+import pasarelaPago.Factura;
+import tienda.Producto;
 
 public class Comprador extends Usuario{
     protected CarritoCompras carritoCompras;

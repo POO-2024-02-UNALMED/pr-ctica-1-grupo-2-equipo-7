@@ -1,16 +1,16 @@
 package uiMain;
 
-import gestorAplicacion.usuario.Comprador;
-import gestorAplicacion.usuario.Vendedor;
-import gestorAplicacion.pasarelaPago.CuentaBancaria;
-import gestorAplicacion.tienda.Inventario;
-import gestorAplicacion.tienda.Producto;
-import gestorAplicacion.tienda.Tienda;
+import usuario.Comprador;
+import usuario.Vendedor;
+import pasarelaPago.CuentaBancaria;
+import tienda.Inventario;
+import tienda.Producto;
+import tienda.Tienda;
 
 import java.util.ArrayList;
 
-import gestorAplicacion.compras.CarritoCompras;
-import gestorAplicacion.compras.Reseña;
+import compras.CarritoCompras;
+import compras.Reseña;
 
 
 public class App {
