@@ -1,8 +1,9 @@
-package gestorAplicacion.pasarelaPago;
-import gestorAplicacion.compras.CarritoCompras;
-import gestorAplicacion.tienda.Producto;
+package pasarelaPago;
+
+import compras.CarritoCompras;
+import tienda.Producto;
+import usuario.Comprador;
 import java.util.Random;
-import gestorAplicacion.usuario.Comprador;
 
 public class Factura {
     private CarritoCompras carritoCompras;

@@ -1,8 +1,8 @@
-package gestorAplicacion.usuario;
+package usuario;
 import java.util.ArrayList;
 
-import gestorAplicacion.pasarelaPago.CuentaBancaria;
-import gestorAplicacion.pasarelaPago.Transaccion;
+import pasarelaPago.CuentaBancaria;
+import pasarelaPago.Transaccion;
 
 public class Usuario{
 	private String membresia;

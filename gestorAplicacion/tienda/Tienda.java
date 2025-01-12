@@ -1,7 +1,7 @@
-package gestorAplicacion.tienda;
+package tienda;
 
 import java.util.ArrayList;
-import gestorAplicacion.usuario.Usuario;
+import usuario.Usuario;
 
 public class Tienda {
 

@@ -1,4 +1,4 @@
-package gestorAplicacion.usuario;
+package usuario;
 
 import java.time.LocalDateTime;
 

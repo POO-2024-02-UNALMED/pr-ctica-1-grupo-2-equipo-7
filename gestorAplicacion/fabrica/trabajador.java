@@ -1,4 +1,4 @@
-package gestorAplicacion.fabrica;
+package fabrica;
 
 import java.time.LocalTime;
 

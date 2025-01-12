@@ -1,9 +1,9 @@
-package gestorAplicacion.tienda;
+package tienda;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import gestorAplicacion.tienda.Producto.Categoria;
+import tienda.Producto.Categoria;
 
 
 public class Inventario {

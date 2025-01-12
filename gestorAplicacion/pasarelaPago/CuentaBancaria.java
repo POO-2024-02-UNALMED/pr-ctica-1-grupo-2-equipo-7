@@ -1,6 +1,6 @@
-package gestorAplicacion.pasarelaPago;
+package pasarelaPago;
 
-import gestorAplicacion.usuario.Usuario;
+import usuario.Usuario;
 
 public class CuentaBancaria {
     private long saldo = 0;

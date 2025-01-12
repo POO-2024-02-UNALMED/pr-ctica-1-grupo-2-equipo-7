@@ -1,9 +1,9 @@
-package gestorAplicacion.usuario;
+package usuario;
 
 import java.util.ArrayList;
-import gestorAplicacion.pasarelaPago.CuentaBancaria;
-import gestorAplicacion.tienda.Producto;
-import gestorAplicacion.tienda.Inventario;
+import pasarelaPago.CuentaBancaria;
+import tienda.Producto;
+import tienda.Inventario;
 // import gestorAplicacion.fabrica.fabrica; //alejandro funcionalidad 5 reporte
 
 public class Vendedor extends Usuario {
