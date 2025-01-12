@@ -11,9 +11,13 @@ public class CarritoCompras {
     private Usuario usuario; // atributo usado con el fin de contener al propietario
 	private ArrayList<Producto> listaItems = new ArrayList<>(); // Acá se almacenan los productos que el usuario va a comprar.
 	private ArrayList<Integer> cantidadPorProducto = new ArrayList<>(); //Acá se almacena la cantidad de productos que el usuario va a comprar.
-    	private int precioTotal = 0; 
+    private int precioTotal = 0; 
 	private int descuentoAplicadoCompra = 0; // Este atributo es para guardar el descuento que se le aplicó a la compra.
 	private double descuentoPorproductos = 0;
+
+	public CarritoCompras() {
+	}
+
 	public CarritoCompras(Usuario usuario) {
 		this.usuario=usuario;
 	}
@@ -51,9 +55,13 @@ public class CarritoCompras {
     	public void setDescuentoAplicadoCompra(int value) {
       		this.descuentoAplicadoCompra = value;
     	}
+
+		public void setUsuario(Usuario usuario) {
+			this.usuario = usuario;
+		}
+
     	public Usuario getUsuario() {
     		return this.usuario;
-    		
     	}
 	// metodos
     	public void calcularTotal(){
