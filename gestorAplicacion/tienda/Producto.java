@@ -16,7 +16,7 @@ public class Producto {
     ArrayList<Reseña> reseñas;
 
     public static enum Categoria {
-        TECNOLOGIA("Teconologia"),
+        TECNOLOGIA("Tecnologia"),
         ASEO("Aseo"),
         COMIDA("Comida"),
         PAPELERIA("Papeleria"),
@@ -27,6 +27,9 @@ public class Producto {
     	
     	Categoria(String nombre){
     		this.nombre=nombre;
+    	public String getNombre() {
+    		return this.nombre;
+    	}
     	}
     }
 

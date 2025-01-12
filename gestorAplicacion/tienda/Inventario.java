@@ -143,7 +143,7 @@ public class Inventario {
     }
     public static  Boolean verificarproducto(Producto producto, int unidades) {
     	Categoria Categoria=producto.categoria;
-    	String nombre= Categoria.name();
+    	String nombre= Categoria.getNombre();
     	if(nombre=="Tecnologia") {
     		if(categoriaTecnologia.contains(producto) && producto.cantidad<=unidades) {
     			return true;
