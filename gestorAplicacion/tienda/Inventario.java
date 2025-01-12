@@ -141,51 +141,38 @@ public class Inventario {
     	
     	return catalogo;
     }
+
     public static  Boolean verificarproducto(Producto producto, int unidades) {
     	Categoria Categoria=producto.categoria;
     	String nombre= Categoria.getNombre();
-    	if(nombre=="Tecnologia") {
-    		if(categoriaTecnologia.contains(producto) && producto.cantidad<=unidades) {
-    			return true;
-    		
-    			
-    		}else {
-    			return false;
-    			}
-    	}else if(nombre=="Aseo") {
-    		if(categoriaAseo.contains(producto) && producto.cantidad<=unidades) {
-    			return true;
-    			
-    		}else {
-    			return false;
+        boolean verificacion = false;
+
+    	if(nombre.equalsIgnoreCase("tecnologia")) {
+    		if(categoriaTecnologia.contains(producto) && producto.getCantidad() >= unidades) {
+    			verificacion = true;
     		}
-    	}else if (nombre=="Comida") {
+    	}else if(nombre.equalsIgnoreCase("aseo")) {
+    		if(categoriaAseo.contains(producto) && producto.getCantidad() >= unidades) {
+    			verificacion = true;
+    		}
+    	}else if (nombre.equalsIgnoreCase("comida")) {
     		if (categoriaComida.contains(producto) && producto.cantidad<=unidades) {
-    			return true;
-    			
-    		}else {
-    			return false;
+    			verificacion = true;
     		}
-    	}else if(nombre=="Papeleria") {
-    		if (categoriaPapeleria.contains(producto)&& producto.cantidad<=unidades) {
-    			return true;
-    		}else {
-    			return false;
+    	}else if(nombre.equalsIgnoreCase("papeleria")) {
+    		if (categoriaPapeleria.contains(producto)&& producto.getCantidad() >= unidades) {
+    			verificacion = true;
     		}
-    	}else if(nombre=="Jugueteria") {
-    		if (categoriaJuegueteria.contains(producto)&& producto.cantidad<=unidades) {
-    			return true;
-    		}else {
-    			return false;
+    	}else if(nombre.equalsIgnoreCase("juegueteria")) {
+    		if (categoriaJuegueteria.contains(producto)&& producto.getCantidad() >= unidades) {
+    			verificacion = true;
     		}
-    	}else if (nombre=="Deportes") {
-    		if (categoriaDeportes.contains(producto)&&producto.cantidad<=unidades) {
-    			return true;
-    		}else {
-    			return false;
+    	}else if (nombre.equalsIgnoreCase("deportes")) {
+    		if (categoriaDeportes.contains(producto)&&producto.getCantidad() >= unidades) {
+    			verificacion = true;
     		}
     	}
-		return null;
+		return verificacion;
     	}
     public static Producto buscarProductoMaseconomico() {//busca el producto mas economico que haya disponible
         Producto maseconomico = null;

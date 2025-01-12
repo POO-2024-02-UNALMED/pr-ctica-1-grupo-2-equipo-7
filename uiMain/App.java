@@ -34,8 +34,16 @@ public class App {
         ArrayList<Producto> categoriaDeportes = new ArrayList<>();
 
         Inventario inventario = new Inventario(categoriaTecnologia, categoriaAseo, categoriaComida, categoriaPapeleria, categoriaJuegueteria, categoriaDeportes);
-        CarritoCompras carritoCompras = new CarritoCompras();
-        Comprador comprador = new Comprador(carritoCompras, null);
+        inventario.añadirProducto(producto1);
+        inventario.añadirProducto(producto2);
+        inventario.añadirProducto(producto3);
+        Comprador comprador = new Comprador(null, null);
+        CarritoCompras carritoCompras = new CarritoCompras(comprador);
+        carritoCompras.añadirProducto(producto1);
+        carritoCompras.añadirProducto(producto2);
+        carritoCompras.añadirProducto(producto3);
+        carritoCompras.calcularTotal();
+        comprador.setCarritoCompras(carritoCompras);
         Vendedor vendedor = new Vendedor(null, inventario);
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
         CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
