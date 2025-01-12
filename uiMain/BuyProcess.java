@@ -98,7 +98,7 @@ public class BuyProcess {
                             }
                         }
 
-                        comprador.setCarritoCompras(new CarritoCompras()); // Inicializar un nuevo carrito de compras en forma de "vaciar" el carrito de compras para una compra futura.
+                        comprador.setCarritoCompras(new CarritoCompras(comprador)); // Inicializar un nuevo carrito de compras en forma de "vaciar" el carrito de compras para una compra futura.
                         opcion = 2; // Forzar salida del ciclo después del pago
                         break;
                     }
@@ -135,7 +135,7 @@ public class BuyProcess {
                         }
                     }
 
-                    comprador.setCarritoCompras(new CarritoCompras()); // Inicializar un nuevo carrito de compras en forma de "vaciar" el carrito de compras para una compra futura.
+                    comprador.setCarritoCompras(new CarritoCompras(comprador)); // Inicializar un nuevo carrito de compras en forma de "vaciar" el carrito de compras para una compra futura.
                     break;
                 default:
                     System.out.println("\nOpción no válida. Intente nuevamente.");

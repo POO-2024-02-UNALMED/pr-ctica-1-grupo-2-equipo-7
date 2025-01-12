@@ -1,7 +1,7 @@
 package tienda;
 
-import java.util.ArrayList;
 import compras.Reseña;
+import java.util.ArrayList;
 
 public class Producto {
     int cantidad;
@@ -27,9 +27,9 @@ public class Producto {
     	
     	Categoria(String nombre){
     		this.nombre=nombre;
-    	public String getNombre() {
-    		return this.nombre;
     	}
+        public String getNombre() {
+    		return this.nombre;
     	}
     }
 
