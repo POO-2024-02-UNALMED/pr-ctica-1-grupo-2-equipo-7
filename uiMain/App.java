@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import compras.CarritoCompras;
 import compras.Reseña;
-
+import fabrica.Fabrica;
 
 public class App {
     public static void main(String[] args) {
@@ -44,9 +44,10 @@ public class App {
         carritoCompras.añadirProducto(producto3);
         carritoCompras.calcularTotal();
         comprador.setCarritoCompras(carritoCompras);
-        Vendedor vendedor = new Vendedor(null, inventario);
+        Fabrica fabrica = new Fabrica("FabricaPrincipal", 1);
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
         CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
+        Vendedor vendedor = new Vendedor(cuentaBancariaComprador, inventario, fabrica);
         comprador.setCuentaBancaria(cuentaBancariaComprador);
         vendedor.setCuentaBancaria(cuentaBancariaVendedor);
         //Todo esto de acá es para simular procesos de compra.
