@@ -46,8 +46,8 @@ public class App {
         comprador.setCarritoCompras(carritoCompras);
         Fabrica fabrica = new Fabrica("FabricaPrincipal", 1);
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
-        CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
         Vendedor vendedor = new Vendedor(cuentaBancariaComprador, inventario, fabrica);
+        CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
         comprador.setCuentaBancaria(cuentaBancariaComprador);
         vendedor.setCuentaBancaria(cuentaBancariaVendedor);
         //Todo esto de acá es para simular procesos de compra.

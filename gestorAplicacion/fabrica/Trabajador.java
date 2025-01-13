@@ -1,4 +1,4 @@
-package Fabrica;
+package fabrica;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

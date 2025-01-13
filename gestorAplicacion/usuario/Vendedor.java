@@ -8,6 +8,7 @@ import fabrica.Fabrica; //alejandro funcionalidad 5 reporte
 
 public class Vendedor extends Usuario {
     Inventario inventario;
+    Fabrica fabrica;
     private ArrayList<ArrayList<Object>> ordenesPendientes; //alejandro funcionalidad 5 reporte
 
     public Vendedor(CuentaBancaria cuenta, Inventario inventario, Fabrica fabrica){
