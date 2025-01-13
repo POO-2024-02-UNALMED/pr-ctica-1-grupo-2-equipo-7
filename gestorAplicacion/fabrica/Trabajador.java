@@ -1,6 +1,8 @@
-package fabrica;
+package Fabrica;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import tienda.Producto;
 
 public class Trabajador {
     private int idTrabajador;
@@ -14,6 +16,7 @@ public class Trabajador {
         this.horario = horario;
         this.estado = "Disponible";
     }
+    
     // getters y setters
     
     public int getIdTrabajador() {
@@ -47,7 +50,9 @@ public class Trabajador {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    
     // metodos
+    
     public boolean verificarHorario() {
        
        String[] partesHorario = horario.split("-");
@@ -57,14 +62,24 @@ public class Trabajador {
         return estado.equals("Disponible") && ahora.isAfter(inicio) && ahora.isBefore(fin);
     }
 
-    public void asignarTarea(OrdenFabricacion orden) {
+    public void asignarTarea(ArrayList<Object> orden) {
         if (verificarHorario()) {
             estado = "Ocupado";
-            System.out.println("Trabajador " + nombre + " ha sido asignado a la orden: " + orden.getDescripcion());
+            ArrayList<Producto> productos = (ArrayList<Producto>) orden.get(0);
+            ArrayList<Integer> cantidades = (ArrayList<Integer>) orden.get(1);
+            String descripcion = "Productos: ";
+
+            for (int i = 0; i < productos.size(); i++) {
+                descripcion += productos.get(i).getNombre() + " (" + cantidades.get(i) + " unidades), ";
+            }
+            descripcion = descripcion.substring(0, descripcion.length() - 2); // Quitar la última coma
+
+            System.out.println("Trabajador " + nombre + " ha sido asignado a la orden: " + descripcion);
         } else {
             System.out.println("El trabajador " + nombre + " no está disponible para esta tarea.");
         }
     }
+    
     public void liberarTrabajador() {
         estado = "Disponible";
         System.out.println("Trabajador " + nombre + " ha sido liberado.");
