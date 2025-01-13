@@ -4,53 +4,49 @@ import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import tienda.Producto;
 import tienda.Inventario;
-// import gestorAplicacion.fabrica.fabrica; //alejandro funcionalidad 5 reporte
+import fabrica.Fabrica; //alejandro funcionalidad 5 reporte
 
 public class Vendedor extends Usuario {
     Inventario inventario;
-   // private ArrayList<OrdenFabricacion> ordenesPendientes; //alejandro funcionalidad 5 reporte
+    private ArrayList<ArrayList<Object>> ordenesPendientes; //alejandro funcionalidad 5 reporte
 
-
-    public Vendedor(CuentaBancaria cuenta, Inventario inventario){
+    public Vendedor(CuentaBancaria cuenta, Inventario inventario, Fabrica fabrica){
         super(cuenta);
         this.inventario = inventario;
-      //  this.ordenesPendientes = new ArrayList<>();  //alejandro funcionalidad 5 reporte
+        this.fabrica = fabrica;
+        this.ordenesPendientes = new ArrayList<>();  //alejandro funcionalidad 5 reporte
     }
 
     // getters y setters
     
-     // Genera un reporte detallado del inventario actual, incluyendo productos vendidos, no vendidos y cantidades vendidas.
-    
+    // Genera un reporte detallado del inventario actual, incluyendo productos vendidos, no vendidos y cantidades vendidas.
      
-   public ArrayList<String> generarReporteInventario() {
+    public ArrayList<String> generarReporteInventario() {
         ArrayList<String> reporte = new ArrayList<>();
-       // ArrayList<Producto> productos = inventario.obtenerTodosLosProductos();
+        ArrayList<Producto> productos = inventario.obtenerTodosLosProductos();
 
-      //  for (Producto producto : productos) {
-        //    if (producto.getCantidadVendida() > 0) {
-          //      reporte.add(producto.getNombre() + ": Vendido - " + producto.getCantidadVendida() + " unidades");
-           // } else {
-            //    reporte.add(producto.getNombre() + ": No vendido - " + producto.getCantidad() + " unidades disponibles");
-        //    }
-       // }
+        for (Producto producto : productos) {
+            if (producto.getCantidadVendida() > 0) {
+                reporte.add(producto.getNombre() + ": Vendido - " + producto.getCantidadVendida() + " unidades");
+            } else {
+                reporte.add(producto.getNombre() + ": No vendido - " + producto.getCantidad() + " unidades disponibles");
+            }
+        }
 
         return reporte;
     }
     // Permite al vendedor decidir qué productos y cuántas unidades solicitar a la fábrica.
 
-    
     public void crearOrdenFabricacion(ArrayList<Producto> productosSeleccionados, ArrayList<Integer> cantidades) {
-        ArrayList<Producto> productosOrden = new ArrayList<>();
-        ArrayList<Integer> cantidadesOrden = new ArrayList<>();
+        ArrayList<Object> orden = new ArrayList<>();
+        orden.add(productosSeleccionados); 
+        orden.add(cantidades);          
 
-        for (int i = 0; i < productosSeleccionados.size(); i++) {
-            productosOrden.add(productosSeleccionados.get(i));
-            cantidadesOrden.add(cantidades.get(i));
-        }
+        // Agregar la nueva orden a la lista de órdenes pendientes
+        ordenesPendientes.add(orden);
 
-      //  OrdenFabricacion nuevaOrden = new OrdenFabricacion(productosOrden, cantidadesOrden);
-      //  ordenesPendientes.add(nuevaOrden);
-      //  Fabrica.recibirOrden(nuevaOrden);
+        // Enviar la orden a la fábrica 
+        fabrica.recibirOrden(productosSeleccionados, cantidades);
     }
 
     public double devolucionDinero(Usuario usuarioReceptor, double precioProducto, int descuento, int cantidadRetornar){
@@ -68,17 +64,17 @@ public class Vendedor extends Usuario {
     public void devolverProducto(int cantidad, Producto producto){
         inventario.reabastecerProductos(cantidad, producto);
     }
+    
     // Devuelve una lista de órdenes de fabricación pendientes.
     // retorna Lista de órdenes pendientes.
     
-   // public ArrayList<OrdenFabricacion> getOrdenesPendientes() {
-   //     return ordenesPendientes;
-   // }
+    public ArrayList<ArrayList<Object>> getOrdenesPendientes() {
+        return ordenesPendientes;
+    }
     // Actualiza el estado de una orden de fabricación específica.
     // orden Orden de fabricación que se completó.
      
-   //public void actualizarEstadoOrden(OrdenFabricacion orden) {
-   //     ordenesPendientes.remove(orden);
-   // }
-
+    public void actualizarEstadoOrden(ArrayList<Object> orden) {
+        ordenesPendientes.remove(orden);
+    }
 }
