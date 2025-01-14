@@ -164,7 +164,7 @@ public class Inventario {
     			verificacion = true;
     		}
     	}else if (nombre.equalsIgnoreCase("comida")) {
-    		if (categoriaComida.contains(producto) && producto.cantidad<=unidades) {
+    		if (categoriaComida.contains(producto) && producto.cantidad >=unidades) {
     			verificacion = true;
     		}
     	}else if(nombre.equalsIgnoreCase("papeleria")) {

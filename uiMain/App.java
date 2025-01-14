@@ -1,17 +1,15 @@
 package uiMain;
 
-import usuario.Comprador;
-import usuario.Vendedor;
+import compras.CarritoCompras;
+import compras.Reseña;
+import fabrica.Fabrica;
+import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import tienda.Inventario;
 import tienda.Producto;
 import tienda.Tienda;
-
-import java.util.ArrayList;
-
-import compras.CarritoCompras;
-import compras.Reseña;
-import fabrica.Fabrica;
+import usuario.Comprador;
+import usuario.Vendedor;
 
 public class App {
     public static void main(String[] args) {
