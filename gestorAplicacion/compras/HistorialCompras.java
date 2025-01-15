@@ -8,7 +8,7 @@ import tienda.Producto.Categoria;
 public class HistorialCompras {
     
     int cantidadDevueltos;
-    public ArrayList<Factura> facturas = new ArrayList<>();
+    private ArrayList<Factura> facturas = new ArrayList<>();
     
     //Estos atributos son definidos para la funcionalidad de
     //recomendaciones personalizadas (Simón) 
@@ -119,4 +119,12 @@ public class HistorialCompras {
 	public void setCantidadDeportes(int cantidadDeportes) {
 		this.cantidadDeportes = cantidadDeportes;
 	}
+
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(ArrayList<Factura> facturas) {
+        this.facturas = facturas;
+    }
 }

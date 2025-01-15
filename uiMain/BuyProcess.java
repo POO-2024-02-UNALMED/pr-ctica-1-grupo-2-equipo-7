@@ -71,7 +71,7 @@ public class BuyProcess {
                         comprador.cantidadCupones -= 1; // Se disminuye la cantidad de cupones en 1.
                         System.out.println("====== COMPRA ======");
                         System.out.println("Resumen de la compra:");
-                        System.out.println(comprador.getHistorialCompras().mostrarFactura(comprador.getHistorialCompras().facturas.size())); // Se muestra por pantalla la factura usando el método mostrarFactura y lo que se pasa por parámetro es el ID de la factura. En este caso puntual coincide con el ultimo elemento de la lista que almacena las facturas, es decir el tamaño de la lista.
+                        System.out.println(comprador.getHistorialCompras().mostrarFactura(comprador.getHistorialCompras().getFacturas().size())); // Se muestra por pantalla la factura usando el método mostrarFactura y lo que se pasa por parámetro es el ID de la factura. En este caso puntual coincide con el ultimo elemento de la lista que almacena las facturas, es decir el tamaño de la lista.
                         System.out.println("\n¡Muchas gracias por su compra!");
                         if (comprador.cantidadCupones != comprador.getValorCupones().size()){
                             System.out.println("Felicidades. Durante la compra te ganaste un cupón del " + comprador.getValorCupones().get(comprador.cantidadCupones) + "% de descuento para una compra en el futuro.");
@@ -108,7 +108,7 @@ public class BuyProcess {
                     comprador.pago(comprador, vendedor, precioTotal, "compra");
                     System.out.println("====== COMPRA ======");
                     System.out.println("Resumen de la compra:");
-                    System.out.println(comprador.getHistorialCompras().mostrarFactura(comprador.getHistorialCompras().facturas.size()));
+                    System.out.println(comprador.getHistorialCompras().mostrarFactura(comprador.getHistorialCompras().getFacturas().size()));
                     System.out.println("\n¡Muchas gracias por su compra!");
                     if (comprador.cantidadCupones != comprador.getValorCupones().size()){
                         System.out.println("Felicidades. Durante la compra te ganaste un cupón del " + comprador.getValorCupones().get(comprador.cantidadCupones) + "% de descuento para una compra en el futuro.");

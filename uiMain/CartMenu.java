@@ -24,6 +24,8 @@ public class CartMenu {
     int opcion;
 
     do {
+
+      System.out.println("===== MENÚ CARRITO =====");
       System.out.println("1. Agregar productos/ver Inventario");
       System.out.println("2. Eliminar productos del carrito");
       System.out.println("3. Regresar");
@@ -35,7 +37,7 @@ public class CartMenu {
       case 1:
 
          // Llamada a lógica para mostrar el catálogo
-                System.out.println("Mostrando el catálogo...");
+                System.out.println("===== CATÁLOGO =====");
 
                 //Se guarda la matriz de productos en la variable catálogo
                 Object[][] catalogo = tienda.getInventario().mostrarProductos();
@@ -66,12 +68,48 @@ public class CartMenu {
                   }
                 }
 
+                //Se le pregunta al usuario si desea ver recomendaciones en el catálogo
+                //a partir de la segunda compra para poder acceder a su historial
+					      if (comprador.getHistorialCompras().getFacturas().size() != 0){
 
-                //Menú de selección de productos
-                //TRABAJO EN PROCESO -- FALTA POR TERMINAR (Simón)
-                new ProductSelectionMenu(comprador, vendedor, tienda).display();
+						      System.out.println("Desea actualizar las recomendaciones? /n 1. Sí /n 2. No");
+                  int respuesta = scanner.nextInt();
 
-        break;
+                  switch(respuesta){
+                    case 1:
+  
+                      //Llamada a lógica para mostrar recomendaciones
+                      //Falta implementar (Simón)
+
+                      //Menú de selección de productos
+                      boolean recomendaciones1 = true;
+                       new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones1).display();
+                      break;
+
+                    case 2:
+                      
+                      //lógica para ver sin recomendaciones (a partir de la segunda compra)
+
+                      //Solo se mostrará la opción de calificar recomendaciones si para la selección
+                      //actual se eligió la opción de mostrar recomendaciones en primer lugar         
+
+                      //Menú de selección de productos
+                      boolean recomendaciones2 = false;
+                      new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones2).display();
+                      break;
+                  }
+
+					      } else {
+
+                  //lógica para la primera compra
+
+                  //Menú de selección de productos
+                  
+                  boolean recomendaciones = false;
+                  new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones).display();
+
+                }
+              break;
 
       case 2:
         // Espacio para gestionar las eliminaciones

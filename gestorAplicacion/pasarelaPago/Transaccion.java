@@ -54,7 +54,7 @@ public class Transaccion {
 	public void generarFactura(){
 		if (usuarioRemitente instanceof Comprador){ // Se verifica si el usuario es de tipo Comprador para poder generar una factura.
 			Comprador comprador = (Comprador) usuarioRemitente; // Se hace el casting a tipo Comprador.
-			Factura factura = new Factura(comprador.getCarritoCompras(), comprador.getHistorialCompras().facturas.size() + 1, this);
+			Factura factura = new Factura(comprador.getCarritoCompras(), comprador.getHistorialCompras().getFacturas().size() + 1, this);
 			comprador.getHistorialCompras().agregarFactura(factura);
 		}
 	}

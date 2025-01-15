@@ -1,9 +1,10 @@
 package uiMain;
 
+import java.util.ArrayList;
+
 import compras.CarritoCompras;
 import compras.Reseña;
 import fabrica.Fabrica;
-import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import tienda.Inventario;
 import tienda.Producto;
