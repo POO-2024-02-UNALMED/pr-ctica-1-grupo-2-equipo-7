@@ -1,7 +1,6 @@
 package compras;
 
 import java.util.ArrayList;
-
 import tienda.Inventario;
 import tienda.Producto;
 import usuario.Usuario;
@@ -68,11 +67,11 @@ public class CarritoCompras {
     		this.precioTotal = 0;
     		for(Producto producto : listaItems){
     			this.precioTotal += producto.getPrecio() * getCantidadPorProducto(producto); 
-    			if(descuentoAplicadoCompra != 0){
-    				this.precioTotal -= this.precioTotal - descuentoAplicadoCompra ;
-    				
-    			}
+
     		}
+			if(descuentoAplicadoCompra != 0){
+				this.precioTotal -= this.precioTotal * descuentoAplicadoCompra / 100.0;
+			}
     	}
 	public void restarCantidadPorProducto(Producto producto, int cantidad){
 		int indice = this.listaItems.indexOf(producto);
