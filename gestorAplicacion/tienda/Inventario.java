@@ -28,16 +28,7 @@ public class Inventario {
         this.categoriaDeportes = categoriaDeportes;
         this.productosTotal = new ArrayList<Producto>();
     }
-    public ArrayList<Producto> obtenerTodosLosProductos() {
-        ArrayList<Producto> todosLosProductos = new ArrayList<>();
-        todosLosProductos.addAll(categoriaTecnologia);
-        todosLosProductos.addAll(categoriaAseo);
-        todosLosProductos.addAll(categoriaComida);
-        todosLosProductos.addAll(categoriaPapeleria);
-        todosLosProductos.addAll(categoriaJuegueteria);
-        todosLosProductos.addAll(categoriaDeportes);
-        return todosLosProductos;
-    }
+
     public String generarReporte() {
         StringBuilder reporte = new StringBuilder();
 
