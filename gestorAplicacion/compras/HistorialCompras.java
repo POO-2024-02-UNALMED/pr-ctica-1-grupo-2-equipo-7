@@ -1,7 +1,6 @@
 package compras;
 
 import java.util.ArrayList;
-
 import pasarelaPago.Factura;
 import tienda.Producto.Categoria;
 
@@ -42,12 +41,15 @@ public class HistorialCompras {
     public String mostrarFactura() {
         StringBuilder facturaStr = new StringBuilder();
         for (int factura = 0; factura < facturas.size(); factura++) {
-            facturaStr.append("\nProducto              Cantidad\n");
+            facturaStr.append("ID factura: " + facturas.get(factura).getIDFactura());
+            facturaStr.append("\nProducto              Cantidad                 ID Producto\n");
             for (int i = 0; i < facturas.get(factura).getCarritoCompras().getListaItems().size(); i++) {
                 facturaStr.append(facturas.get(factura).getCarritoCompras().getListaItems().get(i).getNombre())
                           .append("                   ")
-                          .append(facturas.get(factura).getCarritoCompras().getCantidadPorProductos().get(i))
-                          .append("\n");
+                          .append(facturas.get(factura).getCarritoCompras().getCantidadPorProductos().get(i));
+                facturaStr.append("                    ");
+                facturaStr.append(facturas.get(factura).getCarritoCompras().getListaItems().get(i).getID());
+                facturaStr.append("\n");
             }
             facturaStr.append("\nPrecio Total de la Compra: ")
                       .append(facturas.get(factura).getCarritoCompras().getPrecioTotal())
