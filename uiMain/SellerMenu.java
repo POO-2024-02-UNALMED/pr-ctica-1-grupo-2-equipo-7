@@ -1,16 +1,22 @@
 package uiMain;
 
 import java.util.Scanner;
+import tienda.Inventario;
 import usuario.Comprador;
+import usuario.Notificacion;
 import usuario.Vendedor;
 
 public class SellerMenu {
     private Comprador comprador;  // Instancia de Comprador
     private Vendedor vendedor;    // Instancia de Vendedor
+    private Inventario inventario;
+    private Notificacion notificacion;
 
-    public SellerMenu(Comprador comprador, Vendedor vendedor) {
+    public SellerMenu(Comprador comprador, Vendedor vendedor, Inventario inventario, Notificacion notificacion) {
         this.comprador = comprador;
         this.vendedor = vendedor;
+        this.inventario = inventario;
+        this.notificacion = notificacion;
     }
 
     public void display() {
@@ -19,44 +25,31 @@ public class SellerMenu {
 
         do {
             System.out.println("===== MENÚ VENDEDOR =====");
-            System.out.println("1. Ver mis productos");
-            System.out.println("2. Agregar un nuevo producto");
-            System.out.println("3. Actualizar un producto");
-            System.out.println("4. Ver pedidos recibidos");
-            System.out.println("5. Ver notificaciones");
-            System.out.println("6. Volver al Menú Principal");
+            System.out.println("1. Generar reporte de ventas");
+            System.out.println("2. Ver notificaciones");
+            System.out.println("3. Volver al Menú Principal");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir salto de línea pendiente
 
             switch (opcion) {
                 case 1:
-                    // metodo
+                    System.out.println(inventario.generarReporte());
                     break;
                 case 2:
-                    // metodo
-                    break;
-                case 3:
-                    // metodo
-                    break;
-                case 4:
-                    // metodo
-                    break;
-                case 5:
                 if (vendedor.getNotificaciones().size() == 0){
-                    System.out.println("No tiene notificaciones.\n");
+                    System.out.println("Usted no tiene notificaciones..."); // Se verifica si el usuario cuenta con notificaciones.
                 }
                 else{
-                    System.out.println("Notificaciones:");
-                    System.out.println(vendedor.mostrarNotificaciones());
-                    System.out.println();
+                    System.out.println(vendedor.mostrarNotificaciones() + "\n"); // Si es así entonces se muestran las notificaciones.
                 }
-                case 6:
-                    System.out.println("Volviendo al Menú Principal...");
                     break;
+                case 3:
+                    System.out.println("Volviendo al Menú     Principal...");
                 default:
-                    System.out.println("Opción no válida. Intente nuevamente.");
-            }
-        } while (opcion != 6);
+                            System.out.println("Opción no válida. Intente nuevamente.");
+                    }
+                    break;
+        } while (opcion != 3);
     }
 }

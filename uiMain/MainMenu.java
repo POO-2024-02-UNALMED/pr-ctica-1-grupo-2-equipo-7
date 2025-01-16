@@ -1,20 +1,25 @@
 package uiMain;
 
 import java.util.Scanner;
-
+import tienda.Inventario;
 import tienda.Tienda;
 import usuario.Comprador;
+import usuario.Notificacion;
 import usuario.Vendedor;
 
 public class MainMenu {
     private Comprador comprador;
     private Vendedor vendedor;
     private Tienda tienda;
+    private Inventario inventario;
+    private Notificacion notificacion;
 
-    public MainMenu(Comprador comprador, Vendedor vendedor, Tienda tienda){
+    public MainMenu(Comprador comprador, Vendedor vendedor, Tienda tienda, Inventario inventario, Notificacion notificacion){
         this.comprador = comprador;
         this.vendedor = vendedor;
         this.tienda = tienda;
+        this.inventario = inventario;
+        this.notificacion = notificacion;
     }
 
     public void display() {
@@ -34,7 +39,7 @@ public class MainMenu {
                     new BuyerMenu(comprador, vendedor, tienda).display();
                     break;
                 case 2:
-                    new SellerMenu(comprador, vendedor).display();
+                    new SellerMenu(comprador, vendedor, inventario, notificacion).display();
                     break;
                 case 3:
                     System.out.println("Gracias por usar el sistema. ¡Hasta luego!");
