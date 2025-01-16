@@ -1,15 +1,15 @@
 package uiMain;
 
-import java.util.ArrayList;
-
 import compras.CarritoCompras;
 import compras.Reseña;
 import fabrica.Fabrica;
+import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import tienda.Inventario;
 import tienda.Producto;
 import tienda.Tienda;
 import usuario.Comprador;
+import usuario.Notificacion;
 import usuario.Vendedor;
 
 public class App {
@@ -90,10 +90,11 @@ public class App {
         
         
         Tienda tienda = new Tienda("NombreTienda", inventario, false, null);
-        
+        Notificacion notificacion = new Notificacion(null, null, vendedor);
+    
 
         // Crear una instancia de MainMenu
-        MainMenu mainMenu = new MainMenu(comprador, vendedor, tienda);
+        MainMenu mainMenu = new MainMenu(comprador, vendedor, tienda, inventario, notificacion);
         
         // Mostrar el menú principal
         mainMenu.display();
