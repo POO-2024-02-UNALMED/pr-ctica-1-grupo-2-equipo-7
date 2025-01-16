@@ -24,7 +24,7 @@ public class Vendedor extends Usuario {
      
     public ArrayList<String> generarReporteInventario() {
         ArrayList<String> reporte = new ArrayList<>();
-        ArrayList<Producto> productos = inventario.obtenerTodosLosProductos();
+        ArrayList<Producto> productos = inventario.getProductosTotal();
 
         for (Producto producto : productos) {
             if (producto.getCantidadVendida() > 0) {
