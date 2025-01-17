@@ -89,10 +89,11 @@ public class Usuario{
 		String notificaciones = "";
 		for (Notificacion notificacion : this.notificaciones){
             notificaciones += "\n" + contador + ". " + notificacion.mostrarResumen() + "\n";
+            contador++;
 		}
 		return notificaciones;
 	}
-    
+
      public void recibirNotificacion(Notificacion notificacion){
       		notificaciones.add(notificacion);
      }

@@ -49,7 +49,7 @@ public class Comprador extends Usuario{
                 vendedor.devolverProducto(cantidadRetornar, producto); // Actualizar inventario
                 historialCompras.actualizarCantidadDevueltos(cantidadRetornar); // Actualizar cantidad de productos devueltos
                 factura.modificarFactura(producto, cantidadRetornar, "eliminar"); // modificar factura con los cambios 
-                String mensajeComprador = "Su devolución de " + cantidadRetornar + " productos por un valor de " + valorDevolver + " ha sido procesada exitosamente."; 
+                String mensajeComprador = "Su devolución de " + cantidadRetornar + " " + producto.getNombre()  +"/s por un valor de " + valorDevolver + " ha sido procesada exitosamente."; 
                 String asuntoComprador = "Devolución procesada"; 
                 String mensajeVendedor = "Ha recibido una devolución de " + cantidadRetornar + " productos por un valor de " + valorDevolver + "."; 
                 String asuntoVendedor = "Devolución recibida";

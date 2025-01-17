@@ -28,7 +28,7 @@ public class BuyerMenu {
             System.out.println("2. Realizar Devolución");
             System.out.println("3. Realizar Compra");
             System.out.println("4. Gestionar cupones");
-            System.out.println("5. Ver hisotrial de compras");
+            System.out.println("5. Ver historial de compras");
             System.out.println("6. Ver Notificaciones");
             System.out.println("7. Volver al Menú Principal");
             System.out.print("Seleccione una opción: ");
@@ -36,12 +36,15 @@ public class BuyerMenu {
 
             switch (opcion) {
                 case 1: //Menu para acceder al carrito y al catálogo
+                    System.out.println();
                     new CartMenu(comprador, vendedor, tienda).display();
                     break;
                 case 2: // Menú de devoluciones
+                    System.out.println();
                     new ReturnMenu(comprador, vendedor).display();
                     break;
                 case 3:
+                System.out.println();
                     if (comprador.getCarritoCompras().getListaItems().size() == 0){ // Se verifica si el carrito de compras no esta vacío
                         System.out.println("Error. Su carrito de compras está vacío, por favor gestione su carrito de compras.");
                     }
@@ -54,12 +57,15 @@ public class BuyerMenu {
                     }
                     break;
                 case 4:
+                    System.out.println();
                     new VoucherMenu(comprador).display();
                     break;
                 case 5:
+                    System.out.println();
                     System.out.println(comprador.mostrarHistorialCompras());
                     break;
                 case 6:
+                    System.out.println();
                     if (comprador.getNotificaciones().size() == 0){
                         System.out.println("Usted no tiene notificaciones..."); // Se verifica si el usuario cuenta con notificaciones.
                     }
@@ -68,9 +74,11 @@ public class BuyerMenu {
                     }
                     break;
                 case 7:
+                    System.out.println();
                     System.out.println("Volviendo al Menú Principal...");
                     break;
                 default:
+                    System.out.println();
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
         } while (opcion != 7);
