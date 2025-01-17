@@ -41,32 +41,26 @@ public class HistorialCompras {
     public String mostrarFactura() {
         StringBuilder facturaStr = new StringBuilder();
         for (int factura = 0; factura < facturas.size(); factura++) {
-            facturaStr.append("ID factura: " + facturas.get(factura).getIDFactura());
-            facturaStr.append("\nProducto              Cantidad                 ID Producto\n");
+            facturaStr.append(String.format("ID factura: %d\n", facturas.get(factura).getIDFactura()));
+            facturaStr.append(String.format("%-20s %-20s %-20s\n", "Producto", "Cantidad", "ID Producto"));
             for (int i = 0; i < facturas.get(factura).getCarritoCompras().getListaItems().size(); i++) {
-                facturaStr.append(facturas.get(factura).getCarritoCompras().getListaItems().get(i).getNombre())
-                          .append("                   ")
-                          .append(facturas.get(factura).getCarritoCompras().getCantidadPorProductos().get(i));
-                facturaStr.append("                    ");
-                facturaStr.append(facturas.get(factura).getCarritoCompras().getListaItems().get(i).getID());
-                facturaStr.append("\n");
+                facturaStr.append(String.format("%-20s %-20d %-20d\n",
+                        facturas.get(factura).getCarritoCompras().getListaItems().get(i).getNombre(),
+                        facturas.get(factura).getCarritoCompras().getCantidadPorProductos().get(i),
+                        facturas.get(factura).getCarritoCompras().getListaItems().get(i).getID()));
             }
-            facturaStr.append("\nPrecio Total de la Compra: ")
-                      .append(facturas.get(factura).getCarritoCompras().getPrecioTotal())
-                      .append("\n");
+            facturaStr.append("\nPrecio Total de la Compra: " +
+                    facturas.get(factura).getCarritoCompras().getPrecioTotal());
         }
         return facturaStr.toString();
-    }   
+    }
     
     public String mostrarFactura(int IDFactura){
         int factura = IDFactura - 1;
         StringBuilder mensaje = new StringBuilder(); // Se crea un StringBuilder para almacenar el mensaje que vayamos creando
-        mensaje.append("\nProducto              Cantidad\n");
+        mensaje.append(String.format("%-15s %-15s\n", "Producto", "Cantidad"));
         for (int i = 0; i < facturas.get(factura).getCarritoCompras().getListaItems().size(); i ++){
-            mensaje.append(facturas.get(factura).getCarritoCompras().getListaItems().get(i).getNombre()) // Se obtiene el nombre del producto
-                   .append("                   ")
-                   .append(facturas.get(factura).getCarritoCompras().getCantidadPorProductos().get(i)) // Se obtiene la cantidad de productos
-                   .append("\n");
+            mensaje.append(String.format("%-15s %-15d\n", facturas.get(factura).getCarritoCompras().getListaItems().get(i).getNombre(), facturas.get(factura).getCarritoCompras().getCantidadPorProductos().get(i)));
         }
         mensaje.append("\nPrecio Total de la Compra: ")
                .append(facturas.get(factura).getCarritoCompras().getPrecioTotal()) // Se obtiene el precio total de la compra
