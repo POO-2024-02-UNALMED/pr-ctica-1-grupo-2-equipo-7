@@ -1,16 +1,15 @@
 package uiMain;
 
+import compras.CarritoCompras;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import compras.CarritoCompras;
 import pasarelaPago.Transaccion;
+import tienda.Producto;
 import usuario.Comprador;
 import usuario.Notificacion;
 import usuario.Vendedor;
-import tienda.Producto;
 
 public class BuyProcess {
     private Comprador comprador;
@@ -89,6 +88,7 @@ public class BuyProcess {
                         for (Producto producto : comprador.getCarritoCompras().getListaItems()){
                             boolean verificacion = producto.verificarCantidadProductos();
                             cantidadProductos.add(verificacion);
+                            producto.setCantidadVendida(comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
                         }
     
                         for (int i = 0; i < cantidadProductos.size(); i++){
@@ -126,6 +126,7 @@ public class BuyProcess {
                     for (Producto producto : comprador.getCarritoCompras().getListaItems()){
                         boolean verificacion = producto.verificarCantidadProductos();
                         cantidadProductos.add(verificacion);
+                        producto.setCantidadVendida(comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
                     }
 
                     for (int i = 0; i < cantidadProductos.size(); i++){

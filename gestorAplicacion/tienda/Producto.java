@@ -93,6 +93,10 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public void setCantidadVendida(int cantidadVendida) {
+        this.cantidadVendida = cantidadVendida;
+    }
+
     //metodos
     public int aplicardescuento(Producto producto ,double descuento) {//metodo para un posible descuento
     	int resta=(int) (producto.precio*descuento);
