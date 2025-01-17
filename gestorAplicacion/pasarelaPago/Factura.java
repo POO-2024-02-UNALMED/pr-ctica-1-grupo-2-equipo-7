@@ -50,7 +50,7 @@ public class Factura {
         if(producto != null){
             if(producto.isRetornable() == retornabilidad){
                 int cantidadVendida = carritoCompras.getCantidadPorProducto(producto);
-                if (cantidadVendida >= cantidadRetornar) {
+                if (cantidadVendida >= cantidadRetornar && cantidadRetornar > 0) {
                     return producto;
                 }
             }

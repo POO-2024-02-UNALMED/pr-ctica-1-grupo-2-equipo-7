@@ -13,7 +13,8 @@ public class Usuario{
     protected CuentaBancaria cuentaBancaria;
     protected ArrayList<Notificacion> notificaciones = new ArrayList<>();
 
-    public Usuario(CuentaBancaria cuenta){
+    public Usuario(String nombre ,CuentaBancaria cuenta){
+        this.nombre = nombre;
         this.cuentaBancaria = cuenta;
     }
 
@@ -84,12 +85,14 @@ public class Usuario{
     }
 	
     public String mostrarNotificaciones(){
+        int contador = 1;
 		String notificaciones = "";
 		for (Notificacion notificacion : this.notificaciones){
-			notificaciones += notificacion.mostrarResumen() + "\n";
+            notificaciones += "\n" + contador + ". " + notificacion.mostrarResumen() + "\n";
 		}
 		return notificaciones;
 	}
+    
      public void recibirNotificacion(Notificacion notificacion){
       		notificaciones.add(notificacion);
      }

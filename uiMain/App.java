@@ -36,7 +36,7 @@ public class App {
         inventario.añadirProducto(producto1);
         inventario.añadirProducto(producto2);
         inventario.añadirProducto(producto3);
-        Comprador comprador = new Comprador(null, null);
+        Comprador comprador = new Comprador("Carlos Bustamante" ,null, null);
         CarritoCompras carritoCompras = new CarritoCompras(comprador);
         carritoCompras.añadirProducto(producto1);
         carritoCompras.añadirProducto(producto2);
@@ -45,7 +45,7 @@ public class App {
         comprador.setCarritoCompras(carritoCompras);
         Fabrica fabrica = new Fabrica("FabricaPrincipal", 1);
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
-        Vendedor vendedor = new Vendedor(cuentaBancariaComprador, inventario, fabrica);
+        Vendedor vendedor = new Vendedor("Enrique Iglesias", cuentaBancariaComprador, inventario, fabrica);
         CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
         comprador.setCuentaBancaria(cuentaBancariaComprador);
         vendedor.setCuentaBancaria(cuentaBancariaVendedor);

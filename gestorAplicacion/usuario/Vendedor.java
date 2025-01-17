@@ -13,8 +13,8 @@ public class Vendedor extends Usuario {
     Fabrica fabrica;
     private ArrayList<ArrayList<Object>> ordenesPendientes; //alejandro funcionalidad 5 reporte
 
-    public Vendedor(CuentaBancaria cuenta, Inventario inventario, Fabrica fabrica){
-        super(cuenta);
+    public Vendedor(String nombre, CuentaBancaria cuenta, Inventario inventario, Fabrica fabrica){
+        super(nombre, cuenta);
         this.inventario = inventario;
         this.fabrica = fabrica;
         this.ordenesPendientes = new ArrayList<>();  //alejandro funcionalidad 5 reporte

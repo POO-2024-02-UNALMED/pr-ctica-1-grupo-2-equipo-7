@@ -1,18 +1,22 @@
 package usuario;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Notificacion {
     private String mensaje;
     private String asunto;
     private Usuario destinatario;
-    private LocalDateTime fecha;
+    private String fecha;
 
     public Notificacion(String mensaje, String asunto, Usuario destinatario) {
         this.mensaje = mensaje;
         this.asunto = asunto;
         this.destinatario = destinatario;
-        this.fecha = LocalDateTime.now(); // fecha actual
+
+         // Formatear la fecha al momento de crear el objeto.
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+         this.fecha = LocalDateTime.now().format(formatter); // Almacenar la fecha como String formateado.
     }
 
     //getters y setters
@@ -41,7 +45,7 @@ public class Notificacion {
         this.destinatario = value;
     }
 
-    public LocalDateTime getFecha() {
+    public String getFecha() {
         return this.fecha;
     }
 
@@ -56,6 +60,6 @@ public class Notificacion {
         return "Fecha: " + this.fecha + "\n" +
                "Destinatario: " + this.destinatario.getNombre() + "\n" +
                "Asunto: " + this.asunto + "\n" +
-               "Mensaje:\n" + mensajeCorto;
+               "Mensaje: " + mensajeCorto;
     }
 }

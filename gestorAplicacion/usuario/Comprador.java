@@ -13,8 +13,8 @@ public class Comprador extends Usuario{
     protected ArrayList<Integer> valorCupones = new ArrayList<>();
     public int cantidadCupones; // Cantidad inicial de cupones antes de la compra
 
-    public Comprador(CarritoCompras carritoCompras, CuentaBancaria cuenta){
-        super(cuenta);
+    public Comprador(String nombre, CarritoCompras carritoCompras, CuentaBancaria cuenta){
+        super(nombre, cuenta);
         this.carritoCompras = carritoCompras;
         this.historialCompras = new HistorialCompras();
         this.valorCupones.add(10); // se le añade a la lista de cupones un cupon de 10% de descuento que van a tener por defecto todos los compradores.
@@ -39,7 +39,7 @@ public class Comprador extends Usuario{
 
     // metodos
     
-    public boolean devolverProducto(int idFactura, int idProducto, int cantidadRetornar, Vendedor vendedor){
+    public String devolverProducto(int idFactura, int idProducto, int cantidadRetornar, Vendedor vendedor){
         Factura factura = historialCompras.buscarFactura(idFactura); // Verificar existencia de la factura
         if(factura != null){
             Producto producto = factura.verificarProducto(idProducto, cantidadRetornar, true); // Verificar existencia del producto en la factura
@@ -55,12 +55,12 @@ public class Comprador extends Usuario{
                 String asuntoVendedor = "Devolución recibida";
                 this.recibirNotificacion(new Notificacion(mensajeComprador, asuntoComprador, this)); // Notificación de devolución al comprador
                 vendedor.recibirNotificacion(new Notificacion(mensajeVendedor, asuntoVendedor, vendedor)); // Notificación de devolución al vendedor
-                return true;
+                return "DevolucionExitosa";
             }else{
-                return false;
+                return "ProductoInvalido";
             }
         }else{
-            return false;
+            return "FacturaInvalida";
         }
     }
 

@@ -28,13 +28,17 @@ public class ReturnMenu {
         System.out.print("Ingrese la cantidad a devolver: ");
         int cantidadRetornar = Integer.parseInt(scanner.nextLine());
 
+        String resultado = comprador.devolverProducto(idFactura, idProducto, cantidadRetornar, vendedor);
 
-        boolean success = comprador.devolverProducto(idFactura, idProducto, cantidadRetornar, vendedor);
-
-        if (success) {
+        switch (resultado) {
+            case "FacturaInvalida":
+                System.out.println("La factura ingresada no fue encontrada.");
+                break;
+            case "ProductoInvalido":
+                System.out.println("El producto ingresado no fue encontrado en la factura, no es retornable ó la cantidad a devolver no es valida.");
+                break;
+            default:
             System.out.println("La devolución se ha procesado correctamente, en sus notificaciones encontrará más información.");
-        } else {
-            System.out.println("Error al procesar la devolución. Verifique los datos.");
         }
     }
 

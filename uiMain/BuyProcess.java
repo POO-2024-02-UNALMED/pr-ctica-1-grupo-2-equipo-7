@@ -78,10 +78,7 @@ public class BuyProcess {
                         }
                         System.out.println("Saldo restante en su cuenta: " + comprador.getCuentaBancaria().getSaldo() + "\n");
 
-                        LocalDateTime fechaCompra = LocalDateTime.now();
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // Se establece el formato en el cual se desea mostrar la hora.
-                        String formatoPersonalizado = fechaCompra.format(formatter); // Se formatea la fecha y hora de la compra.
-                        Notificacion notificacion = new Notificacion("Se le informa que su compra por " + comprador.getCarritoCompras().getPrecioTotal() + " pesos ha sido realizada exitosamente a las " + formatoPersonalizado, "¡Compra realizada exitosamente!", comprador);
+                        Notificacion notificacion = new Notificacion("Se le informa que su compra por " + comprador.getCarritoCompras().getPrecioTotal() + " pesos ha sido realizada exitosamente.", "¡Compra realizada exitosamente!", comprador);
                         comprador.recibirNotificacion(notificacion); // Se envía una notificación al comprador informando que la compra ha sido realizada exitosamente.
 
                         ArrayList<Boolean> cantidadProductos = new ArrayList<>(); // Se crea este ArrayList para almacenar si toca o no enviar una notificación al vendedor.
@@ -116,10 +113,7 @@ public class BuyProcess {
                     }
                     System.out.println("Saldo restante en su cuenta: " + comprador.getCuentaBancaria().getSaldo() + "\n");
 
-                    LocalDateTime fechaCompra = LocalDateTime.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // Se establece el formato en el cual se desea mostrar la hora.
-                    String formatoPersonalizado = fechaCompra.format(formatter); // Se formatea la fecha y hora de la compra.
-                    Notificacion notificacion = new Notificacion("Se le informa que su compra por " + comprador.getCarritoCompras().getPrecioTotal() + " pesos ha sido realizada exitosamente a las " + formatoPersonalizado, "¡Compra realizada exitosamente!", comprador);
+                    Notificacion notificacion = new Notificacion("Se le informa que su compra por " + comprador.getCarritoCompras().getPrecioTotal() + " pesos ha sido realizada exitosamente.", "¡Compra realizada exitosamente!", comprador);
                     comprador.recibirNotificacion(notificacion); // Se envía una notificación al comprador informando que la compra ha sido realizada exitosamente.
 
                     ArrayList<Boolean> cantidadProductos = new ArrayList<>(); // Se crea este ArrayList para almacenar si toca o no enviar una notificación al vendedor.
