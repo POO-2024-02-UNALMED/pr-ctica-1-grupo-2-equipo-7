@@ -35,6 +35,8 @@ public class SellerMenu {
             switch (opcion) {
                 case 1:
                     System.out.println(inventario.generarReporte());
+                    System.out.println("A continucacion elija los productos que quiere crear en la fabrica para reponer en el inventario");
+                    System.out.println(vendedor.crearOrdenFabricacion());
                     break;
                 case 2:
                 if (vendedor.getNotificaciones().size() == 0){
