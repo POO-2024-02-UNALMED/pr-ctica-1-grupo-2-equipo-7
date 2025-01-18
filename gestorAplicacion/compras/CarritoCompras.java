@@ -111,7 +111,9 @@ public class CarritoCompras implements Serializable{
     }
 
 	public String añadirProducto(Producto producto){
-		boolean estado= Inventario.verificarproducto(producto,producto.getCantidad());//aqui esta la verificacion del stock del inventario de la tienda
+		// POR FAVOR NO MOVER MÁS ESTE MÉTODO QUE YA QUEDA FUNCIONANDO BIEN
+		// Si no se le pasa ningún número, se asume que se quiere añadir 1 producto
+		boolean estado= Inventario.verificarproducto(producto, 1);//aqui esta la verificacion del stock del inventario de la tienda
 		if(estado==true ) {
 			if(this.listaItems.contains(producto)){
 				int indice = this.listaItems.indexOf(producto);
@@ -120,12 +122,12 @@ public class CarritoCompras implements Serializable{
 					return"Error. La cantidad mínima de productos que se pueden añadir es 1";
 					
 				}else{
-					this.cantidadPorProducto.set(indice, cantidad + producto.getCantidad());
+					this.cantidadPorProducto.set(indice, cantidad + 1);
 					return "Proceso exitoso";
 				}
 			}else{
 				this.listaItems.add(producto);
-				this.cantidadPorProducto.add(producto.getCantidad());
+				this.cantidadPorProducto.add(1); // Si no se le pasa ningún número, se asume que se quiere añadir 1 producto
 			}
 		}else {
 			return "No hay suficiente producto en stock";
@@ -134,7 +136,8 @@ public class CarritoCompras implements Serializable{
 		return null;
 	}
 
-	public String añadirProducto(Producto producto, int cantidadProductoAñadir){//metodo sobrecargado , en este el usuario si brinda la cantidad de productos que desea añadir 
+	public String añadirProducto(Producto producto, int cantidadProductoAñadir){//metodo sobrecargado , en este el usuario si brinda la cantidad de productos que desea añadir
+		// POR FAVOR NO MOVER MÁS ESTE MÉTODO QUE YA QUEDA FUNCIONANDO BIEN
 		boolean estado= Inventario.verificarproducto(producto,cantidadProductoAñadir);
 		if(estado==true ) {
 		if (cantidadProductoAñadir > 5){
@@ -146,9 +149,14 @@ public class CarritoCompras implements Serializable{
 				return "Error. La cantidad máxima de productos que se pueden añadir son 5";
 			
 			}else{
+
 				this.cantidadPorProducto.set(indice, cantidad + cantidadProductoAñadir);
 				return "proceso exitoso ";
 			}
+		} else if (!this.listaItems.contains(producto)){
+			this.listaItems.add(producto);
+			this.cantidadPorProducto.add(cantidadProductoAñadir);
+			return "proceso exitoso";
 		}
 		}else {
 			return "No hay suficiente producto en stock";

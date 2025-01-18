@@ -7,6 +7,7 @@ import tienda.Producto.Categoria;
 import java.io.Serializable;
 
 
+
 public class Inventario implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private static ArrayList<Producto> categoriaTecnologia;
@@ -228,52 +229,52 @@ public class Inventario implements Serializable{
 
     // Getters y Setters
 
-    public ArrayList<Producto> getCategoriaTecnologia() {
+    public static ArrayList<Producto> getCategoriaTecnologia() {
         return categoriaTecnologia;
     }
 
-    public void setCategoriaTecnologia(ArrayList<Producto> categoriaTecnologia) {
-        this.categoriaTecnologia = categoriaTecnologia;
+    public static void setCategoriaTecnologia(ArrayList<Producto> categoriaTecnologia) {
+        Inventario.categoriaTecnologia = categoriaTecnologia;
     }
 
-    public ArrayList<Producto> getCategoriaAseo() {
+    public static ArrayList<Producto> getCategoriaAseo() {
         return categoriaAseo;
     }
 
-    public void setCategoriaAseo(ArrayList<Producto> categoriaAseo) {
-        this.categoriaAseo = categoriaAseo;
+    public static void setCategoriaAseo(ArrayList<Producto> categoriaAseo) {
+        Inventario.categoriaAseo = categoriaAseo;
     }
 
-    public ArrayList<Producto> getCategoriaComida() {
+    public static ArrayList<Producto> getCategoriaComida() {
         return categoriaComida;
     }
 
-    public void setCategoriaComida(ArrayList<Producto> categoriaComida) {
-        this.categoriaComida = categoriaComida;
+    public static void setCategoriaComida(ArrayList<Producto> categoriaComida) {
+        Inventario.categoriaComida = categoriaComida;
     }
 
-    public ArrayList<Producto> getCategoriaPapeleria() {
+    public static ArrayList<Producto> getCategoriaPapeleria() {
         return categoriaPapeleria;
     }
 
-    public void setCategoriaPapeleria(ArrayList<Producto> categoriaPapeleria) {
-        this.categoriaPapeleria = categoriaPapeleria;
+    public static void setCategoriaPapeleria(ArrayList<Producto> categoriaPapeleria) {
+        Inventario.categoriaPapeleria = categoriaPapeleria;
     }
 
-    public ArrayList<Producto> getCategoriaJuegueteria() {
+    public static ArrayList<Producto> getCategoriaJuegueteria() {
         return categoriaJuegueteria;
     }
 
-    public void setCategoriaJuegueteria(ArrayList<Producto> categoriaJuegueteria) {
-        this.categoriaJuegueteria = categoriaJuegueteria;
+    public static void setCategoriaJuegueteria(ArrayList<Producto> categoriaJuegueteria) {
+        Inventario.categoriaJuegueteria = categoriaJuegueteria;
     }
 
-    public ArrayList<Producto> getCategoriaDeportes() {
+    public static ArrayList<Producto> getCategoriaDeportes() {
         return categoriaDeportes;
     }
 
-    public void setCategoriaDeportes(ArrayList<Producto> categoriaDeportes) {
-        this.categoriaDeportes = categoriaDeportes;
+    public static void setCategoriaDeportes(ArrayList<Producto> categoriaDeportes) {
+        Inventario.categoriaDeportes = categoriaDeportes;
     }
     
 
