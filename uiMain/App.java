@@ -43,7 +43,7 @@ public class App {
         carritoCompras.añadirProducto(producto3, 2);
         carritoCompras.calcularTotal();
         comprador.setCarritoCompras(carritoCompras);
-        Fabrica fabrica = new Fabrica("FabricaPrincipal", 1);
+        Fabrica fabrica = new Fabrica();
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
         Vendedor vendedor = new Vendedor("Enrique Iglesias", cuentaBancariaComprador, inventario, fabrica);
         CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
