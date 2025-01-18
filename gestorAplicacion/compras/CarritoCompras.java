@@ -1,12 +1,14 @@
 package compras;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import tienda.Inventario;
 import tienda.Producto;
 import usuario.Usuario;
 
-public class CarritoCompras {
+public class CarritoCompras implements Serializable{
 
+	private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private Usuario usuario; // atributo usado con el fin de contener al propietario
 	private ArrayList<Producto> listaItems = new ArrayList<>(); // Acá se almacenan los productos que el usuario va a comprar.
 	private ArrayList<Integer> cantidadPorProducto = new ArrayList<>(); //Acá se almacena la cantidad de productos que el usuario va a comprar.

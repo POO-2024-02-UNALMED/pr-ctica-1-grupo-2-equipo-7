@@ -1,10 +1,12 @@
 package pasarelaPago;
 
+import java.io.Serializable;
 import usuario.Comprador;
 import usuario.Usuario;
 import usuario.Vendedor;
 
-public class Transaccion {
+public class Transaccion implements Serializable{
+	private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
 	private Usuario usuarioRemitente;
 	private Usuario usuarioReceptor;
 	private String tipoTransaccion;

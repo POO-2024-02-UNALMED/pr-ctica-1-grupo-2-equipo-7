@@ -1,9 +1,11 @@
 package usuario;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Notificacion {
+public class Notificacion implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private String mensaje;
     private String asunto;
     private Usuario destinatario;

@@ -1,11 +1,12 @@
 package compras;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import pasarelaPago.Factura;
 import tienda.Producto.Categoria;
 
-public class HistorialCompras {
-    
+public class HistorialCompras implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     int cantidadDevueltos;
     private ArrayList<Factura> facturas = new ArrayList<>();
     

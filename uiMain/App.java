@@ -95,6 +95,16 @@ public class App {
 
         // Crear una instancia de MainMenu
         MainMenu mainMenu = new MainMenu(comprador, vendedor, tienda, inventario, notificacion);
+
+        //INSTRUCCIONES PARA SEREALIZAR: Primero ejecuten la tienda comentando el mainMenu que se encuentra abajo (el que no tiene parametros).
+        //Después de ejecutar cierran la aplicación dandole a la opción de salir en el menú principal. Después de ejecutar la aplicación comenten todo lo que se encuentra arriba
+        //(a excepción del main y el nombre de la clase App obviamente) y descomenten el mainMenu que se encuentra abajo (el que no tiene parametros). Después de eso pueden ejecutar
+        //todo serializado ya que primero se necesitaban crear los objetos. Si desean empezar desde cero repitan el proceso.
+        //NOTA: actualmente la serialización no funciona correctamente para todas aquellas funcionalidades que requieren de Inventario ya que la serialización no puede almacenar
+        //datos de atributos estáticos o métodos estáticos, la única forma de hacerlo por ahora sería convirtiendo todos esos atributos estáticos y métodos estáticos en no estáticos
+        //Pero eso lo consultaré luego con ustedes.
+
+        // MainMenu mainMenu = new MainMenu();
         
         // Mostrar el menú principal
         mainMenu.display();

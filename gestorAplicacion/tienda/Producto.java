@@ -1,9 +1,11 @@
 package tienda;
 
 import compras.Reseña;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Producto {
+public class Producto implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     int cantidad;
     private int cantidadVendida;
     int cantidadAlerta;

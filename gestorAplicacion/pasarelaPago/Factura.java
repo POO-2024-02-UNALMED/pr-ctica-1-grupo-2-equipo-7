@@ -1,11 +1,13 @@
 package pasarelaPago;
 
 import compras.CarritoCompras;
+import java.io.Serializable;
+import java.util.Random;
 import tienda.Producto;
 import usuario.Comprador;
-import java.util.Random;
 
-public class Factura {
+public class Factura implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private CarritoCompras carritoCompras;
     private int IDFactura;
     private Transaccion transaccion;

@@ -1,5 +1,7 @@
 package uiMain;
 
+import baseDatos.Deserializador;
+import baseDatos.Serializador;
 import java.util.Scanner;
 import tienda.Inventario;
 import tienda.Tienda;
@@ -22,6 +24,10 @@ public class MainMenu {
         this.notificacion = notificacion;
     }
 
+    public MainMenu(){
+      Deserializador.deserealizar(this);
+    }
+
     public void display() {
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -42,11 +48,47 @@ public class MainMenu {
                     new SellerMenu(comprador, vendedor, inventario, notificacion).display();
                     break;
                 case 3:
+                    Serializador.serializar(this);
                     System.out.println("Gracias por usar el sistema. ¡Hasta luego!");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
         } while (opcion != 3);
+    }
+
+    public Comprador getComprador() {
+      return this.comprador;
+    }
+    public void setComprador(Comprador value) {
+      this.comprador = value;
+    }
+
+    public Vendedor getVendedor() {
+      return this.vendedor;
+    }
+    public void setVendedor(Vendedor value) {
+      this.vendedor = value;
+    }
+
+    public Tienda getTienda() {
+      return this.tienda;
+    }
+    public void setTienda(Tienda value) {
+      this.tienda = value;
+    }
+
+    public Inventario getInventario() {
+      return this.inventario;
+    }
+    public void setInventario(Inventario value) {
+      this.inventario = value;
+    }
+
+    public Notificacion getNotificacion() {
+      return this.notificacion;
+    }
+    public void setNotificacion(Notificacion value) {
+      this.notificacion = value;
     }
 }

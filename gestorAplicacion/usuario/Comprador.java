@@ -1,13 +1,15 @@
 package usuario;
 
-import java.util.ArrayList;
 import compras.CarritoCompras;
 import compras.HistorialCompras;
+import java.io.Serializable;
+import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import pasarelaPago.Factura;
 import tienda.Producto;
 
-public class Comprador extends Usuario{
+public class Comprador extends Usuario implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     protected CarritoCompras carritoCompras;
     protected HistorialCompras historialCompras;
     protected ArrayList<Integer> valorCupones = new ArrayList<>();

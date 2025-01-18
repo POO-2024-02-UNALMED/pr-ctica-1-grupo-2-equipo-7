@@ -1,14 +1,15 @@
 package usuario;
 
+import fabrica.Fabrica;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import pasarelaPago.CuentaBancaria;
+import tienda.Inventario; //alejandro funcionalidad 5 reporte
 import tienda.Producto;
-import tienda.Inventario;
-import fabrica.Fabrica; //alejandro funcionalidad 5 reporte
 
-public class Vendedor extends Usuario {
+public class Vendedor extends Usuario implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     Inventario inventario;
     Fabrica fabrica;
     private ArrayList<ArrayList<Object>> ordenesPendientes; //alejandro funcionalidad 5 reporte

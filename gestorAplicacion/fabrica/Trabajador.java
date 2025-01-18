@@ -1,10 +1,12 @@
 package fabrica;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import tienda.Producto;
 
-public class Trabajador {
+public class Trabajador implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private int idTrabajador;
     private String nombre;
     private String horario; 

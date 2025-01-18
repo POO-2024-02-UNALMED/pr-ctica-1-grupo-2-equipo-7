@@ -1,8 +1,10 @@
 package pasarelaPago;
 
+import java.io.Serializable;
 import usuario.Usuario;
 
-public class CuentaBancaria {
+public class CuentaBancaria implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private long saldo = 0;
     private Usuario usuario;
 

@@ -1,9 +1,11 @@
 package fabrica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import tienda.Producto;
 
-public class Fabrica {
+public class Fabrica implements Serializable{
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private String nombre;
     private int trabajadoresDisponibles;
     private ArrayList<ArrayList<Object>> ordenesPendientes;
