@@ -1,100 +1,122 @@
 package fabrica;
 
 import java.io.Serializable;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import tienda.Producto;
 
 public class Fabrica implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
-    private String nombre;
-    private int trabajadoresDisponibles;
-    private ArrayList<ArrayList<Object>> ordenesPendientes;
+    private List<Trabajador> trabajadores;
+    private List<ArrayList<Object>> ordenesPendientes;
 
-    public Fabrica(String nombre, int trabajadoresDisponibles) {
-        this.nombre = nombre;
-        this.trabajadoresDisponibles = trabajadoresDisponibles;
+    public Fabrica() {
+        this.trabajadores = new ArrayList<>();
         this.ordenesPendientes = new ArrayList<>();
+        for (int i = 1; i <= 100; i++) {
+            trabajadores.add(new Trabajador(i, "Trabajador " + i, "08:00-20:00"));
+        }
     }
     
     // getters y setters
-    
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getTrabajadoresDisponibles() {
-        return trabajadoresDisponibles;
-    }
-
-    public void setTrabajadoresDisponibles(int trabajadoresDisponibles) {
-        this.trabajadoresDisponibles = trabajadoresDisponibles;
-    }
-
-   public ArrayList<ArrayList<Object>> getOrdenesPendientes() {
+   public List<ArrayList<Object>> getOrdenesPendientes() {
         return ordenesPendientes;
     }
 
     //metodos
     
-    public void recibirOrden(ArrayList<Producto> productos, ArrayList<Integer> cantidades) {
+    public String recibirOrden(ArrayList<Producto> productos, ArrayList<Integer> cantidades) {
         ArrayList<Object> orden = new ArrayList<>();
         orden.add(productos);
         orden.add(cantidades);
         ordenesPendientes.add(orden);
-        System.out.println("Orden recibida.");
+
+        String mensaje = "Orden de fabricación recibida. Se están procesando los productos.\n";
+        mensaje += procesarOrden(orden);  // Procesa la orden de inmediato sin hilos.
+
+        return mensaje;
     }
 
-    public String asignarTrabajadoresYTiempo(ArrayList<Object> orden) {
+    private String procesarOrden(ArrayList<Object> orden) {
         ArrayList<Producto> productos = (ArrayList<Producto>) orden.get(0);
         ArrayList<Integer> cantidades = (ArrayList<Integer>) orden.get(1);
 
-        int trabajadoresRequeridos = calcularTrabajadoresRequeridos(productos, cantidades);
 
-        if (trabajadoresDisponibles >= trabajadoresRequeridos) {
-            trabajadoresDisponibles -= trabajadoresRequeridos;
-            int tiempoEstimado = calcularTiempoProduccion(productos, cantidades);
-            return "Orden procesada. Tiempo estimado: " + tiempoEstimado + " horas.";
+        int trabajadoresRequeridos = calcularTrabajadoresRequeridos(productos, cantidades);
+        String mensaje = "Procesando su orden... ";
+
+        if (trabajadoresRequeridos > 0) {
+            asignarTrabajadores(trabajadoresRequeridos);
+            int tiempoProduccion = calcularTiempoProduccion(productos, cantidades);
+
+            mensaje += "Los trabajadores han sido asignados, producción en curso.\n";
+            mensaje += "Esperando " + tiempoProduccion + " minutos para completar la producción...\n";
+            int tiempoRestante = tiempoProduccion;
+            while (tiempoRestante > 0) {
+                // Este ciclo simula que la producción está avanzando.
+                // El tiempo restante se va reduciendo en "unidades de tiempo" (puede ser un minuto)
+                tiempoRestante--;
+                
+                // Aquí podrías actualizar el estado del sistema si lo necesitas.
+                // Esto simula el paso del tiempo sin bloquear el flujo del programa.
+            }
+
+            liberarTrabajadores();
+            mensaje += "Los productos han sido procesados y serán entregados al inventario en breve.\n";
+            mensaje += "Su pedido estará listo para el inventario a las " + calcularHoraEntrega(tiempoProduccion) + ".";
         } else {
-            return "No hay suficientes trabajadores disponibles. La orden está en espera.";
+            mensaje += "No hay suficientes trabajadores disponibles para esta orden.";
+        }
+
+        return mensaje;
+    }
+
+    private void asignarTrabajadores(int trabajadoresRequeridos) {
+        int asignados = 0;
+        for (Trabajador trabajador : trabajadores) {
+            if (trabajador.getEstado().equals("Disponible") && asignados < trabajadoresRequeridos) {
+                trabajador.setEstado("Ocupado");
+                asignados++;
+            }
+            if (asignados == trabajadoresRequeridos) break;
         }
     }
 
-    public void producirProducto(ArrayList<Object> orden) {
-        ArrayList<Producto> productos = (ArrayList<Producto>) orden.get(0);
-        ArrayList<Integer> cantidades = (ArrayList<Integer>) orden.get(1);
-
-        int trabajadoresRequeridos = calcularTrabajadoresRequeridos(productos, cantidades);
-
-        if (trabajadoresDisponibles >= trabajadoresRequeridos) {
-            System.out.println("Produciendo los productos de la orden.");
-            trabajadoresDisponibles -= trabajadoresRequeridos;
-            ordenesPendientes.remove(orden); // Eliminar la orden después de producirla
-            trabajadoresDisponibles += trabajadoresRequeridos; // Los trabajadores vuelven a estar disponibles
-        } else {
-            System.out.println("No hay trabajadores disponibles para iniciar esta orden.");
+    private void liberarTrabajadores() {
+        for (Trabajador trabajador : trabajadores) {
+            if (trabajador.getEstado().equals("Ocupado")) {
+                trabajador.setEstado("Disponible");
+            }
         }
     }
     
     private int calcularTiempoProduccion(ArrayList<Producto> productos, ArrayList<Integer> cantidades) {
-        int tiempoBase = 2; 
-        int cantidadProductos = 0;
-
-        // Sumar todas las cantidades de productos en la orden
-        for (Integer cantidad : cantidades) {
-            cantidadProductos += cantidad;
-        }
-        return (int) Math.ceil((double) cantidadProductos / 10) * tiempoBase; 
+        int tiempoPorUnidad = 3;  // 30 minutos para un solo producto
+        int cantidadTotal = cantidades.stream().mapToInt(Integer::intValue).sum();
+        
+        // El tiempo de producción total en minutos
+        return cantidadTotal * tiempoPorUnidad;
     }
 
+    private String calcularHoraEntrega(int tiempoProduccion) {
+        // Obtener la hora actual de la PC
+        LocalTime horaActual = LocalTime.now();
+
+        // Sumar el tiempo de producción a la hora actual
+        LocalTime horaEntrega = horaActual.plusMinutes(tiempoProduccion);
+
+        // Convertir la hora de entrega a formato 24 horas (HH:mm)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return horaEntrega.format(formatter);
+    }
+    
     private int calcularTrabajadoresRequeridos(ArrayList<Producto> productos, ArrayList<Integer> cantidades) {
-        int trabajadores = 0;
-        for (int i = 0; i < productos.size(); i++) {
-            trabajadores += (int) Math.ceil((double) cantidades.get(i) / 10);
-        }
-        return trabajadores;
+        int trabajadoresPorUnidad = 2;  // 2 trabajadores por producto
+        int cantidadTotal = cantidades.stream().mapToInt(Integer::intValue).sum();
+        
+        // El número total de trabajadores necesarios para todos los productos
+        return cantidadTotal * trabajadoresPorUnidad;
     }
 }
