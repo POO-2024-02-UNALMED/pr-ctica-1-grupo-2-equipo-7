@@ -22,6 +22,9 @@ public class CartMenu {
   public void display() {
     Scanner scanner = new Scanner(System.in);
     int opcion;
+    
+    
+
 
     do {
 
@@ -31,6 +34,7 @@ public class CartMenu {
       System.out.println("3. Regresar");
       System.out.println("Seleccione una opción: ");
       opcion = scanner.nextInt();
+      
 
       switch (opcion) {
 
@@ -112,7 +116,49 @@ public class CartMenu {
               break;
 
       case 2:
-        // Espacio para gestionar las eliminaciones
+      System.out.println("A continuación te mostraremos tu carrito para que elijas qué quieres eliminar");
+      String a = this.comprador.getCarritoCompras().toString();
+      System.err.println(a);
+      
+      // Solicitar el nombre del producto a eliminar
+      System.out.println("Por favor, ingresa el nombre del producto a eliminar:");
+      
+      String eliminar = scanner.next(); // Leer el nombre del producto
+      
+      // Solicitar la cantidad de productos a eliminar
+      System.out.println("Ahora ingresa la cantidad:");
+      int count = 0;
+      while (true) {
+          if (scanner.hasNextInt()) {
+              count = scanner.nextInt();
+              scanner.nextLine(); // Consumir el salto de línea pendiente después de nextInt()
+              break; // Salir del bucle si la cantidad es válida
+          } else {
+              System.out.println("Por favor, ingresa un número válido para la cantidad.");
+              scanner.next(); // Limpiar la entrada no válida
+          }
+      }
+      
+      // Buscar el producto en el carrito
+      Producto producto = this.comprador.getCarritoCompras().busqueda(eliminar);
+      
+      // Validar si el producto existe
+      if (producto == null) {
+          System.out.println("El producto '" + eliminar + "' no se encuentra en el carrito.");
+      } else {
+          // Validar la cantidad
+          if (count <= 0) {
+              System.out.println("La cantidad debe ser mayor que 0.");
+          } else {
+              // Eliminar el producto
+              String o=this.comprador.getCarritoCompras().eliminarproducto(producto, count);
+              System.err.println(o);
+              
+          }
+      }
+      
+      
+
         break;
 
       case 3:

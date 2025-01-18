@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 public class ProductSelectionMenu {
-
+    private String llevar;
     private Comprador comprador;
 	private Tienda tienda;
 	private Object[][] catalogo;
@@ -19,16 +19,27 @@ public class ProductSelectionMenu {
     private String columna;
 
     public ProductSelectionMenu(Comprador comprador, Tienda tienda, Object[][] catalogo,    
-                                Producto productoSeleccionado, String fila, String columna) {
+                                Producto productoSeleccionado, String fila, String columna,String llevar) {
         this.comprador = comprador;
         this.tienda = tienda;
         this.catalogo = catalogo;
         this.productoSeleccionado = productoSeleccionado;
         this.fila = fila;
         this.columna = columna;
+        this.llevar=llevar;
 
     }
-    
+    public ProductSelectionMenu(Comprador comprador, Tienda tienda, Object[][] catalogo,    
+        Producto productoSeleccionado, String fila, String columna) {
+        this.comprador = comprador;
+        this.tienda = tienda;
+        this.catalogo = catalogo;
+        this.productoSeleccionado = productoSeleccionado;
+        this.fila = fila;
+        this.columna = columna;
+        
+
+}
     public void display(){
 
         Scanner scanner = new Scanner(System.in);
@@ -41,12 +52,15 @@ public class ProductSelectionMenu {
 						System.out.println("1. Agregar al carrito");
 						System.out.println("2. Ver información del producto");
 						System.out.println("3. Seleccionar otro producto");
+                        System.out.println("4. Regresar");
 						System.out.println("Seleccione una opción: ");
 					    opcion = scanner.nextInt();
 
 						switch (opcion) {
 						case 1:
-							//Llamada a la lógica para agregar al carrito
+                           
+							this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                            System.out.println("Producto añadido correctamente");
 							break;
 						case 2:
 							System.out.println(productoSeleccionado);
@@ -57,8 +71,8 @@ public class ProductSelectionMenu {
 							System.out.println("Opción inválida, intente de nuevo");
 							continue;
         }
-
-    } while(opcion != 3);
+        System.out.println();
+    } while(opcion != 3 && opcion != 4 && opcion !=1 && opcion!=2);
 
 
     }
@@ -82,7 +96,8 @@ public class ProductSelectionMenu {
 
                 switch (opcion) {
                 case "1":
-                    //Llamada a la lógica para agregar al carrito
+                    this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                    System.out.println("Producto añadido correctamente");
                     break;
                 case "2":
                     System.out.println(productoSeleccionado);

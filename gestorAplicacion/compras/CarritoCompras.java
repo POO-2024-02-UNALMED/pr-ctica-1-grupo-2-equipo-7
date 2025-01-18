@@ -65,6 +65,18 @@ public class CarritoCompras implements Serializable{
     		return this.usuario;
     	}
 	// metodos
+	public Producto busqueda(String nombre){
+		for(Producto producto : listaItems){
+			if (producto.getNombre().equals(nombre)){
+				return producto;
+			}else{
+
+			}
+		}
+				return null;
+
+
+	}
     	public void calcularTotal(){
     		this.precioTotal = 0;
     		for(Producto producto : listaItems){
@@ -94,24 +106,26 @@ public class CarritoCompras implements Serializable{
 		}
 		return null;
 	}
-
+	public String toString() {
+        return "El carrito de "+ this.getUsuario().getNombre() + "es " + this.getListaItems() ;
+    }
 
 	public String añadirProducto(Producto producto){
-		boolean estado= Inventario.verificarproducto(producto,1);//aqui esta la verificacion del stock del inventario de la tienda
+		boolean estado= Inventario.verificarproducto(producto,producto.getCantidad());//aqui esta la verificacion del stock del inventario de la tienda
 		if(estado==true ) {
 			if(this.listaItems.contains(producto)){
 				int indice = this.listaItems.indexOf(producto);
 				int cantidad = this.cantidadPorProducto.get(indice);
-				if(cantidad == 5){
-					return"Error. La cantidad máxima de productos que se pueden añadir son 5";
+				if(cantidad == 0){
+					return"Error. La cantidad mínima de productos que se pueden añadir es 1";
 					
 				}else{
-					this.cantidadPorProducto.set(indice, cantidad + 1);
+					this.cantidadPorProducto.set(indice, cantidad + producto.getCantidad());
 					return "Proceso exitoso";
 				}
 			}else{
 				this.listaItems.add(producto);
-				this.cantidadPorProducto.add(1);
+				this.cantidadPorProducto.add(producto.getCantidad());
 			}
 		}else {
 			return "No hay suficiente producto en stock";
