@@ -90,13 +90,24 @@ public class ProductSelectionProcess {
 
 						new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
 												fila, columna,llevar).display(comprador.getHistorialCompras());
+						break;
 
 					} else {
 
 						//En la primera compra no hay historial, por lo que no se pueden hacer recomendaciones
 
-						new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
+						//Este display retorna un valor booleano dependiendo de la opción que se escoja,
+						//Esto con el fin de saber si se debe volver al menú de selección de productos o
+						//Al menú del carrito directamente
+						boolean retorno = new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
 												fila, columna,llevar).display();
+
+						if (retorno == false){
+							break;
+						} else {
+							continue;
+						}
+						
 					}
 
 		

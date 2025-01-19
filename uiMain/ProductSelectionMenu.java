@@ -40,7 +40,10 @@ public class ProductSelectionMenu {
         
 
 }
-    public void display(){
+    public boolean display(){
+
+        //Si retorna true, se devuelve al menú de selección de productos 
+		//Si no, vuelve al menú del carrito
 
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -51,8 +54,7 @@ public class ProductSelectionMenu {
         System.out.println("¿Qué desea hacer?");
 						System.out.println("1. Agregar al carrito");
 						System.out.println("2. Ver información del producto");
-						System.out.println("3. Seleccionar otro producto");
-                        System.out.println("4. Regresar");
+						System.out.println("3. Regresar/Seleccionar otro producto");
 						System.out.println("Seleccione una opción: ");
 					    opcion = scanner.nextInt();
 
@@ -61,23 +63,25 @@ public class ProductSelectionMenu {
                            
 							this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
                             System.out.println("Producto añadido correctamente");
-							break;
+							return false;
 						case 2:
 							System.out.println(productoSeleccionado);
-							break;
+							return false;
 						case 3:
-							break;
+                            return true; 
 						default:
 							System.out.println("Opción inválida, intente de nuevo");
 							continue;
         }
-        System.out.println();
-    } while(opcion != 3 && opcion != 4 && opcion !=1 && opcion!=2);
+       
+    } while(opcion != 3);
+
+    return false;
 
 
     }
 
-    public void display(HistorialCompras historial){
+    public boolean display(HistorialCompras historial){
 
         Scanner scanner = new Scanner(System.in);
         String opcion;
@@ -98,15 +102,15 @@ public class ProductSelectionMenu {
                 case "1":
                     this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
                     System.out.println("Producto añadido correctamente");
-                    break;
+                    return false;
                 case "2":
                     System.out.println(productoSeleccionado);
-                    break;
+                    return false;
                 case "3":
-                    continue;
+                    return true;
                 case "4":
                     //Llamada a la lógica para calificar recomendaciones
-                    break;
+                    return false;
                 default:
                     System.out.println("Opción inválida, intente de nuevo");
                     continue;
@@ -114,11 +118,13 @@ public class ProductSelectionMenu {
             } else {
                 
                 display();
-                break;
+                return false;
                 
             }
 
         } while(opcion != "3");
+
+        return false;
 
 
     }
