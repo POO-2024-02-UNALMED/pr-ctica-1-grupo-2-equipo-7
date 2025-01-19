@@ -81,8 +81,8 @@ public class Vendedor extends Usuario implements Serializable{
         ordenesPendientes.add(orden);
 
         String mensajeFabrica = fabrica.recibirOrden(productosSeleccionados, cantidades);
-return "Orden creada con éxito. Productos seleccionados: " + productosSeleccionados.size() + ". \n"  + mensajeFabrica;
-}
+            return "Orden creada con éxito. Productos seleccionados: " + productosSeleccionados.size() + ". \n"  + mensajeFabrica;
+            }
     
 
     private Producto buscarProducto(String nombre) {

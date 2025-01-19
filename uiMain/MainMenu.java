@@ -33,10 +33,11 @@ public class MainMenu {
         int opcion;
 
         do {
+            System.out.println();
             System.out.println("===== MENÚ PRINCIPAL =====");
             System.out.println("1. Menú Comprador");
             System.out.println("2. Menú Vendedor");
-            System.out.println("3. Salir");
+            System.out.println("3. Salir\n");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
 
@@ -49,9 +50,12 @@ public class MainMenu {
                     break;
                 case 3:
                     Serializador.serializar(this);
+                    System.out.println();
                     System.out.println("Gracias por usar el sistema. ¡Hasta luego!");
+                    System.out.println();
                     break;
                 default:
+                    System.out.println();
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
         } while (opcion != 3);

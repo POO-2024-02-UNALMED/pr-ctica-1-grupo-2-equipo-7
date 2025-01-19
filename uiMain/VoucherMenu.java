@@ -22,6 +22,7 @@ public class VoucherMenu {
             System.out.println("2. Eliminar cupones");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
+            System.out.println();
 
             switch (opcion) {
                 case 1:
@@ -31,7 +32,6 @@ public class VoucherMenu {
                     }
                     else{
                         System.out.println(comprador.mostrarCupones());
-                        System.out.println();
                     }
                     opcion = 2; // Forzar salida del ciclo después de ver los cupones
                     break;

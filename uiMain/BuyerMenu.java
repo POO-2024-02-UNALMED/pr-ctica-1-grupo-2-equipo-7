@@ -21,6 +21,7 @@ public class BuyerMenu {
         int opcion;
 
         do {
+            System.out.println();
             System.out.println("===== MENÚ COMPRADOR =====");
             System.out.println("1. Gestionar Carrito/Ver Catálogo");
             System.out.println("2. Consultar cuenta bancaria");
@@ -29,7 +30,7 @@ public class BuyerMenu {
             System.out.println("5. Gestionar cupones");
             System.out.println("6. Ver historial de compras");
             System.out.println("7. Ver Notificaciones");
-            System.out.println("8. Volver al Menú Principal");
+            System.out.println("8. Volver al Menú Principal\n");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
 
@@ -39,11 +40,12 @@ public class BuyerMenu {
                     new CartMenu(comprador, vendedor, tienda).display();
                     break;
                 case 2: // Consultar cuenta bancaria
-                    System.out.println("==================");
+                    System.out.println();
+                    System.out.println("========= CUENTA BANCARIA =========");
                     System.out.println("¿Que deseas hacer con tu cuenta bancaria?");
                     System.out.println("1. Recargar cuenta");
                     System.out.println("2. Consultar saldo");
-                    System.out.println("3. Volver al menú comprador");
+                    System.out.println("3. Volver al menú comprador\n");
                     System.out.print("Seleccione una opción: ");
                     int opcionCuenta = scanner.nextInt();
                     if (opcionCuenta == 1){
@@ -65,12 +67,12 @@ public class BuyerMenu {
                     new ReturnMenu(comprador, vendedor).display();
                     break;
                 case 4:
-                System.out.println();
+                    System.out.println();
                     if (comprador.getCarritoCompras().getListaItems().size() == 0){ // Se verifica si el carrito de compras no esta vacío
-                        System.out.println("Error. Su carrito de compras está vacío, por favor gestione su carrito de compras.");
+                        System.out.println("Error. Su carrito de compras está vacío, por favor gestione su carrito de compras.\n");
                     }
                     else if (new BuyProcess(comprador, vendedor).verificacionCompra() == false){ // Se verifica si el usuario cuenta con saldo suficiente para realizar la compra.
-                        System.out.println("Error. No cuentas con el saldo suficiente para hacer la compra.");
+                        System.out.println("Error. No cuentas con el saldo suficiente para hacer la compra.\n");
                     }
                     else{
                         comprador.getCarritoCompras().calcularTotal(); // Se calcula el valor total de la compra
@@ -95,7 +97,6 @@ public class BuyerMenu {
                     }
                     break;
                 case 8:
-                    System.out.println();
                     System.out.println("Volviendo al Menú Principal...");
                     break;
                 default:
