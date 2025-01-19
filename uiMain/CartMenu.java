@@ -87,7 +87,7 @@ public class CartMenu {
 
                       //Menú de selección de productos
                       boolean recomendaciones1 = true;
-                       new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones1).display();
+                      new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones1).display();
                       break;
 
                     case 2:

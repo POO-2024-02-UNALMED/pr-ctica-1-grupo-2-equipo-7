@@ -51,7 +51,7 @@ public class HistorialCompras implements Serializable{
                         facturas.get(factura).getCarritoCompras().getListaItems().get(i).getID()));
             }
             facturaStr.append("\nPrecio Total de la Compra: " +
-                    facturas.get(factura).getCarritoCompras().getPrecioTotal());
+                    facturas.get(factura).getCarritoCompras().getPrecioTotal() + "\n\n");
         }
         return facturaStr.toString();
     }

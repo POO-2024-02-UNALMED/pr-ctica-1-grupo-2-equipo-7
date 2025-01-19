@@ -54,10 +54,15 @@ public class Notificacion implements Serializable{
     // metodos
 
     public String mostrarResumen() {
-        int limite = 100;
-        String mensajeCorto = this.mensaje.length() > limite 
-            ? this.mensaje.substring(0, limite) + "..." 
-            : this.mensaje;
+        int limite = 80;
+        StringBuilder mensajeFormateado = new StringBuilder();
+
+        for (int i = 0; i < this.mensaje.length(); i += limite) {
+            int fin = Math.min(i + limite, this.mensaje.length());
+            mensajeFormateado.append(this.mensaje, i, fin).append("");
+        }
+
+        String mensajeCorto = mensajeFormateado.toString();
     
         return "Fecha: " + this.fecha + "\n" +
                "Destinatario: " + this.destinatario.getNombre() + "\n" +
