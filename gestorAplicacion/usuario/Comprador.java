@@ -66,6 +66,10 @@ public class Comprador extends Usuario implements Serializable{
         }
     }
 
+    public String consultarCuentaBancaria(){
+        return "Estado de tu cuenta bancaria:\n" + "Saldo: " + this.getCuentaBancaria().getSaldo();
+    }
+
     public String mostrarHistorialCompras(){
         return historialCompras.mostrarFactura();
     }

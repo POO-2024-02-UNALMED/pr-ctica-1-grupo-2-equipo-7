@@ -122,4 +122,8 @@ return "Orden creada con éxito. Productos seleccionados: " + productosSeleccion
     public void actualizarEstadoOrden(ArrayList<Object> orden) {
         ordenesPendientes.remove(orden);
     }
+
+    public String consultarCuentaBancaria(){
+        return "Estado de tu cuenta bancaria:\n" + "Saldo: " + this.getCuentaBancaria().getSaldo();
+    }
 }

@@ -94,6 +94,11 @@ public class Usuario implements Serializable{
         }
         return notificaciones;
         }
+    
+    public String consultarCuentaBancaria(){
+      //Dejo el método vacío en caso de que vayamos a convertir usuario en una clase abstracta, por lo cual este método sería abstracto.
+      return "";
+    }
 
      public void recibirNotificacion(Notificacion notificacion){
       		notificaciones.add(notificacion);
