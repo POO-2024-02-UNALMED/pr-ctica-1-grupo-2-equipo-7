@@ -66,7 +66,7 @@ public class ProductSelectionMenu {
 							return false;
 						case 2:
 							System.out.println(productoSeleccionado);
-							return false;
+							return true;
 						case 3:
                             return true; 
 						default:
@@ -82,6 +82,9 @@ public class ProductSelectionMenu {
     }
 
     public boolean display(HistorialCompras historial){
+
+        //Si retorna true, se devuelve al menú de selección de productos 
+		//Si no, vuelve al menú del carrito
 
         Scanner scanner = new Scanner(System.in);
         String opcion;
@@ -105,7 +108,7 @@ public class ProductSelectionMenu {
                     return false;
                 case "2":
                     System.out.println(productoSeleccionado);
-                    return false;
+                    return true;
                 case "3":
                     return true;
                 case "4":
