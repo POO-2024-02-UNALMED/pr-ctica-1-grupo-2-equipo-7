@@ -67,7 +67,11 @@ public class BuyerMenu {
                     new ReturnMenu(comprador, vendedor).display();
                     break;
                 case 4:
-                    System.out.println();
+
+                //LÍNEA DE PRUEBA, BORRAR LUEGO
+                    System.out.println(comprador.getCarritoCompras());
+
+                System.out.println();
                     if (comprador.getCarritoCompras().getListaItems().size() == 0){ // Se verifica si el carrito de compras no esta vacío
                         System.out.println("Error. Su carrito de compras está vacío, por favor gestione su carrito de compras.\n");
                     }
