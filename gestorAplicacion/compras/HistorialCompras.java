@@ -15,7 +15,7 @@ public class HistorialCompras implements Serializable{
     private int cantidadTecnologia;
     private int cantidadAseo;
     private int cantidadComida;		//Estos atributos llevan la cuenta de cuántos
-    private int cantidadPapeleria; 	//productos de cada categoría se han compradp
+    private int cantidadPapeleria; 	//productos de cada categoría se han comprado
     private int cantidadJugueteria;
     private int cantidadDeportes;
     
@@ -67,6 +67,17 @@ public class HistorialCompras implements Serializable{
                .append(facturas.get(factura).getCarritoCompras().getPrecioTotal()) // Se obtiene el precio total de la compra
                .append("\n");
         return mensaje.toString();
+    }
+
+
+    //Este método se encarga de actualizar las cantidades
+    //de productos comprados por categoría
+    public void ActualizarCantidades(){
+
+        for (Factura factura : facturas){
+            //Falta por implementar (Simón)
+        }
+
     }
 
 	public int getCantidadTecnologia() {
