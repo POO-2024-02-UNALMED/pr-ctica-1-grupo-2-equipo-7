@@ -23,12 +23,12 @@ public class Inventario implements Serializable{
 
     public Inventario(ArrayList<Producto> categoriaTecnologia, ArrayList<Producto> categoriaAseo, ArrayList<Producto> categoriaComida, 
                       ArrayList<Producto> categoriaPapeleria, ArrayList<Producto> categoriaJuegueteria, ArrayList<Producto> categoriaDeportes) {
-        this.categoriaTecnologia = categoriaTecnologia;
-        this.categoriaAseo = categoriaAseo;
-        this.categoriaComida = categoriaComida;
-        this.categoriaPapeleria = categoriaPapeleria;
-        this.categoriaJuegueteria = categoriaJuegueteria;
-        this.categoriaDeportes = categoriaDeportes;
+        Inventario.categoriaTecnologia = categoriaTecnologia;
+        Inventario.categoriaAseo = categoriaAseo;
+        Inventario.categoriaComida = categoriaComida;
+        Inventario.categoriaPapeleria = categoriaPapeleria;
+        Inventario.categoriaJuegueteria = categoriaJuegueteria;
+        Inventario.categoriaDeportes = categoriaDeportes;
         this.productosTotal = new ArrayList<Producto>();
     }
 

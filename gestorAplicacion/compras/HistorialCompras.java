@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import pasarelaPago.Factura;
 import tienda.Producto.Categoria;
+import tienda.Producto;
 
 public class HistorialCompras implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
@@ -72,11 +73,34 @@ public class HistorialCompras implements Serializable{
 
     //Este método se encarga de actualizar las cantidades
     //de productos comprados por categoría
-    public void ActualizarCantidades(){
+    public void ActualizarCantidadesComprados(Factura factura){
+        
+        Categoria categoria;
 
-        for (Factura factura : facturas){
-            //Falta por implementar (Simón)
+        for (Producto producto : factura.getCarritoCompras().getListaItems()) {
+            categoria = producto.getCategoria();
+            switch (categoria) {
+                case TECNOLOGIA:
+                    cantidadTecnologia ++;
+                    break;
+                case ASEO:
+                    cantidadAseo ++;
+                    break;
+                case COMIDA:
+                    cantidadComida ++;
+                    break;
+                case PAPELERIA:
+                    cantidadPapeleria ++;
+                    break;
+                case JUGUETERIA:
+                    cantidadJugueteria ++;
+                    break;
+                case DEPORTES:
+                    cantidadDeportes ++;
+                    break;
+            }
         }
+
 
     }
 
