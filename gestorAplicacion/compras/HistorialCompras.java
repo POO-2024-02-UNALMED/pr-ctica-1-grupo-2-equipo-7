@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import pasarelaPago.Factura;
 import tienda.Producto.Categoria;
 import tienda.Producto;
+import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
 
 public class HistorialCompras implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
@@ -20,7 +23,7 @@ public class HistorialCompras implements Serializable{
     private int cantidadJugueteria;
     private int cantidadDeportes;
     
-    private Categoria[] cantegoriasMasCompradas = new Categoria[3];
+    private Categoria[] categoriasMasCompradas = new Categoria[3];
     //Este atributo guarda las tres categorías más compradas
 
     public Factura buscarFactura(int ID){
@@ -81,27 +84,42 @@ public class HistorialCompras implements Serializable{
             categoria = producto.getCategoria();
             switch (categoria) {
                 case TECNOLOGIA:
-                    cantidadTecnologia ++;
+                    cantidadTecnologia += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case ASEO:
-                    cantidadAseo ++;
+                    cantidadAseo += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case COMIDA:
-                    cantidadComida ++;
+                    cantidadComida += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case PAPELERIA:
-                    cantidadPapeleria ++;
+                    cantidadPapeleria += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case JUGUETERIA:
-                    cantidadJugueteria ++;
+                    cantidadJugueteria += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case DEPORTES:
-                    cantidadDeportes ++;
+                    cantidadDeportes += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
             }
         }
 
 
+    }
+
+    public void ActualizarCategoriasPopulares(){
+        //Este método se encarga de actualizar las tres categorías
+        //más compradas por el usuario
+
+    }
+
+    public String getCantidades(){
+        return "Cantidad Tecnología " + cantidadTecnologia + "\n" +
+                "Cantidad Aseo " + cantidadAseo + "\n" +
+                "Cantidad Comida " + cantidadComida + "\n" +
+                "Cantidad Papelería " + cantidadPapeleria + "\n" +
+                "Cantidad Juguetería " + cantidadJugueteria + "\n" +
+                "Cantidad Deportes " + cantidadDeportes + "\n";
     }
 
 	public int getCantidadTecnologia() {
