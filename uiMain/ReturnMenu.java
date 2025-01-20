@@ -1,7 +1,6 @@
 package uiMain;
 
 import java.util.Scanner;
-
 import usuario.Comprador;
 import usuario.Vendedor;
 
@@ -26,7 +25,7 @@ public class ReturnMenu {
         System.out.println();
 
         if (!conoceIdFactura.equals("S")) {
-            System.out.println("Por favor, consiga la información necesaria en el numeral 5 del MENÚ COMPRADOR.\n");
+            System.out.println("Por favor, consiga la información necesaria en el numeral 6 del MENÚ COMPRADOR.\n");
             return; 
         }
 

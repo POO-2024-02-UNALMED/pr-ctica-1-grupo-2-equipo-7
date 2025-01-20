@@ -11,10 +11,13 @@ import tienda.Tienda;
 import usuario.Comprador;
 import usuario.Notificacion;
 import usuario.Vendedor;
+// import baseDatos.Deserializador;
+
+
 
 public class App {
     public static void main(String[] args) {
-        //Aqui se realiza la serializacion para enviar la tienda ya cargada a el MainMenu (Esto es solo un ejemplo)
+//         //Aqui se realiza la serializacion para enviar la tienda ya cargada a el MainMenu (Esto es solo un ejemplo)
         ArrayList<Reseña> reseñas1 = new ArrayList<>();
         ArrayList<Reseña> reseñas2 = new ArrayList<>();
         ArrayList<Reseña> reseñas3 = new ArrayList<>();
@@ -102,6 +105,7 @@ public class App {
         //datos de atributos estáticos o métodos estáticos, la única forma de hacerlo por ahora sería convirtiendo todos esos atributos estáticos y métodos estáticos en no estáticos
         //Pero eso lo consultaré luego con ustedes.
 
+        // Deserializador.deserializarInventarioStatic();
         // MainMenu mainMenu = new MainMenu();
         
         // Mostrar el menú principal

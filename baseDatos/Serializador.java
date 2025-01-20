@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import tienda.Inventario;
 import uiMain.MainMenu;
 
 public class Serializador {
@@ -82,4 +83,19 @@ public class Serializador {
             }
         }
     }
-}
+
+    public static void serializarInventarioStatic() { 
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("inventarioStatic.dat"))) { 
+            oos.writeObject(Inventario.getCategoriaTecnologia()); 
+            oos.writeObject(Inventario.getCategoriaAseo()); 
+            oos.writeObject(Inventario.getCategoriaComida()); 
+            oos.writeObject(Inventario.getCategoriaPapeleria()); 
+            oos.writeObject(Inventario.getCategoriaJuegueteria()); 
+            oos.writeObject(Inventario.getCategoriaDeportes()); 
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+            } 
+        }
+    }
+
+

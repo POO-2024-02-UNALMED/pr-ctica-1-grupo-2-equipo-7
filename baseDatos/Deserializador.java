@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import tienda.Inventario;
+import tienda.Producto;
 import tienda.Tienda;
 import uiMain.MainMenu;
 import usuario.Comprador;
@@ -85,5 +87,18 @@ public class Deserializador {
                 }
             }
         }
+    }
+
+    public static void deserializarInventarioStatic() { 
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("inventarioStatic.dat"))) { 
+            Inventario.setCategoriaTecnologia((ArrayList<Producto>) ois.readObject()); 
+            Inventario.setCategoriaAseo((ArrayList<Producto>) ois.readObject()); 
+            Inventario.setCategoriaComida((ArrayList<Producto>) ois.readObject()); 
+            Inventario.setCategoriaPapeleria((ArrayList<Producto>) ois.readObject()); 
+            Inventario.setCategoriaJuegueteria((ArrayList<Producto>) ois.readObject()); 
+            Inventario.setCategoriaDeportes((ArrayList<Producto>) ois.readObject()); 
+        } catch (IOException | ClassNotFoundException e) { 
+            e.printStackTrace(); 
+        } 
     }
 }
