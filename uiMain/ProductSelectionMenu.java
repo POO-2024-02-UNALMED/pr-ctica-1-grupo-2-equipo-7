@@ -61,8 +61,8 @@ public class ProductSelectionMenu {
 						switch (opcion) {
 						case 1:
                            
-							this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
-                            System.out.println("Producto añadido correctamente");
+							String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                            System.out.println(o);
 							return false;
 						case 2:
 							System.out.println(productoSeleccionado);

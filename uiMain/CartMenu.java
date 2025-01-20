@@ -32,6 +32,7 @@ public class CartMenu {
       System.out.println("1. Agregar productos/ver Inventario");
       System.out.println("2. Eliminar productos del carrito");
       System.out.println("3. Regresar");
+      System.out.println("4. Ver el carrito");
       System.out.println("Seleccione una opción: ");
       opcion = scanner.nextInt();
       
@@ -184,7 +185,11 @@ public class CartMenu {
       case 3:
       System.out.println("Volviendo al menú principal...");
         break;
+      case 4:
+        System.out.println("A continuacion tu carrito de compras");
+        System.out.println(this.comprador.getCarritoCompras());
       }
+      
 
     } while (opcion != 3);
   }
