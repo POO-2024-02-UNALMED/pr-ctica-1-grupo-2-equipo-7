@@ -41,7 +41,7 @@ public class CartMenu {
       case 1:
 
          // Llamada a lógica para mostrar el catálogo
-                System.out.println(String.format("%62s", "===== CATÁLOGO ====="));
+                System.out.println(String.format("%72s", "===== CATÁLOGO ===== \n"));
 
                 //Se guarda la matriz de productos en la variable catálogo
                 Object[][] catalogo = tienda.getInventario().mostrarProductos();
@@ -83,7 +83,7 @@ public class CartMenu {
                       } else {
                         
                           System.out.print(catalogo[fila][columna]);
-                          System.out.print("  ");
+                          System.out.print("      ");
                         
                       }
                       
