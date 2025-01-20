@@ -3,6 +3,7 @@ package tienda;
 import java.util.ArrayList;
 import java.util.List;
 
+import compras.HistorialCompras;
 import tienda.Producto.Categoria;
 import java.io.Serializable;
 
@@ -155,7 +156,14 @@ public class Inventario implements Serializable{
     	return catalogo;
     }
 
+    //Método sobrecargado para cuando se escojan las recomendaciones
+    public Object[][] mostrarProductos(HistorialCompras historial){
+        return null;
+
+    }
+
     public static Boolean verificarproducto(Producto producto, int unidades) {
+
         //Este método lo cambie ya que si bien funcionaba correctamente, al serializar cambia la cosa. La serialización lo que hace es guardar los valores y atributos de las instancias
         //pero al deserializar se crean nuevas instancias con un espacio de memoria diferente al que tenian antes de ser serializados. El método contains que estabamos usando antes lo
         //que hace es comparar los espacios de memoria que ocupan los productos, entonces en el atributo equals que heredan todos los objetos de la clase Object al deserializarse va a 
