@@ -29,7 +29,7 @@ public class ProductSelectionProcess {
 	
 	public void display() {
 		Scanner scanner1 = new Scanner(System.in);
-		Scanner cantidad=new Scanner(System.in);
+		
 		
 		String llevar="1";
 		String opcion;
@@ -71,15 +71,7 @@ public class ProductSelectionProcess {
 					Producto productoSeleccionado = (Producto) catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2];
 
 					System.out.println("Producto seleccionado: " + productoSeleccionado.getNombre() + "\n");
-					System.out.println("Ingresa la cantidad a llevar: ");
-					llevar=cantidad.nextLine();
-					int numerico=Integer.parseInt(llevar);
-					if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
-						
-					}else{
-						llevar="1";
-						System.out.println("Cantidad inválida , se te asignará una por default que es 1");
-					}
+					
 
 
 					if (recomendaciones == true){
