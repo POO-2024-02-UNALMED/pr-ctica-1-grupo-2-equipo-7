@@ -46,6 +46,7 @@ public class ProductSelectionMenu {
 		//Si no, vuelve al menú del carrito
 
         Scanner scanner = new Scanner(System.in);
+        Scanner cantidad=new Scanner(System.in);
         int opcion;
 
 
@@ -60,6 +61,16 @@ public class ProductSelectionMenu {
 
 						switch (opcion) {
 						case 1:
+                            
+                        System.out.println("Ingresa la cantidad a llevar: ");
+                        llevar=cantidad.nextLine();
+                        int numerico=Integer.parseInt(llevar);
+                        if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                            
+                        }else{
+                            llevar="1";
+                            System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                        }
                            
 							String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
                             System.out.println(o);
@@ -87,6 +98,7 @@ public class ProductSelectionMenu {
 		//Si no, vuelve al menú del carrito
 
         Scanner scanner = new Scanner(System.in);
+        Scanner cantidad=new Scanner(System.in);
         String opcion;
 
 
@@ -103,6 +115,16 @@ public class ProductSelectionMenu {
 
                 switch (opcion) {
                 case "1":
+
+                System.out.println("Ingresa la cantidad a llevar: ");
+                llevar=cantidad.nextLine();
+                int numerico=Integer.parseInt(llevar);
+                if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                    
+                }else{
+                    llevar="1";
+                    System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                }
                     this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
                     System.out.println("Producto añadido correctamente");
                     return false;
