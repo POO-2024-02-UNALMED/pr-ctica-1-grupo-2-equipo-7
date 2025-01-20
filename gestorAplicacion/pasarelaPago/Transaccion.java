@@ -59,6 +59,7 @@ public class Transaccion implements Serializable{
 			Factura factura = new Factura(comprador.getCarritoCompras(), comprador.getHistorialCompras().getFacturas().size() + 1, this);
 			comprador.getHistorialCompras().agregarFactura(factura);
 			comprador.getHistorialCompras().ActualizarCantidadesComprados(factura);
+			comprador.getHistorialCompras().ActualizarCategoriasPopulares();
 		}
 	}
 

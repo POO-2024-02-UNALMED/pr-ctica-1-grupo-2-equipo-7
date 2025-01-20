@@ -67,7 +67,7 @@ public class CarritoCompras implements Serializable{
 	// metodos
 	public Producto busqueda(String nombre){
 		for(Producto producto : listaItems){
-			if (producto.getNombre().equals(nombre)){
+			if (producto.getNombre().equalsIgnoreCase(nombre)){
 				return producto;
 			}else{
 

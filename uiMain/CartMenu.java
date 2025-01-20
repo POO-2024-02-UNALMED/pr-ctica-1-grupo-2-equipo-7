@@ -123,7 +123,7 @@ public class CartMenu {
       // Solicitar el nombre del producto a eliminar
       System.out.println("Por favor, ingresa el nombre del producto a eliminar:");
       
-      String eliminar = scanner.next(); // Leer el nombre del producto
+      String eliminar = scanner.nextLine(); // Leer el nombre del producto
       
       // Solicitar la cantidad de productos a eliminar
       System.out.println("Ahora ingresa la cantidad:");
