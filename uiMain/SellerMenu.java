@@ -1,5 +1,7 @@
 package uiMain;
 
+
+import fabrica.Fabrica;
 import java.util.Scanner;
 import tienda.Inventario;
 import usuario.Comprador;
@@ -11,12 +13,14 @@ public class SellerMenu {
     private Vendedor vendedor;    // Instancia de Vendedor
     private Inventario inventario;
     private Notificacion notificacion;
+    private Fabrica fabrica;
 
-    public SellerMenu(Comprador comprador, Vendedor vendedor, Inventario inventario, Notificacion notificacion) {
+    public SellerMenu(Comprador comprador, Vendedor vendedor, Inventario inventario, Notificacion notificacion, Fabrica fabrica ) {
         this.comprador = comprador;
         this.vendedor = vendedor;
         this.inventario = inventario;
         this.notificacion = notificacion;
+        this.fabrica = fabrica;
     }
 
     public void display() {
@@ -40,11 +44,21 @@ public class SellerMenu {
                     System.out.println(inventario.generarReporte());
                     System.out.println("A continucacion elija los productos que quiere crear en la fabrica para reponer en el inventario");
                     System.out.println(vendedor.crearOrdenFabricacion());
-                    break;
+                    //System.out.println(fabrica.verificarEntregas());
+                    //for (int ciclo = 0; ciclo < 20; ciclo++) { 
+                       // ciclo += 1;
+                        //System.out.println(fabrica.verificarEntregas());
+            
+                        // Simular un retraso lógico sin detener el programa
+                       // for (long j = 0; j < 1_000_000_000L; j++); // Bucle para simular el tiempo
+                    //}  
+                
+
+                break;
                 case 2:
                     System.out.println();
                     System.out.println("========= CUENTA BANCARIA =========");
-                    System.out.println(vendedor.consultarCuentaBancaria());
+                    System.out.println(vendedor.consultarCuentaBancaria()); 
                     break;
                 case 3:
                 System.out.println();
