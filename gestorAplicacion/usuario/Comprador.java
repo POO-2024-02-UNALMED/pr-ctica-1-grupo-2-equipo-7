@@ -66,6 +66,7 @@ public class Comprador extends Usuario implements Serializable{
         }
     }
 
+    @Override
     public String consultarCuentaBancaria(){
         return "Estado de tu cuenta bancaria:\n" + "Saldo: " + this.getCuentaBancaria().getSaldo();
     }

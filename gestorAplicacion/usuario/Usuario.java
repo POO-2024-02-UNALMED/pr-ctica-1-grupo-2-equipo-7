@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import pasarelaPago.Transaccion;
 
-public class Usuario implements Serializable{
+public abstract class Usuario implements Serializable{
   private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
 	private String membresia;
 	private int vacescomprado;
@@ -95,10 +95,7 @@ public class Usuario implements Serializable{
         return notificaciones;
         }
     
-    public String consultarCuentaBancaria(){
-      //Dejo el método vacío en caso de que vayamos a convertir usuario en una clase abstracta, por lo cual este método sería abstracto.
-      return "";
-    }
+    public abstract String consultarCuentaBancaria(); // Método abstracto
 
      public void recibirNotificacion(Notificacion notificacion){
       		notificaciones.add(notificacion);

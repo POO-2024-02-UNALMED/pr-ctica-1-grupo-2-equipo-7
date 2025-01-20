@@ -123,6 +123,7 @@ public class Vendedor extends Usuario implements Serializable{
         ordenesPendientes.remove(orden);
     }
 
+    @Override
     public String consultarCuentaBancaria(){
         return "Estado de tu cuenta bancaria:\n" + "Saldo: " + this.getCuentaBancaria().getSaldo();
     }
