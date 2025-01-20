@@ -41,7 +41,7 @@ public class CartMenu {
       case 1:
 
          // Llamada a lógica para mostrar el catálogo
-                System.out.println("===== CATÁLOGO =====");
+                System.out.println(String.format("%62s", "===== CATÁLOGO ====="));
 
                 //Se guarda la matriz de productos en la variable catálogo
                 Object[][] catalogo = tienda.getInventario().mostrarProductos();
@@ -52,21 +52,41 @@ public class CartMenu {
                 //utilizar el método getNombre()
                 for (int fila = 0; fila < catalogo.length; fila++) {
                   for (int columna = 0; columna < catalogo[fila].length; columna++) {
-                    if (columna == 6) {
+                    if (columna == 7) {
                       if (catalogo[fila][columna] instanceof Producto) {
-                        System.out.println(((Producto) catalogo[fila][columna]).getNombre());
+                        String salida = String.format("%-15s",((Producto) catalogo[fila][columna]).getNombre());
+                        System.out.println(salida);
+                       
                       }else {
-                        System.out.println(catalogo[fila][columna]);
+                        
+                          String salida = String.format("%-15s",catalogo[fila][columna]);
+                          System.out.println(salida);
+                      
                       }
 
                     } else {
-                      if (catalogo[fila][columna] instanceof Producto) {
-                        System.out.print(((Producto) catalogo[fila][columna]).getNombre());
-                        System.out.print(" ");
-                      }else {
-                        System.out.print(catalogo[fila][columna]);
+                      if (columna >= 2){
+
+                        if (catalogo[fila][columna] instanceof Producto) {
+
+                          String salida = String.format("%-15s",((Producto) catalogo[fila][columna]).getNombre());
+                          System.out.print(salida);
                           System.out.print(" ");
+                        }else {
+
+                          String salida = String.format("%-15s",catalogo[fila][columna]);
+                          System.out.print(salida);
+                            System.out.print(" ");
+                        }
+                        
+
+                      } else {
+                        
+                          System.out.print(catalogo[fila][columna]);
+                          System.out.print("  ");
+                        
                       }
+                      
 
                     }
                   }

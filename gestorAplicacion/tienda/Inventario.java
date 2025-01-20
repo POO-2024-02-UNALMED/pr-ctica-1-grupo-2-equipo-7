@@ -109,30 +109,41 @@ public class Inventario implements Serializable{
     	
     	//Se crea una matriz para que al usuario se le muestren
     	//Los productos a modo de tabla
-    	catalogo = new Object[6][7];
+    	catalogo = new Object[6][8];
     	
-    	//Se crean la primera fila y columna, que guardan las coordenadas de los productos
-    	catalogo[0][0] = "";
+    	
+    	catalogo[0][0] = "--         ";
+        catalogo[0][1] = "ID";
+
+        //Se añade una columna vacía al princpio para ser utilizada luego con las recomendaciones
+
+        for (int i = 1; i <= 5; i++) {
+            catalogo[i][0] = "--         ";
+        }
+
+        //Se crean la primera fila y columna, que guardan las coordenadas de los productos
     	
     	for (int i = 1; i <=5; i++) {
-    		catalogo[i][0] = i;
+    		catalogo[i][1] = i;
     	}
     	
-    	for (int i = 1; i <=6; i++) {
-    		catalogo[0][i] = (char)('A' + i-1);
+    	for (int i = 2; i <=7; i++) {
+    		catalogo[0][i] = (char)('A' + i-2);
     	}
+
+        
     	
     	// Se añaden los productos al resto de espacios de la matriz
     	
     	int fila = 1;
-    	int columna = 1;
+    	int columna = 2;
     	
     	for (int i = 0; i < 30; i++) {
     		catalogo[fila][columna] = productosTotal.get(i);
-    		if (columna != 6) {
+    		if (columna != 7) {
     			columna += 1;
     		} else {
-    			columna = 1;
+    			columna = 2;
     			if (fila != 5) {
     				fila +=1;
     			}
