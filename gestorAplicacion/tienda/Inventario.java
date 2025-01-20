@@ -155,38 +155,64 @@ public class Inventario implements Serializable{
     	return catalogo;
     }
 
-    public static  Boolean verificarproducto(Producto producto, int unidades) {
-    	Categoria Categoria=producto.categoria;
-    	String nombre= Categoria.getNombre();
+    public static Boolean verificarproducto(Producto producto, int unidades) {
+        //Este método lo cambie ya que si bien funcionaba correctamente, al serializar cambia la cosa. La serialización lo que hace es guardar los valores y atributos de las instancias
+        //pero al deserializar se crean nuevas instancias con un espacio de memoria diferente al que tenian antes de ser serializados. El método contains que estabamos usando antes lo
+        //que hace es comparar los espacios de memoria que ocupan los productos, entonces en el atributo equals que heredan todos los objetos de la clase Object al deserializarse va a 
+        //tener el valor del espacio de memoria que contenía antes de ser serializado incluso si ahora ocupa un espacio de memoria diferente. Por lo cual esta solución lo que hace es 
+        //verificar de que el producto exista por su nombre, así funciona correctamente. En resumen, el que hizo este método (que creo que fue Santiago) no se preocupe que todo sigue 
+        //funcionando normal :)
+        Categoria categoria = producto.getCategoria();
+        String nombre = categoria.getNombre();
         boolean verificacion = false;
-
-    	if(nombre.equalsIgnoreCase("tecnologia")) {
-    		if(categoriaTecnologia.contains(producto) && producto.getCantidad() >= unidades) {
-    			verificacion = true;
-    		}
-    	}else if(nombre.equalsIgnoreCase("aseo")) {
-    		if(categoriaAseo.contains(producto) && producto.getCantidad() >= unidades) {
-    			verificacion = true;
-    		}
-    	}else if (nombre.equalsIgnoreCase("comida")) {
-    		if (categoriaComida.contains(producto) && producto.cantidad >=unidades) {
-    			verificacion = true;
-    		}
-    	}else if(nombre.equalsIgnoreCase("papeleria")) {
-    		if (categoriaPapeleria.contains(producto)&& producto.getCantidad() >= unidades) {
-    			verificacion = true;
-    		}
-    	}else if(nombre.equalsIgnoreCase("juegueteria")) {
-    		if (categoriaJuegueteria.contains(producto)&& producto.getCantidad() >= unidades) {
-    			verificacion = true;
-    		}
-    	}else if (nombre.equalsIgnoreCase("deportes")) {
-    		if (categoriaDeportes.contains(producto)&&producto.getCantidad() >= unidades) {
-    			verificacion = true;
-    		}
-    	}
-		return verificacion;
-    	}
+    
+        if (nombre.equalsIgnoreCase("tecnologia")) {
+            for (Producto p : categoriaTecnologia) {
+                if (p.getNombre().equals(producto.getNombre()) && p.getCantidad() >= unidades) {
+                    verificacion = true;
+                    break;
+                }
+            }
+        } else if (nombre.equalsIgnoreCase("aseo")) {
+            for (Producto p : categoriaAseo) {
+                if (p.getNombre().equals(producto.getNombre()) && p.getCantidad() >= unidades) {
+                    verificacion = true;
+                    break;
+                }
+            }
+        } else if (nombre.equalsIgnoreCase("comida")) {
+            for (Producto p : categoriaComida) {
+                if (p.getNombre().equals(producto.getNombre()) && p.getCantidad() >= unidades) {
+                    verificacion = true;
+                    break;
+                }
+            }
+        } else if (nombre.equalsIgnoreCase("papeleria")) {
+            for (Producto p : categoriaPapeleria) {
+                if (p.getNombre().equals(producto.getNombre()) && p.getCantidad() >= unidades) {
+                    verificacion = true;
+                    break;
+                }
+            }
+        } else if (nombre.equalsIgnoreCase("jugueteria")) {
+            for (Producto p : categoriaJuegueteria) {
+                if (p.getNombre().equals(producto.getNombre()) && p.getCantidad() >= unidades) {
+                    verificacion = true;
+                    break;
+                }
+            }
+        } else if (nombre.equalsIgnoreCase("deportes")) {
+            for (Producto p : categoriaDeportes) {
+                if (p.getNombre().equals(producto.getNombre()) && p.getCantidad() >= unidades) {
+                    verificacion = true;
+                    break;
+                }
+            }
+        }
+    
+        return verificacion;
+    }
+    
     public static Producto buscarProductoMaseconomico() {//busca el producto mas economico que haya disponible
         Producto maseconomico = null;
 

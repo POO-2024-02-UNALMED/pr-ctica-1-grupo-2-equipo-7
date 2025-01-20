@@ -52,6 +52,7 @@ public class MainMenu {
                     break;
                 case 3:
                     Serializador.serializar(this);
+                    Serializador.serializarInventarioStatic();
                     System.out.println("Gracias por usar el sistema. ¡Hasta luego!");
                     System.out.println();
                     break;

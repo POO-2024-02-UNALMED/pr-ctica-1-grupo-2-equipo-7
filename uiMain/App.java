@@ -53,7 +53,7 @@ public class App {
         comprador.setCuentaBancaria(cuentaBancariaComprador);
         vendedor.setCuentaBancaria(cuentaBancariaVendedor);
         //Todo esto de acá es para simular procesos de compra.
-        comprador.getCuentaBancaria().recargarCuenta(10000);
+        // comprador.getCuentaBancaria().recargarCuenta(10000);
         // comprador.getValorCupones().add(15);
         // comprador.cantidadCupones +=1;
         

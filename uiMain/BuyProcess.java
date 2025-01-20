@@ -85,7 +85,7 @@ public class BuyProcess {
                         for (Producto producto : comprador.getCarritoCompras().getListaItems()){
                             boolean verificacion = producto.verificarCantidadProductos();
                             cantidadProductos.add(verificacion);
-                            producto.setCantidadVendida(comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
+                            producto.setCantidadVendida(producto.getCantidadVendida() + comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
                         }
     
                         for (int i = 0; i < cantidadProductos.size(); i++){
@@ -120,7 +120,7 @@ public class BuyProcess {
                     for (Producto producto : comprador.getCarritoCompras().getListaItems()){
                         boolean verificacion = producto.verificarCantidadProductos();
                         cantidadProductos.add(verificacion);
-                        producto.setCantidadVendida(comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
+                        producto.setCantidadVendida(producto.getCantidadVendida() + comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
                     }
 
                     for (int i = 0; i < cantidadProductos.size(); i++){
