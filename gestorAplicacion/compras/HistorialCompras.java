@@ -111,10 +111,22 @@ public class HistorialCompras implements Serializable{
         //Este método se encarga de actualizar las tres categorías
         //más compradas por el usuario
 
-        List<Integer> cantidades = Arrays.asList(cantidadTecnologia, cantidadAseo, cantidadComida, cantidadPapeleria, cantidadJugueteria, cantidadDeportes);
-        List<Categoria> categorias = Arrays.asList(Categoria.values());
-        Collections.sort(categorias, (c1, c2) -> cantidades.get(categorias.indexOf(c2)) - cantidades.get(categorias.indexOf(c1)));
-        categoriasMasCompradas = categorias.subList(0, 3).toArray(new Categoria[3]);
+        List<Integer> cantidadesOrdenadas = Arrays.asList(cantidadTecnologia, cantidadAseo, cantidadComida, cantidadPapeleria, cantidadJugueteria, cantidadDeportes);
+        List<Categoria> categoriasOrdenadas = Arrays.asList(Categoria.values());
+
+        //Se ordenan los arreglos de las categorías y las cantidades
+        Collections.sort(categoriasOrdenadas, (c1, c2) -> cantidadesOrdenadas.get(categoriasOrdenadas.indexOf(c2)) - cantidadesOrdenadas.get(categoriasOrdenadas.indexOf(c1)));
+        Collections.sort(cantidadesOrdenadas, (c1, c2) -> c2 - c1);
+        //Hacerlo de esta manera garantiza que los índices de las dos listas sean correspondientes
+        //es decir, categoriasOrdenadas[i] sería la categoría con la cantidad cantidadesOrdenadas[i]
+
+        for (int i = 0; i < 3; i++) {
+            if (cantidadesOrdenadas.get(i) != 0) {
+                categoriasMasCompradas[i] = categoriasOrdenadas.get(i);
+            }
+
+        }
+        // categoriasMasCompradas = categorias.subList(0, 3).toArray(new Categoria[3]);
 
 
         
