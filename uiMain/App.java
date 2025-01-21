@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import tienda.Inventario;
 import tienda.Producto;
-import tienda.Producto.Categoria;
 import tienda.Tienda;
 import usuario.Comprador;
 import usuario.Notificacion;
@@ -47,7 +46,7 @@ public class App {
         carritoCompras.añadirProducto(producto3, 2);
         carritoCompras.calcularTotal();
         comprador.setCarritoCompras(carritoCompras);
-        Fabrica fabrica = new Fabrica();
+        Fabrica fabrica = new Fabrica( inventario);
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
         Vendedor vendedor = new Vendedor("Enrique Iglesias", cuentaBancariaComprador, inventario, fabrica);
         CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
@@ -94,11 +93,6 @@ public class App {
         Tienda tienda = new Tienda("NombreTienda", inventario, false, null);
         Notificacion notificacion = new Notificacion(null, null, vendedor);
 
-        Categoria[] tuki = Categoria.values();
-
-        for (Categoria a : tuki){
-            System.out.println(a);
-        }
     
 
         // Crear una instancia de MainMenu

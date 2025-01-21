@@ -48,7 +48,7 @@ public class MainMenu {
                     new BuyerMenu(comprador, vendedor, tienda).display();
                     break;
                 case 2:
-                    new SellerMenu(comprador, vendedor, inventario, notificacion, fabrica).display();
+                    new SellerMenu(vendedor, inventario).display();
                     break;
                 case 3:
                     Serializador.serializar(this);
