@@ -68,7 +68,7 @@ public class ProductSelectionProcess {
 
 				if (Arrays.asList(columnas).contains(opcion)){
 					columna = opcion;
-					Producto productoSeleccionado = (Producto) catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+3];
+					Producto productoSeleccionado = (Producto) catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2];
 
 					System.out.println("Producto seleccionado: " + productoSeleccionado.getNombre() + "\n");
 					
