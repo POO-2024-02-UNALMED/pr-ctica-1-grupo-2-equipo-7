@@ -1,23 +1,23 @@
 package fabrica;
 
 import java.io.Serializable;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import tienda.Inventario;
 import tienda.Producto;
+import usuario.Vendedor;
 
 public class Fabrica implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private List<Trabajador> trabajadores;
     private List<ArrayList<Object>> ordenesPendientes;
     Inventario inventario;
-
-    public Fabrica() {
+    Vendedor vendedor;
+    public Fabrica(Inventario inventario) {
         this.trabajadores = new ArrayList<>();
         this.ordenesPendientes = new ArrayList<>();
         this.inventario = inventario;
+        this.vendedor = vendedor;
         for (int i = 1; i <= 100; i++) {
             trabajadores.add(new Trabajador(i, "Trabajador " + i, "08:00-20:00"));
         }
@@ -36,56 +36,25 @@ public class Fabrica implements Serializable{
         orden.add(productos);
         orden.add(cantidades);
 
-         // Calcula la hora de entrega y la añade a la orden
-         int tiempoProduccion = calcularTiempoProduccion(productos, cantidades);
-         LocalTime horaEntrega = LocalTime.now().plusMinutes(tiempoProduccion);
-         orden.add(horaEntrega);
 
- 
          int trabajadoresRequeridos = calcularTrabajadoresRequeridos(cantidades);
          if (asignarTrabajadores(trabajadoresRequeridos)) {
              ordenesPendientes.add(orden);
-             return "Orden de fabricación recibida. Los productos estarán listos a las "
-                     + horaEntrega.format(DateTimeFormatter.ofPattern("HH:mm")) + ".";
+             liberarTrabajadores(trabajadoresRequeridos);
+             return "Orden de fabricación recibida.\n" + entregarProductos(productos, cantidades) ;
          } else {
              return "No hay suficientes trabajadores disponibles para procesar esta orden.";
          }
      }
 
-    private String verificarEntregas() {
-        LocalTime ahora = LocalTime.now();
-        List<ArrayList<Object>> entregasRealizadas = new ArrayList<>();
-        String mensaje = "";
 
-        for (ArrayList<Object> orden : ordenesPendientes) {
-            LocalTime horaEntrega = (LocalTime) orden.get(2);
-
-            if (!ahora.isBefore(horaEntrega)) { // Si es la hora o ya pasó
-                ArrayList<Producto> productos = (ArrayList<Producto>) orden.get(0);
-                ArrayList<Integer> cantidades = (ArrayList<Integer>) orden.get(1);
-
-                entregarProductos(productos, cantidades);
-                int trabajadoresRequeridos = calcularTrabajadoresRequeridos(cantidades);
-                liberarTrabajadores(trabajadoresRequeridos);
-                entregasRealizadas.add(orden);
-
-                mensaje += "Productos entregados al inventario a las "
-                        + horaEntrega.format(DateTimeFormatter.ofPattern("HH:mm")) + ".\n";
-            }
-        }
-
-        // Remover órdenes ya entregadas
-        ordenesPendientes.removeAll(entregasRealizadas);
-
-        return mensaje.isEmpty() ? "No hay entregas pendientes en este momento.\n" : mensaje;
-    }
-
-    private void entregarProductos(ArrayList<Producto> productos, ArrayList<Integer> cantidades) {
+    private String entregarProductos(ArrayList<Producto> productos, ArrayList<Integer> cantidades) {
         for (int i = 0; i < productos.size(); i++) {
             Producto producto = productos.get(i);
             int cantidad = cantidades.get(i);
             inventario.reabastecerProductos(cantidad, producto);
         }
+        return "Se han entregado los productos";
     }
 
     private boolean asignarTrabajadores(int trabajadoresRequeridos) {
@@ -113,12 +82,6 @@ public class Fabrica implements Serializable{
                 break; // Se liberaron los trabajadores necesarios
             }
         }
-    }
-    
-    private int calcularTiempoProduccion(ArrayList<Producto> productos, ArrayList<Integer> cantidades) {
-        int tiempoPorUnidad = 3; // 3 minutos para un solo producto
-        int cantidadTotal = cantidades.stream().mapToInt(Integer::intValue).sum();
-        return cantidadTotal * tiempoPorUnidad;
     }
 
     

@@ -50,6 +50,7 @@ public class Comprador extends Usuario implements Serializable{
                 double valorDevolver = vendedor.devolucionDinero(this, producto.getPrecio(), descuento, cantidadRetornar); // Devolver dinero al comprador
                 vendedor.devolverProducto(cantidadRetornar, producto); // Actualizar inventario
                 historialCompras.actualizarCantidadDevueltos(cantidadRetornar); // Actualizar cantidad de productos devueltos
+                producto.setCantidadDevuelta(cantidadRetornar);
                 factura.modificarFactura(producto, cantidadRetornar, "eliminar"); // modificar factura con los cambios 
                 String mensajeComprador = "Su devolución de " + cantidadRetornar + " " + producto.getNombre()  +"/s por un valor de " + valorDevolver + " pesos (corresponde a lo pagado menos un 10% de retención) ha sido procesada exitosamente."; 
                 String asuntoComprador = "Devolución procesada"; 

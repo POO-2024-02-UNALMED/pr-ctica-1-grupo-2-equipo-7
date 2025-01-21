@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Producto implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     int cantidad;
+    private int cantidadDevuelta = 0;
     private int cantidadVendida;
     int cantidadAlerta;
     Categoria categoria;
@@ -35,10 +36,11 @@ public class Producto implements Serializable{
     	}
     }
 
-    public Producto(int cantidad, int cantidadAlerta, int cantidadVendida, Categoria categoria, int ID, String nombre, int precio, 
+    public Producto(int cantidad, int cantidadAlerta, int cantidadVendida, int cantidadDevuelta, Categoria categoria, int ID, String nombre, int precio, 
                       String descripcion, boolean retornable, ArrayList<Reseña> reseñas) {
         this.cantidad = cantidad;
         this.cantidadVendida = 0;
+        this.cantidadDevuelta = cantidadDevuelta;
         this.cantidadAlerta = cantidadAlerta;
         this.categoria = categoria;
         this.ID = ID;
@@ -76,6 +78,10 @@ public class Producto implements Serializable{
         return this.cantidadVendida;
     }
 
+    public int getCantidadDevuelta(){
+        return this.cantidadDevuelta;
+    }
+
 
     public int getID() {
         return this.ID;
@@ -106,6 +112,10 @@ public class Producto implements Serializable{
 
     public void setCantidadVendida(int cantidadVendida) {
         this.cantidadVendida = cantidadVendida;
+    }
+
+    public void setCantidadDevuelta(int cantidadDevuelta){
+        this.cantidadDevuelta = cantidadDevuelta;
     }
 
     //metodos

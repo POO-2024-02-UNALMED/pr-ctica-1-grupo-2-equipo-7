@@ -22,10 +22,10 @@ public class App {
         ArrayList<Reseña> reseñas2 = new ArrayList<>();
         ArrayList<Reseña> reseñas3 = new ArrayList<>();
 
-        Producto producto1 = new Producto(9, 10, 0, Producto.Categoria.TECNOLOGIA, 1, "Laptop", 1200, "Laptop de alto rendimiento", true, reseñas1);
-        Producto producto2 = new Producto(200, 20, 0, Producto.Categoria.ASEO, 2, "Jabon", 5, "Jabón antibacterial", false, reseñas2);
-        Producto producto3 = new Producto(100, 15, 0, Producto.Categoria.COMIDA, 3, "Galletas", 3, "Galletas de chocolate", false, reseñas3);
-        //producto producto4= new Producto(100, 15, 0, Producto.Categoria.COMIDA, 2, "Galletas", 3, "Galletas de chocolate", false, reseñas3);
+        Producto producto1 = new Producto(9, 10, 0, 0, Producto.Categoria.TECNOLOGIA, 1, "Laptop", 1200, "Laptop de alto rendimiento", true, reseñas1);
+        Producto producto2 = new Producto(200, 20, 0, 0, Producto.Categoria.ASEO, 2, "Jabón", 5, "Jabón antibacterial", false, reseñas2);
+        Producto producto3 = new Producto(100, 15, 0, 0, Producto.Categoria.COMIDA, 3, "Galletas", 3, "Galletas de chocolate", false, reseñas3);
+        
        
 
         ArrayList<Producto> categoriaTecnologia = new ArrayList<>();
@@ -46,7 +46,7 @@ public class App {
         carritoCompras.añadirProducto(producto3, 2);
         carritoCompras.calcularTotal();
         comprador.setCarritoCompras(carritoCompras);
-        Fabrica fabrica = new Fabrica();
+        Fabrica fabrica = new Fabrica( inventario);
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
         Vendedor vendedor = new Vendedor("Enrique Iglesias", cuentaBancariaComprador, inventario, fabrica);
         CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
@@ -78,6 +78,7 @@ public class App {
                      cantidad, 
                      cantidadAlerta, 
                      0, 
+                     0,
                      categoria, 
                      ID, 
                      nombre, 
