@@ -58,6 +58,7 @@ public class ProductSelectionProcess {
 			if (Arrays.asList(filas).contains(opcion)){
 				fila = opcion;
 
+
 				System.out.println("Ingrese la columna (en mayúscula) para continuar o 0 para salir: ");
 				opcion = scanner1.nextLine();
 				
@@ -69,6 +70,8 @@ public class ProductSelectionProcess {
 				if (Arrays.asList(columnas).contains(opcion)){
 					columna = opcion;
 					Producto productoSeleccionado = (Producto) catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2];
+
+					
 
 					System.out.println("Producto seleccionado: " + productoSeleccionado.getNombre() + "\n");
 					

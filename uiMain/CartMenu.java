@@ -31,6 +31,7 @@ public class CartMenu {
 
      if (historial != null){
         catalogo = tienda.recomendarProductos(comprador);
+
      } else {
       catalogo = tienda.getInventario().crearCatalogo();
      }
@@ -121,7 +122,7 @@ public class CartMenu {
                     case 1:
   
                       //Llamada a lógica para mostrar recomendaciones
-                      mostrarCatalogo(comprador.getHistorialCompras());
+                      catalogo = mostrarCatalogo(comprador.getHistorialCompras());
 
                       //Menú de selección de productos
                       boolean recomendaciones1 = true;

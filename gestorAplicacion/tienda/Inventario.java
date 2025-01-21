@@ -206,16 +206,14 @@ public class Inventario implements Serializable{
         //Revisa cuántas categorías hay almacenadas en categoriasMas compradas
         //ejemplo: puede que guarde [TECNOLOGIA, null, null] porque solo se han
         //comprado productos de la categoría TECNOLOGIA
-        for (int i = 0; i < historial.getCategoriasMasCompradas().length; i++){
+        for (int i = 0; i < 3; i++){
 
             if (historial.getCategoriasMasCompradas()[i] != null){
 
                 categorias ++;
                }
            }
-        
-           System.out.println(categorias);
-
+           
 
            //Este switch controla la cantidad de filas del catálogo que se
            //verán modificadas por la cantidad de recomendaciones que se vayan
@@ -309,7 +307,8 @@ public class Inventario implements Serializable{
 
                for (int i = 0; i <= 5; i++){
                    catalogo[1][i+2] = productosRecomendados1.get(i);
-                  //productosTotal.remove(productosRecomendados1.get(i));
+                  productosTotal.remove(productosRecomendados1.get(i));
+                  productosTotal.add(productosRecomendados1.get(i));
                }
 
                categoriaRecomendada2 = historial.getCategoriasMasCompradas()[1];
@@ -317,7 +316,8 @@ public class Inventario implements Serializable{
 
                for (int i = 0; i <= 5; i++){
                    catalogo[2][i+2] = productosRecomendados2.get(i);
-                   //productosTotal.remove(productosRecomendados2.get(i));
+                   productosTotal.remove(productosRecomendados2.get(i));
+                   productosTotal.add(productosRecomendados2.get(i));
                }
 
                categoriaRecomendada3 = historial.getCategoriasMasCompradas()[2];
@@ -325,7 +325,8 @@ public class Inventario implements Serializable{
 
                for (int i = 0; i <= 5; i++){
                    catalogo[3][i+2] = productosRecomendados3.get(i);
-                   //productosTotal.remove(productosRecomendados3.get(i));
+                   productosTotal.remove(productosRecomendados3.get(i));
+                   productosTotal.add(productosRecomendados3.get(i));
                }
 
                // Se añaden los productos al resto de espacios de la matriz

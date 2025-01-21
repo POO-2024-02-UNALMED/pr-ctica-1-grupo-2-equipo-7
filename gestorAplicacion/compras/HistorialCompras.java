@@ -209,6 +209,10 @@ public class HistorialCompras implements Serializable{
         return categoriasMasCompradas;
     }
 
+    public void setCategoriasMasCompradas(Categoria[] lista){
+        this.categoriasMasCompradas = lista;
+    }
+
     public String mostrarCategoriasMasCompradas() {
         return "Categorías más compradas: " + categoriasMasCompradas[0] + ", " + 
                 categoriasMasCompradas[1] + ", " + categoriasMasCompradas[2];

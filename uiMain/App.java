@@ -93,7 +93,6 @@ public class App {
         Tienda tienda = new Tienda("NombreTienda", inventario, false, null);
         Notificacion notificacion = new Notificacion(null, null, vendedor);
 
-    
 
         // Crear una instancia de MainMenu
         MainMenu mainMenu = new MainMenu(comprador, vendedor, tienda, inventario, notificacion);
