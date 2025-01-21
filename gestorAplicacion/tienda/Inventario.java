@@ -14,22 +14,33 @@ public class Inventario implements Serializable{
     private static ArrayList<Producto> categoriaTecnologia;
     private static ArrayList<Producto> categoriaAseo;
     private static ArrayList<Producto> categoriaComida;
-    private static ArrayList<Producto> categoriaPapeleria;
+    private static ArrayList<Producto> categoriaPapeleria;  //Atributos añadidos para la funcionalidad de recomendaciones (Simón)
     private static ArrayList<Producto> categoriaJuegueteria;
     private static ArrayList<Producto> categoriaDeportes;
+
+    //Necesario para realizar las recomendaciones
+    private static ArrayList<ArrayList<Producto>> listaCategorias = new ArrayList<>();
     
-    //Atributos añadidos para la funcionalidad de recomendaciones (Simón)
     private ArrayList<Producto> productosTotal;
     private Object[][] catalogo;
 
     public Inventario(ArrayList<Producto> categoriaTecnologia, ArrayList<Producto> categoriaAseo, ArrayList<Producto> categoriaComida, 
-                      ArrayList<Producto> categoriaPapeleria, ArrayList<Producto> categoriaJuegueteria, ArrayList<Producto> categoriaDeportes) {
+                     ArrayList<Producto> categoriaPapeleria, ArrayList<Producto> categoriaJuegueteria, ArrayList<Producto> categoriaDeportes) {
+       
         Inventario.categoriaTecnologia = categoriaTecnologia;
         Inventario.categoriaAseo = categoriaAseo;
         Inventario.categoriaComida = categoriaComida;
         Inventario.categoriaPapeleria = categoriaPapeleria;
         Inventario.categoriaJuegueteria = categoriaJuegueteria;
         Inventario.categoriaDeportes = categoriaDeportes;
+
+        Inventario.listaCategorias.add(categoriaTecnologia);
+        Inventario.listaCategorias.add(categoriaAseo);
+        Inventario.listaCategorias.add(categoriaComida);
+        Inventario.listaCategorias.add(categoriaPapeleria);
+        Inventario.listaCategorias.add(categoriaJuegueteria);
+        Inventario.listaCategorias.add(categoriaDeportes);
+
         this.productosTotal = new ArrayList<Producto>();
     }
 
@@ -106,7 +117,7 @@ public class Inventario implements Serializable{
     		
     }
     
-    public Object[][] mostrarProductos(){
+    public Object[][] crearCatalogo(){
     	
     	//Se crea una matriz para que al usuario se le muestren
     	//Los productos a modo de tabla
@@ -157,10 +168,136 @@ public class Inventario implements Serializable{
     }
 
     //Método sobrecargado para cuando se escojan las recomendaciones
-    public Object[][] mostrarProductos(HistorialCompras historial){
-        return null;
+    public Object[][] crearCatalogo(HistorialCompras historial){
+
+        Categoria categoriaRecomendada1;
+        ArrayList<Producto> productosRecomendados1;
+        Categoria categoriaRecomendada2;
+        ArrayList<Producto> productosRecomendados2;
+        Categoria categoriaRecomendada3;
+        ArrayList<Producto> productosRecomendados3;
+
+        int fila;
+        int columna;
+
+        Object[][] catalogo = new Object[6][8];
+        catalogo[0][0] = "--         ";
+        catalogo[0][1] = "ID";
+
+        //Se añade una columna vacía al princpio, dependiendo de cuántas categorías
+        //Se vayan a recomendar, se añadirá la palabra RECOMENDADO al inicio de sus
+        //filas respectivas
+
+        for (int i = 1; i <= 5; i++) {
+            catalogo[i][0] = "--         ";
+        }
+
+        //Se crean la primera fila y columna, que guardan las coordenadas de los productos
+    	
+    	for (int i = 1; i <=5; i++) {
+    		catalogo[i][1] = i;
+    	}
+    	
+    	for (int i = 2; i <=7; i++) {
+    		catalogo[0][i] = (char)('A' + i-2);
+    	}
+
+        int categorias = 0;
+        //Revisa cuántas categorías hay almacenadas en categoriasMas compradas
+        //ejemplo: puede que guarde [TECNOLOGIA, null, null] porque solo se han
+        //comprado productos de la categoría TECNOLOGIA
+        for (int i = 0; i < historial.getCategoriasMasCompradas().length; i++){
+
+            if (historial.getCategoriasMasCompradas()[i] != null){
+
+                categorias ++;
+               }
+           }
+
+
+           //Este switch controla la cantidad de filas del catálogo que se
+           //verán modificadas por la cantidad de recomendaciones que se vayan
+           //a hacer
+        switch(categorias){
+            case 1:
+                catalogo[1][0] = "RECOMENDADO";
+
+                Categoria categoriaRecomendada = historial.getCategoriasMasCompradas()[0];
+                ArrayList<Producto> productosRecomendados = listaCategorias.get(categoriaRecomendada.ordinal());
+
+    
+
+                for (int i = 0; i <= 5; i++){
+                    catalogo[1][i+2] = productosRecomendados.get(i);
+                }
+
+                // Se añaden los productos al resto de espacios de la matriz
+    	
+    	        fila = 2;
+    	        columna = 2;
+
+                //Luego de añadir una fila de productos recomendados, quedan
+                //24 espacios disponibles para productos no recomendados
+    	
+    	        for (int i = 0; i < 24; i++) {
+    		    catalogo[fila][columna] = productosTotal.get(i);
+    		    if (columna != 7) {
+    			    columna += 1;
+    		    } else {
+    			    columna = 2;
+    			    if (fila != 5) {
+    				    fila +=1;
+    			}
+    		}
+ 
+    	    }   
+
+             case 2:
+
+             catalogo[1][0] = "RECOMENDADO";
+             catalogo[2][0] = "RECOMENDADO";
+
+                categoriaRecomendada1 = historial.getCategoriasMasCompradas()[0];
+                productosRecomendados1 = listaCategorias.get(categoriaRecomendada1.ordinal());
+
+
+                for (int i = 0; i <= 5; i++){
+                    catalogo[1][i+2] = productosRecomendados1.get(i);
+                }
+
+                categoriaRecomendada2 = historial.getCategoriasMasCompradas()[1];
+                productosRecomendados2 = listaCategorias.get(categoriaRecomendada2.ordinal());
+
+                for (int i = 0; i <= 5; i++){
+                    catalogo[2][i+2] = productosRecomendados2.get(i);
+                }
+
+                // Se añaden los productos al resto de espacios de la matriz
+    	
+    	        fila = 3;
+    	        columna = 2;
+
+                //Luego de añadir dos filas de productos recomendados, quedan
+                //18 espacios disponibles para productos no recomendados
+    	
+    	        for (int i = 0; i < 18; i++) {
+    		    catalogo[fila][columna] = productosTotal.get(i);
+    		    if (columna != 7) {
+    			    columna += 1;
+    		    } else {
+    			    columna = 2;
+    			    if (fila != 5) {
+    				    fila +=1;
+    			}
+    		}
+ 
+    	    }   
+
+        }
+        return catalogo;
 
     }
+
 
     public static Boolean verificarproducto(Producto producto, int unidades) {
 

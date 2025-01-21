@@ -53,16 +53,16 @@ public class App {
         comprador.setCuentaBancaria(cuentaBancariaComprador);
         vendedor.setCuentaBancaria(cuentaBancariaVendedor);
         //Todo esto de acá es para simular procesos de compra.
-        // comprador.getCuentaBancaria().recargarCuenta(10000);
-        // comprador.getValorCupones().add(15);
-        // comprador.cantidadCupones +=1;
+         comprador.getCuentaBancaria().recargarCuenta(10000);
+         comprador.getValorCupones().add(15);
+         comprador.cantidadCupones +=1;
         
         
  //Productos instanciados para probar la muestra de productos por pantalla
         
         Producto.Categoria[] categorias = Producto.Categoria.values();
         
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 100; i++) {
             int cantidad = (i + 1) * 5;  // Solo un ejemplo de valor para cantidad
             int cantidadAlerta = (i + 1) * 2;  // Solo un ejemplo de valor para cantidadAlerta
             int ID = i + 1;
@@ -88,7 +88,7 @@ public class App {
                  )); 
              
         }
-        
+
         
         Tienda tienda = new Tienda("NombreTienda", inventario, false, null);
         Notificacion notificacion = new Notificacion(null, null, vendedor);

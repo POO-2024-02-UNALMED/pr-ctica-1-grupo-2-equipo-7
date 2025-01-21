@@ -107,7 +107,7 @@ public class HistorialCompras implements Serializable{
 
     }
 
-    public void ActualizarCategoriasPopulares(){
+    public void ActualizarCategoriasMasCompradas(){
         //Este método se encarga de actualizar las tres categorías
         //más compradas por el usuario
 
@@ -197,7 +197,11 @@ public class HistorialCompras implements Serializable{
         this.facturas = facturas;
     }
 
-    public String getCategoriasMasCompradas() {
+    public Categoria[] getCategoriasMasCompradas(){
+        return categoriasMasCompradas;
+    }
+
+    public String mostrarCategoriasMasCompradas() {
         return "Categorías más compradas: " + categoriasMasCompradas[0] + ", " + 
                 categoriasMasCompradas[1] + ", " + categoriasMasCompradas[2];
     }
