@@ -213,6 +213,8 @@ public class Inventario implements Serializable{
                 categorias ++;
                }
            }
+        
+           System.out.println(categorias);
 
 
            //Este switch controla la cantidad de filas del catálogo que se
@@ -229,6 +231,7 @@ public class Inventario implements Serializable{
 
                 for (int i = 0; i <= 5; i++){
                     catalogo[1][i+2] = productosRecomendados.get(i);
+                    productosTotal.remove(productosRecomendados.get(i));
                 }
 
                 // Se añaden los productos al resto de espacios de la matriz
@@ -250,7 +253,7 @@ public class Inventario implements Serializable{
     			}
     		}
  
-    	    }   
+    	    } break;
 
              case 2:
 
@@ -263,6 +266,7 @@ public class Inventario implements Serializable{
 
                 for (int i = 0; i <= 5; i++){
                     catalogo[1][i+2] = productosRecomendados1.get(i);
+                    productosTotal.remove(productosRecomendados1.get(i));
                 }
 
                 categoriaRecomendada2 = historial.getCategoriasMasCompradas()[1];
@@ -270,6 +274,7 @@ public class Inventario implements Serializable{
 
                 for (int i = 0; i <= 5; i++){
                     catalogo[2][i+2] = productosRecomendados2.get(i);
+                    productosTotal.remove(productosRecomendados2.get(i));
                 }
 
                 // Se añaden los productos al resto de espacios de la matriz
@@ -291,7 +296,7 @@ public class Inventario implements Serializable{
     			}
     		}
  
-    	    }   
+    	    }   break;
 
         }
         return catalogo;
