@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import tienda.Inventario;
 import tienda.Producto;
+import tienda.Producto.Categoria;
 import tienda.Tienda;
 import usuario.Comprador;
 import usuario.Notificacion;
@@ -92,6 +93,12 @@ public class App {
         
         Tienda tienda = new Tienda("NombreTienda", inventario, false, null);
         Notificacion notificacion = new Notificacion(null, null, vendedor);
+
+        Categoria[] tuki = Categoria.values();
+
+        for (Categoria a : tuki){
+            System.out.println(a);
+        }
     
 
         // Crear una instancia de MainMenu

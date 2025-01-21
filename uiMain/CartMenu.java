@@ -133,7 +133,8 @@ public class CartMenu {
                       //lógica para ver sin recomendaciones (a partir de la segunda compra)
 
                       //Solo se mostrará la opción de calificar recomendaciones si para la selección
-                      //actual se eligió la opción de mostrar recomendaciones en primer lugar         
+                      //actual se eligió la opción de mostrar recomendaciones en primer lugar 
+                      mostrarCatalogo(null);        
 
                       //Menú de selección de productos
                       boolean recomendaciones2 = false;

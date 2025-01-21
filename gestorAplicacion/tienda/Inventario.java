@@ -298,7 +298,58 @@ public class Inventario implements Serializable{
  
     	    }   break;
 
+            case 3:
+            catalogo[1][0] = "RECOMENDADO";
+            catalogo[2][0] = "RECOMENDADO";
+            catalogo[3][0] = "RECOMENDADO";
+
+               categoriaRecomendada1 = historial.getCategoriasMasCompradas()[0];
+               productosRecomendados1 = listaCategorias.get(categoriaRecomendada1.ordinal());
+
+
+               for (int i = 0; i <= 5; i++){
+                   catalogo[1][i+2] = productosRecomendados1.get(i);
+                   productosTotal.remove(productosRecomendados1.get(i));
+               }
+
+               categoriaRecomendada2 = historial.getCategoriasMasCompradas()[1];
+               productosRecomendados2 = listaCategorias.get(categoriaRecomendada2.ordinal());
+
+               for (int i = 0; i <= 5; i++){
+                   catalogo[2][i+2] = productosRecomendados2.get(i);
+                   productosTotal.remove(productosRecomendados2.get(i));
+               }
+
+               categoriaRecomendada3 = historial.getCategoriasMasCompradas()[2];
+               productosRecomendados3 = listaCategorias.get(categoriaRecomendada3.ordinal());
+
+               for (int i = 0; i <= 5; i++){
+                   catalogo[3][i+2] = productosRecomendados3.get(i);
+                   productosTotal.remove(productosRecomendados3.get(i));
+               }
+
+               // Se añaden los productos al resto de espacios de la matriz
+       
+               fila = 4;
+               columna = 2;
+
+               //Luego de añadir dos filas de productos recomendados, quedan
+               //18 espacios disponibles para productos no recomendados
+       
+               for (int i = 0; i < 12; i++) {
+               catalogo[fila][columna] = productosTotal.get(i);
+               if (columna != 7) {
+                   columna += 1;
+               } else {
+                   columna = 2;
+                   if (fila != 5) {
+                       fila +=1;
+               }
+           }
+
+
         }
+    }
         return catalogo;
 
     }

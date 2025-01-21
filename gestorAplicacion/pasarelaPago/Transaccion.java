@@ -58,7 +58,7 @@ public class Transaccion implements Serializable{
 			Comprador comprador = (Comprador) usuarioRemitente; // Se hace el casting a tipo Comprador.
 			Factura factura = new Factura(comprador.getCarritoCompras(), comprador.getHistorialCompras().getFacturas().size() + 1, this);
 			comprador.getHistorialCompras().agregarFactura(factura);
-			comprador.getHistorialCompras().ActualizarCantidadesComprados(factura);
+			comprador.getHistorialCompras().ActualizarCantidadesCompradas(factura);
 			comprador.getHistorialCompras().ActualizarCategoriasMasCompradas();
 		}
 	}

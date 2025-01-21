@@ -76,7 +76,7 @@ public class HistorialCompras implements Serializable{
 
     //Este método se encarga de actualizar las cantidades
     //de productos comprados por categoría
-    public void ActualizarCantidadesComprados(Factura factura){
+    public void ActualizarCantidadesCompradas(Factura factura){
         
         Categoria categoria;
 
@@ -107,29 +107,37 @@ public class HistorialCompras implements Serializable{
 
     }
 
-    public void ActualizarCategoriasMasCompradas(){
-        //Este método se encarga de actualizar las tres categorías
-        //más compradas por el usuario
-
-        List<Integer> cantidadesOrdenadas = Arrays.asList(cantidadTecnologia, cantidadAseo, cantidadComida, cantidadPapeleria, cantidadJugueteria, cantidadDeportes);
+    public void ActualizarCategoriasMasCompradas() {
+        // Crear una lista con las cantidades
+        List<Integer> cantidadesOrdenadas = Arrays.asList(cantidadTecnologia, cantidadAseo, cantidadComida, 
+            cantidadPapeleria, cantidadJugueteria, cantidadDeportes);
+    
+        // Crear una lista con las categorías
         List<Categoria> categoriasOrdenadas = Arrays.asList(Categoria.values());
-
-        //Se ordenan los arreglos de las categorías y las cantidades
-        Collections.sort(categoriasOrdenadas, (c1, c2) -> cantidadesOrdenadas.get(categoriasOrdenadas.indexOf(c2)) - cantidadesOrdenadas.get(categoriasOrdenadas.indexOf(c1)));
-        Collections.sort(cantidadesOrdenadas, (c1, c2) -> c2 - c1);
-        //Hacerlo de esta manera garantiza que los índices de las dos listas sean correspondientes
-        //es decir, categoriasOrdenadas[i] sería la categoría con la cantidad cantidadesOrdenadas[i]
-
+    
+        // Ordenar ambas listas manteniendo la correspondencia entre índices
+        for (int i = 0; i < cantidadesOrdenadas.size(); i++) {
+            for (int j = i + 1; j < cantidadesOrdenadas.size(); j++) {
+                if (cantidadesOrdenadas.get(j) > cantidadesOrdenadas.get(i)) {
+                    // Intercambiar cantidades
+                    int tempCantidad = cantidadesOrdenadas.get(i);
+                    cantidadesOrdenadas.set(i, cantidadesOrdenadas.get(j));
+                    cantidadesOrdenadas.set(j, tempCantidad);
+    
+                    // Intercambiar categorías para mantener la correspondencia
+                    Categoria tempCategoria = categoriasOrdenadas.get(i);
+                    categoriasOrdenadas.set(i, categoriasOrdenadas.get(j));
+                    categoriasOrdenadas.set(j, tempCategoria);
+                }
+            }
+        }
+    
+        // Actualizar las tres categorías más compradas
         for (int i = 0; i < 3; i++) {
             if (cantidadesOrdenadas.get(i) != 0) {
                 categoriasMasCompradas[i] = categoriasOrdenadas.get(i);
             }
-
         }
-        // categoriasMasCompradas = categorias.subList(0, 3).toArray(new Categoria[3]);
-
-
-        
     }
 
     public String getCantidades(){
