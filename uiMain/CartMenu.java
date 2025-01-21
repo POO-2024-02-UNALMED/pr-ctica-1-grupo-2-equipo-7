@@ -12,6 +12,7 @@ public class CartMenu {
      private Comprador comprador;
   private Vendedor vendedor;
   private Tienda tienda;
+  private Object[][] catalogo;
 
   //constructor
 
@@ -19,6 +20,7 @@ public class CartMenu {
     this.setComprador(comprador);
     this.setVendedor(vendedor);
     this.setTienda(tienda);
+    this.catalogo = null;
   }
 
   public Object[][] mostrarCatalogo(HistorialCompras historial){
@@ -27,8 +29,7 @@ public class CartMenu {
      System.out.println(String.format("%72s", "===== CATÁLOGO ===== \n"));
 
      //Se guarda la matriz de productos en la variable catálogo
-     Object[][] catalogo = null;
-
+     
      if (historial != null){
         catalogo = tienda.recomendarProductos(comprador);
 

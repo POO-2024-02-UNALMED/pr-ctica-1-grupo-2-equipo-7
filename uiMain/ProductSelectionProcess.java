@@ -10,7 +10,10 @@ import java.util.Scanner;
 
 
 
-public class ProductSelectionProcess {
+public class ProductSelectionProcess extends CartMenu{
+
+	//Es necesario que se herede el método de mostrar catálogo, específicamente
+	//para el buen funcionamiento de la opción 3
 	
 	private Comprador comprador;
 	private Tienda tienda;
@@ -20,9 +23,7 @@ public class ProductSelectionProcess {
 	
 	public ProductSelectionProcess(Comprador comprador, Vendedor vendedor, Tienda tienda, Object[][] catalogo,
 									boolean recomendaciones) {
-		this.comprador = comprador;
-		this.vendedor = vendedor;
-		this.tienda = tienda;
+		super(comprador, vendedor, tienda);
 		this.catalogo = catalogo;
 		this.recomendaciones = recomendaciones;
 	}
@@ -83,9 +84,15 @@ public class ProductSelectionProcess {
 						//Se llama al método sobrecargado de display de ProductSelectionMenu
 						//Que permite calificar los productos recomendados
 
-						new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
+						boolean retorno = new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
 												fila, columna,llevar).display(comprador.getHistorialCompras());
-						break;
+						if (retorno == false){
+							break;
+						} else {
+
+							mostrarCatalogo(comprador.getHistorialCompras());
+							continue;
+						}
 
 					} else {
 
@@ -100,6 +107,8 @@ public class ProductSelectionProcess {
 						if (retorno == false){
 							break;
 						} else {
+							//por el momento no funciona, en la casa lo organizo (21/01/25) (simón)
+							super.mostrarCatalogo(null);
 							continue;
 						}
 						

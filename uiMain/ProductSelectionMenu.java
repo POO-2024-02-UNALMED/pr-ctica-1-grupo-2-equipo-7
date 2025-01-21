@@ -76,7 +76,7 @@ public class ProductSelectionMenu {
                             System.out.println(o);
 							return false;
 						case 2:
-                            productoSeleccionado.toStringdif();
+                            System.out.println(productoSeleccionado.toStringdif());
 							continue;
 						case 3:
                             return true; 
