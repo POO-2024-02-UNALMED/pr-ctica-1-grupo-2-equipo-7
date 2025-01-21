@@ -2,6 +2,9 @@ package tienda;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import compras.HistorialCompras;
+import usuario.Comprador;
 import usuario.Usuario;
 
 public class Tienda implements Serializable{
@@ -18,8 +21,11 @@ public class Tienda implements Serializable{
         this.setUsuariosRegistrados(usuariosRegistrados);
     }
 
-    public void recomendarProductos(Usuario usuario) {
-        // Lógica para recomendar un producto - retorna un array de productos
+    public Object[][] recomendarProductos(Usuario usuario) {
+
+		HistorialCompras historial = ((Comprador) usuario).getHistorialCompras();
+
+        return inventario.crearCatalogo(historial);
     }
 
 	public String getNombre() {

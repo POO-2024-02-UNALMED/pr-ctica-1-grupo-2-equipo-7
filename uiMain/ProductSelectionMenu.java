@@ -46,6 +46,7 @@ public class ProductSelectionMenu {
 		//Si no, vuelve al menú del carrito
 
         Scanner scanner = new Scanner(System.in);
+        Scanner cantidad=new Scanner(System.in);
         int opcion;
 
 
@@ -60,13 +61,23 @@ public class ProductSelectionMenu {
 
 						switch (opcion) {
 						case 1:
+                            
+                        System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
+                        llevar=cantidad.nextLine();
+                        int numerico=Integer.parseInt(llevar);
+                        if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                            
+                        }else{
+                            llevar="1";
+                            System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                        }
                            
-							this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
-                            System.out.println("Producto añadido correctamente");
+							String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                            System.out.println(o);
 							return false;
 						case 2:
-							System.out.println(productoSeleccionado);
-							return false;
+                            productoSeleccionado.toStringdif();
+							continue;
 						case 3:
                             return true; 
 						default:
@@ -83,7 +94,11 @@ public class ProductSelectionMenu {
 
     public boolean display(HistorialCompras historial){
 
+        //Si retorna true, se devuelve al menú de selección de productos 
+		//Si no, vuelve al menú del carrito
+
         Scanner scanner = new Scanner(System.in);
+        Scanner cantidad=new Scanner(System.in);
         String opcion;
 
 
@@ -100,12 +115,22 @@ public class ProductSelectionMenu {
 
                 switch (opcion) {
                 case "1":
+
+                System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
+                llevar=cantidad.nextLine();
+                int numerico=Integer.parseInt(llevar);
+                if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                    
+                }else{
+                    llevar="1";
+                    System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                }
                     this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
                     System.out.println("Producto añadido correctamente");
                     return false;
                 case "2":
-                    System.out.println(productoSeleccionado);
-                    return false;
+                    productoSeleccionado.toStringdif();
+                    continue;
                 case "3":
                     return true;
                 case "4":

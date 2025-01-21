@@ -11,10 +11,13 @@ import tienda.Tienda;
 import usuario.Comprador;
 import usuario.Notificacion;
 import usuario.Vendedor;
+// import baseDatos.Deserializador;
+
+
 
 public class App {
     public static void main(String[] args) {
-        //Aqui se realiza la serializacion para enviar la tienda ya cargada a el MainMenu (Esto es solo un ejemplo)
+//         //Aqui se realiza la serializacion para enviar la tienda ya cargada a el MainMenu (Esto es solo un ejemplo)
         ArrayList<Reseña> reseñas1 = new ArrayList<>();
         ArrayList<Reseña> reseñas2 = new ArrayList<>();
         ArrayList<Reseña> reseñas3 = new ArrayList<>();
@@ -43,23 +46,23 @@ public class App {
         carritoCompras.añadirProducto(producto3, 2);
         carritoCompras.calcularTotal();
         comprador.setCarritoCompras(carritoCompras);
-        Fabrica fabrica = new Fabrica();
+        Fabrica fabrica = new Fabrica( inventario);
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
         Vendedor vendedor = new Vendedor("Enrique Iglesias", cuentaBancariaComprador, inventario, fabrica);
         CuentaBancaria cuentaBancariaVendedor = new CuentaBancaria(vendedor);
         comprador.setCuentaBancaria(cuentaBancariaComprador);
         vendedor.setCuentaBancaria(cuentaBancariaVendedor);
         //Todo esto de acá es para simular procesos de compra.
-        comprador.getCuentaBancaria().recargarCuenta(10000);
-        // comprador.getValorCupones().add(15);
-        // comprador.cantidadCupones +=1;
+         comprador.getCuentaBancaria().recargarCuenta(10000);
+         comprador.getValorCupones().add(15);
+         comprador.cantidadCupones +=1;
         
         
  //Productos instanciados para probar la muestra de productos por pantalla
         
         Producto.Categoria[] categorias = Producto.Categoria.values();
         
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 100; i++) {
             int cantidad = (i + 1) * 5;  // Solo un ejemplo de valor para cantidad
             int cantidadAlerta = (i + 1) * 2;  // Solo un ejemplo de valor para cantidadAlerta
             int ID = i + 1;
@@ -86,11 +89,11 @@ public class App {
                  )); 
              
         }
-        
+
         
         Tienda tienda = new Tienda("NombreTienda", inventario, false, null);
         Notificacion notificacion = new Notificacion(null, null, vendedor);
-    
+
 
         // Crear una instancia de MainMenu
         MainMenu mainMenu = new MainMenu(comprador, vendedor, tienda, inventario, notificacion);
@@ -103,6 +106,7 @@ public class App {
         //datos de atributos estáticos o métodos estáticos, la única forma de hacerlo por ahora sería convirtiendo todos esos atributos estáticos y métodos estáticos en no estáticos
         //Pero eso lo consultaré luego con ustedes.
 
+        // Deserializador.deserializarInventarioStatic();
         // MainMenu mainMenu = new MainMenu();
         
         // Mostrar el menú principal

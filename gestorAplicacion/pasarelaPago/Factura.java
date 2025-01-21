@@ -11,6 +11,8 @@ public class Factura implements Serializable{
     private CarritoCompras carritoCompras;
     private int IDFactura;
     private Transaccion transaccion;
+    
+    public Factura(){};
 
     public Factura(CarritoCompras carritoCompras, int IDFactura, Transaccion transaccion){
         this.carritoCompras = carritoCompras;

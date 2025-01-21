@@ -2,6 +2,7 @@ package uiMain;
 
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
+import fabrica.Fabrica;
 import java.util.Scanner;
 import tienda.Inventario;
 import tienda.Tienda;
@@ -15,6 +16,7 @@ public class MainMenu {
     private Tienda tienda;
     private Inventario inventario;
     private Notificacion notificacion;
+    private Fabrica fabrica;
 
     public MainMenu(Comprador comprador, Vendedor vendedor, Tienda tienda, Inventario inventario, Notificacion notificacion){
         this.comprador = comprador;
@@ -46,11 +48,11 @@ public class MainMenu {
                     new BuyerMenu(comprador, vendedor, tienda).display();
                     break;
                 case 2:
-                    new SellerMenu(comprador, vendedor, inventario, notificacion).display();
+                    new SellerMenu(vendedor, inventario).display();
                     break;
                 case 3:
                     Serializador.serializar(this);
-                    System.out.println();
+                    Serializador.serializarInventarioStatic();
                     System.out.println("Gracias por usar el sistema. ¡Hasta luego!");
                     System.out.println();
                     break;

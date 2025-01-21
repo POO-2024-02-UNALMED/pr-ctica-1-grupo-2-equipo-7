@@ -67,7 +67,7 @@ public class CarritoCompras implements Serializable{
 	// metodos
 	public Producto busqueda(String nombre){
 		for(Producto producto : listaItems){
-			if (producto.getNombre().equals(nombre)){
+			if (producto.getNombre().equalsIgnoreCase(nombre)){
 				return producto;
 			}else{
 
@@ -107,8 +107,18 @@ public class CarritoCompras implements Serializable{
 		return null;
 	}
 	public String toString() {
-        return "El carrito de "+ this.getUsuario().getNombre() + "es " + this.getListaItems() ;
-    }
+		StringBuilder sb = new StringBuilder();
+		sb.append("Carrito de ").append(this.getUsuario().getNombre()).append(":\n")
+		  .append("Lista de productos:\n");
+	
+		for (int i = 0; i < this.getListaItems().size(); i++) {
+			sb.append("\t- ").append(this.getListaItems().get(i))
+			  .append("con cantidades de : ").append(this.cantidadPorProducto.get(i)).append("\n");
+		}
+	
+		return sb.toString();
+	}
+	
 
 	public String añadirProducto(Producto producto){
 		// POR FAVOR NO MOVER MÁS ESTE MÉTODO QUE YA QUEDA FUNCIONANDO BIEN
@@ -214,8 +224,10 @@ public class CarritoCompras implements Serializable{
 			int o=this.cantidadPorProducto.get(indice);
 			if(this.cantidadPorProducto.get(indice)>cantidad) {
 				o=o-cantidad;
+				this.cantidadPorProducto.set(indice, o);
 				return "La cantidad del producto ahora es " + String.valueOf(o);
-			}else if(o==cantidad) {
+			     
+			    }else if(o==cantidad) {
 				this.cantidadPorProducto.remove(indice);
 				this.listaItems.remove(indice);
 				return "El producto ha sido eliminado en su totalidad";

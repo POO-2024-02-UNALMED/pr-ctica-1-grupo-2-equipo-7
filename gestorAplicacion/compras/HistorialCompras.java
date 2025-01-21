@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import pasarelaPago.Factura;
 import tienda.Producto.Categoria;
 import tienda.Producto;
+import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
 
 public class HistorialCompras implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
@@ -20,7 +23,7 @@ public class HistorialCompras implements Serializable{
     private int cantidadJugueteria;
     private int cantidadDeportes;
     
-    private Categoria[] cantegoriasMasCompradas = new Categoria[3];
+    private Categoria[] categoriasMasCompradas = new Categoria[3];
     //Este atributo guarda las tres categorías más compradas
 
     public Factura buscarFactura(int ID){
@@ -73,7 +76,7 @@ public class HistorialCompras implements Serializable{
 
     //Este método se encarga de actualizar las cantidades
     //de productos comprados por categoría
-    public void ActualizarCantidadesComprados(Factura factura){
+    public void ActualizarCantidadesCompradas(Factura factura){
         
         Categoria categoria;
 
@@ -81,27 +84,69 @@ public class HistorialCompras implements Serializable{
             categoria = producto.getCategoria();
             switch (categoria) {
                 case TECNOLOGIA:
-                    cantidadTecnologia ++;
+                    cantidadTecnologia += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case ASEO:
-                    cantidadAseo ++;
+                    cantidadAseo += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case COMIDA:
-                    cantidadComida ++;
+                    cantidadComida += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case PAPELERIA:
-                    cantidadPapeleria ++;
+                    cantidadPapeleria += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case JUGUETERIA:
-                    cantidadJugueteria ++;
+                    cantidadJugueteria += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
                 case DEPORTES:
-                    cantidadDeportes ++;
+                    cantidadDeportes += factura.getCarritoCompras().getCantidadPorProductos().get(factura.getCarritoCompras().getListaItems().indexOf(producto));
                     break;
             }
         }
 
 
+    }
+
+    public void ActualizarCategoriasMasCompradas() {
+        // Crear una lista con las cantidades
+        List<Integer> cantidadesOrdenadas = Arrays.asList(cantidadTecnologia, cantidadAseo, cantidadComida, 
+            cantidadPapeleria, cantidadJugueteria, cantidadDeportes);
+    
+        // Crear una lista con las categorías
+        List<Categoria> categoriasOrdenadas = Arrays.asList(Categoria.values());
+    
+        // Ordenar ambas listas manteniendo la correspondencia entre índices
+        for (int i = 0; i < cantidadesOrdenadas.size(); i++) {
+            for (int j = i + 1; j < cantidadesOrdenadas.size(); j++) {
+                if (cantidadesOrdenadas.get(j) > cantidadesOrdenadas.get(i)) {
+                    // Intercambiar cantidades
+                    int tempCantidad = cantidadesOrdenadas.get(i);
+                    cantidadesOrdenadas.set(i, cantidadesOrdenadas.get(j));
+                    cantidadesOrdenadas.set(j, tempCantidad);
+    
+                    // Intercambiar categorías para mantener la correspondencia
+                    Categoria tempCategoria = categoriasOrdenadas.get(i);
+                    categoriasOrdenadas.set(i, categoriasOrdenadas.get(j));
+                    categoriasOrdenadas.set(j, tempCategoria);
+                }
+            }
+        }
+    
+        // Actualizar las tres categorías más compradas
+        for (int i = 0; i < 3; i++) {
+            if (cantidadesOrdenadas.get(i) != 0) {
+                categoriasMasCompradas[i] = categoriasOrdenadas.get(i);
+            }
+        }
+    }
+
+    public String getCantidades(){
+        return "Cantidad Tecnología " + cantidadTecnologia + "\n" +
+                "Cantidad Aseo " + cantidadAseo + "\n" +
+                "Cantidad Comida " + cantidadComida + "\n" +
+                "Cantidad Papelería " + cantidadPapeleria + "\n" +
+                "Cantidad Juguetería " + cantidadJugueteria + "\n" +
+                "Cantidad Deportes " + cantidadDeportes + "\n";
     }
 
 	public int getCantidadTecnologia() {
@@ -158,5 +203,18 @@ public class HistorialCompras implements Serializable{
 
     public void setFacturas(ArrayList<Factura> facturas) {
         this.facturas = facturas;
+    }
+
+    public Categoria[] getCategoriasMasCompradas(){
+        return categoriasMasCompradas;
+    }
+
+    public void setCategoriasMasCompradas(Categoria[] lista){
+        this.categoriasMasCompradas = lista;
+    }
+
+    public String mostrarCategoriasMasCompradas() {
+        return "Categorías más compradas: " + categoriasMasCompradas[0] + ", " + 
+                categoriasMasCompradas[1] + ", " + categoriasMasCompradas[2];
     }
 }

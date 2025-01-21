@@ -69,7 +69,7 @@ public class BuyerMenu {
                 case 4:
 
                 //LÍNEA DE PRUEBA, BORRAR LUEGO
-                    System.out.println(comprador.getCarritoCompras());
+                    // System.out.println(comprador.getCarritoCompras());
 
                 System.out.println();
                     if (comprador.getCarritoCompras().getListaItems().size() == 0){ // Se verifica si el carrito de compras no esta vacío
@@ -90,6 +90,10 @@ public class BuyerMenu {
                 case 6:
                     System.out.println();
                     System.out.println(comprador.mostrarHistorialCompras());
+
+                    //LÍNEA DE PRUEBA, BORRAR LUEGO
+                    System.out.println(comprador.getHistorialCompras().getCantidades());
+                    System.out.println(comprador.getHistorialCompras().mostrarCategoriasMasCompradas());
                     break;
                 case 7:
                     System.out.println();

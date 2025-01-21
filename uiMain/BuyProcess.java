@@ -1,8 +1,6 @@
 package uiMain;
 
 import compras.CarritoCompras;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import pasarelaPago.Transaccion;
@@ -36,7 +34,8 @@ public class BuyProcess {
             System.out.println("¿Desea usted aplicar un cupón de descuento en su compra?");
             System.out.println("1. Si");
             System.out.println("2. No");
-            System.out.print("Seleccione una opción: ");
+            System.out.println("3. Regresar al menú del comprador");
+            System.out.print("\nSeleccione una opción: ");
             opcion = scanner.nextInt();
 
             switch (opcion) {
@@ -86,7 +85,7 @@ public class BuyProcess {
                         for (Producto producto : comprador.getCarritoCompras().getListaItems()){
                             boolean verificacion = producto.verificarCantidadProductos();
                             cantidadProductos.add(verificacion);
-                            producto.setCantidadVendida(comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
+                            producto.setCantidadVendida(producto.getCantidadVendida() + comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
                         }
     
                         for (int i = 0; i < cantidadProductos.size(); i++){
@@ -97,7 +96,7 @@ public class BuyProcess {
                         }
 
                         comprador.setCarritoCompras(new CarritoCompras(comprador)); // Inicializar un nuevo carrito de compras en forma de "vaciar" el carrito de compras para una compra futura.
-                        opcion = 2; // Forzar salida del ciclo después del pago
+                        opcion = 3; // Forzar salida del ciclo después del pago
                         break;
                     }
                 case 2:
@@ -121,7 +120,7 @@ public class BuyProcess {
                     for (Producto producto : comprador.getCarritoCompras().getListaItems()){
                         boolean verificacion = producto.verificarCantidadProductos();
                         cantidadProductos.add(verificacion);
-                        producto.setCantidadVendida(comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
+                        producto.setCantidadVendida(producto.getCantidadVendida() + comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
                     }
 
                     for (int i = 0; i < cantidadProductos.size(); i++){
@@ -132,10 +131,14 @@ public class BuyProcess {
                     }
 
                     comprador.setCarritoCompras(new CarritoCompras(comprador)); // Inicializar un nuevo carrito de compras en forma de "vaciar" el carrito de compras para una compra futura.
+                    opcion = 3; // Forzar la salida del ciclo después del pago
+                    break;
+                case 3:
+                    System.out.println("Regresando al menú del comprador...\n");
                     break;
                 default:
                     System.out.println("\nOpción no válida. Intente nuevamente.");
             }
-        } while (opcion != 2);
+        } while (opcion != 3);
     }
     }

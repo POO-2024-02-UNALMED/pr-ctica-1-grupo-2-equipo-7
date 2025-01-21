@@ -1,6 +1,8 @@
 package uiMain;
 
 import java.util.Scanner;
+
+import compras.HistorialCompras;
 import tienda.Producto;
 import tienda.Tienda;
 import usuario.Comprador;
@@ -19,6 +21,71 @@ public class CartMenu {
     this.setTienda(tienda);
   }
 
+  public Object[][] mostrarCatalogo(HistorialCompras historial){
+
+     // Llamada a lógica para mostrar el catálogo
+     System.out.println(String.format("%72s", "===== CATÁLOGO ===== \n"));
+
+     //Se guarda la matriz de productos en la variable catálogo
+     Object[][] catalogo = null;
+
+     if (historial != null){
+        catalogo = tienda.recomendarProductos(comprador);
+
+     } else {
+      catalogo = tienda.getInventario().crearCatalogo();
+     }
+
+
+     //Se recorre la matriz para mostrar los productos uno por uno
+     //Examina si lo que hay en el índice dado es un objeto producto para
+     //utilizar el método getNombre()
+     for (int fila = 0; fila < catalogo.length; fila++) {
+       for (int columna = 0; columna < catalogo[fila].length; columna++) {
+         if (columna == 7) {
+           if (catalogo[fila][columna] instanceof Producto) {
+             String salida = String.format("%-15s",((Producto) catalogo[fila][columna]).getNombre());
+             System.out.println(salida);
+            
+           }else {
+             
+               String salida = String.format("%-15s",catalogo[fila][columna]);
+               System.out.println(salida);
+           
+           }
+
+         } else {
+           if (columna >= 2){
+
+             if (catalogo[fila][columna] instanceof Producto) {
+
+               String salida = String.format("%-15s",((Producto) catalogo[fila][columna]).getNombre());
+               System.out.print(salida);
+               System.out.print(" ");
+             }else {
+
+               String salida = String.format("%-15s",catalogo[fila][columna]);
+               System.out.print(salida);
+                 System.out.print(" ");
+             }
+             
+
+           } else {
+             
+               System.out.print(catalogo[fila][columna]);
+               System.out.print("      ");
+             
+           }
+           
+
+         }
+       }
+     }
+
+     return catalogo;
+
+  }
+
   public void display() {
     Scanner scanner = new Scanner(System.in);
     int opcion;
@@ -32,6 +99,7 @@ public class CartMenu {
       System.out.println("1. Agregar productos/ver Inventario");
       System.out.println("2. Eliminar productos del carrito");
       System.out.println("3. Regresar");
+      System.out.println("4. Ver el carrito");
       System.out.println("Seleccione una opción: ");
       opcion = scanner.nextInt();
       
@@ -39,51 +107,22 @@ public class CartMenu {
       switch (opcion) {
 
       case 1:
-
-         // Llamada a lógica para mostrar el catálogo
-                System.out.println("===== CATÁLOGO =====");
-
-                //Se guarda la matriz de productos en la variable catálogo
-                Object[][] catalogo = tienda.getInventario().mostrarProductos();
-
-
-                //Se recorre la matriz para mostrar los productos uno por uno
-                //Examina si lo que hay en el índice dado es un objeto producto para
-                //utilizar el método getNombre()
-                for (int fila = 0; fila < catalogo.length; fila++) {
-                  for (int columna = 0; columna < catalogo[fila].length; columna++) {
-                    if (columna == 6) {
-                      if (catalogo[fila][columna] instanceof Producto) {
-                        System.out.println(((Producto) catalogo[fila][columna]).getNombre());
-                      }else {
-                        System.out.println(catalogo[fila][columna]);
-                      }
-
-                    } else {
-                      if (catalogo[fila][columna] instanceof Producto) {
-                        System.out.print(((Producto) catalogo[fila][columna]).getNombre());
-                        System.out.print(" ");
-                      }else {
-                        System.out.print(catalogo[fila][columna]);
-                          System.out.print(" ");
-                      }
-
-                    }
-                  }
-                }
+        //El método se encarga de mostrar por pantalla los productos, pero es necesario que
+        //retorne la matriz donde esto sucede para la debida creación del menú de selección
+         Object[][] catalogo = mostrarCatalogo(null);  
 
                 //Se le pregunta al usuario si desea ver recomendaciones en el catálogo
                 //a partir de la segunda compra para poder acceder a su historial
 					      if (comprador.getHistorialCompras().getFacturas().size() != 0){
 
-						      System.out.println("Desea actualizar las recomendaciones? /n 1. Sí /n 2. No");
+						      System.out.println("\nDesea actualizar las recomendaciones? 1. Sí - 2. No");
                   int respuesta = scanner.nextInt();
 
                   switch(respuesta){
                     case 1:
   
                       //Llamada a lógica para mostrar recomendaciones
-                      //Falta implementar (Simón)
+                      catalogo = mostrarCatalogo(comprador.getHistorialCompras());
 
                       //Menú de selección de productos
                       boolean recomendaciones1 = true;
@@ -95,7 +134,8 @@ public class CartMenu {
                       //lógica para ver sin recomendaciones (a partir de la segunda compra)
 
                       //Solo se mostrará la opción de calificar recomendaciones si para la selección
-                      //actual se eligió la opción de mostrar recomendaciones en primer lugar         
+                      //actual se eligió la opción de mostrar recomendaciones en primer lugar 
+                      mostrarCatalogo(null);        
 
                       //Menú de selección de productos
                       boolean recomendaciones2 = false;
@@ -164,7 +204,11 @@ public class CartMenu {
       case 3:
       System.out.println("Volviendo al menú principal...");
         break;
+      case 4:
+        System.out.println("A continuacion tu carrito de compras");
+        System.out.println(this.comprador.getCarritoCompras());
       }
+      
 
     } while (opcion != 3);
   }

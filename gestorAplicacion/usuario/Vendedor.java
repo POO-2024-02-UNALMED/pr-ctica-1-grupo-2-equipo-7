@@ -57,15 +57,13 @@ public class Vendedor extends Usuario implements Serializable{
                 return "Producto no encontrado: " + nombreProducto;
             }
 
-            int cantidad;
-            try {
-                cantidad = Integer.parseInt(scanner.nextLine());
-                if (cantidad <= 0) {
-                    return "Cantidad inválida para " + nombreProducto;
-                }
-            } catch (NumberFormatException e) {
+            String entradaCantidad = scanner.nextLine();
+            boolean esNumero = entradaCantidad.matches("\\d+");
+            if (!esNumero) {
                 return "Entrada inválida, ingrese un número válido para la cantidad.";
             }
+
+            int cantidad = Integer.parseInt(entradaCantidad);
 
             productosSeleccionados.add(producto);
             cantidades.add(cantidad);
@@ -123,6 +121,7 @@ public class Vendedor extends Usuario implements Serializable{
         ordenesPendientes.remove(orden);
     }
 
+    @Override
     public String consultarCuentaBancaria(){
         return "Estado de tu cuenta bancaria:\n" + "Saldo: " + this.getCuentaBancaria().getSaldo();
     }
