@@ -128,7 +128,7 @@ public class Producto implements Serializable{
     }
 
     public void setCantidadDevuelta(int cantidadDevuelta){
-        this.cantidadDevuelta = cantidadDevuelta;
+        this.cantidadDevuelta += cantidadDevuelta;
     }
 
     //metodos
