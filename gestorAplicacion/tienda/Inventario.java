@@ -520,6 +520,7 @@ public class Inventario implements Serializable{
     // metodos
     
     public void reabastecerProductos(int cantidad, Producto producto) {
+        producto.setCantidadVendida(producto.getCantidadVendida() - cantidad);
         producto.reabastecerCantidad(cantidad);
     }
      
