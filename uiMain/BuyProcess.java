@@ -4,6 +4,7 @@ import compras.CarritoCompras;
 import java.util.ArrayList;
 import java.util.Scanner;
 import pasarelaPago.Transaccion;
+import tienda.Inventario;
 import tienda.Producto;
 import usuario.Comprador;
 import usuario.Notificacion;
@@ -81,10 +82,74 @@ public class BuyProcess {
                         comprador.recibirNotificacion(notificacion); // Se envía una notificación al comprador informando que la compra ha sido realizada exitosamente.
 
                         ArrayList<Boolean> cantidadProductos = new ArrayList<>(); // Se crea este ArrayList para almacenar si toca o no enviar una notificación al vendedor.
+                        
                         for (Producto producto : comprador.getCarritoCompras().getListaItems()){
                             boolean verificacion = producto.verificarCantidadProductos();
                             cantidadProductos.add(verificacion);
                             producto.setCantidadVendida(producto.getCantidadVendida() + comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
+                            
+                            // Esto es para solucionar el problema de la funcionalidad de Alejandro al serializarse
+                            String categoriaNombre = producto.getCategoria().getNombre();
+                            if (categoriaNombre.equalsIgnoreCase("tecnologia")){
+                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("aseo")){
+                                for (Producto producto2 : Inventario.getCategoriaAseo()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("comida")){
+                                for (Producto producto2 : Inventario.getCategoriaComida()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("papeleria")){
+                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("jugueteria")){
+                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("deportes")){
+                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
                         }
     
                         for (int i = 0; i < cantidadProductos.size(); i++){
@@ -120,6 +185,69 @@ public class BuyProcess {
                         boolean verificacion = producto.verificarCantidadProductos();
                         cantidadProductos.add(verificacion);
                         producto.setCantidadVendida(producto.getCantidadVendida() + comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
+                        
+                            // Esto es para solucionar el problema de la funcionalidad de Alejandro al serializarse
+                            String categoriaNombre = producto.getCategoria().getNombre();
+                            if (categoriaNombre.equalsIgnoreCase("tecnologia")){
+                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("aseo")){
+                                for (Producto producto2 : Inventario.getCategoriaAseo()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("comida")){
+                                for (Producto producto2 : Inventario.getCategoriaComida()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("papeleria")){
+                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("jugueteria")){
+                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
+                            if (categoriaNombre.equalsIgnoreCase("deportes")){
+                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
+                                    if (producto2.getNombre().equals(producto.getNombre())){
+                                        producto2.setCantidad(producto.getCantidad());
+                                        producto2.setCantidadVendida(producto.getCantidadVendida());
+                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
+                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
+                                    }
+                                }
+                            }
                     }
 
                     for (int i = 0; i < cantidadProductos.size(); i++){
