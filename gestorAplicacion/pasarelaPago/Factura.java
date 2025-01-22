@@ -2,11 +2,10 @@ package pasarelaPago;
 
 import compras.CarritoCompras;
 import java.io.Serializable;
-import java.util.Random;
 import tienda.Producto;
 import usuario.Comprador;
 
-public class Factura implements Serializable{
+public class Factura implements Serializable, Cupon{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
     private CarritoCompras carritoCompras;
     private int IDFactura;
@@ -19,13 +18,13 @@ public class Factura implements Serializable{
         this.IDFactura = IDFactura;
         this.transaccion = transaccion;
         // Todo lo que esta aquí abajo es para generar un cupón de descuento aleatorio para siguientes compras del usuario durante el procesos de compra.
-        Random random = new Random();
-        Boolean generarCupon = random.nextBoolean(); // Esto nos indica si se va a generar un cupón o no. Como devuelve true o false entonces será un 50/50.
-        if (generarCupon){
-            int valorDescuentoAleatorio = random.nextInt(11) + 5;
+        boolean verificacion = crearCupon();
+        if (verificacion){
+            int valorDescuentoAleatorio = Cupon.generarValorCupon();
             Comprador comprador = (Comprador) transaccion.getUsuarioRemitente();
             comprador.getValorCupones().add(valorDescuentoAleatorio);
         }
+        
     }
     // getters y setters
     
