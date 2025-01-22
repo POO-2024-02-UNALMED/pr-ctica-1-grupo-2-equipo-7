@@ -68,12 +68,17 @@ public class Inventario implements Serializable{
 
         for (Producto producto : categoria) {
             String estado = "No vendido";
+            String estadoDev= "Sin devoluciones";
             if (producto.getCantidadVendida() > 0) {
                 estado = "Vendido: " + producto.getCantidadVendida() + " unidades";
+            }
+            if (producto.getCantidadDevuelta() > 0) {
+                estadoDev = "Devuelto " + producto.getCantidadDevuelta() + " unidades";
             }
             reporte.append("- ").append(producto.getNombre())
                     .append(" | Estado: ").append(estado)
                     .append(" | Cantidad en stock: ").append(producto.getCantidad())
+                    .append(" | Cantidad de Devoluciones: ").append(estadoDev)
                     .append("\n");
         }
         return reporte.toString();
