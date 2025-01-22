@@ -12,7 +12,7 @@ public class CartMenu {
   private Comprador comprador;
   private Vendedor vendedor;
   private Tienda tienda;
-  private Object[][] catalogo;
+  private static Object[][] catalogo;
 
   //constructor
 
@@ -20,7 +20,7 @@ public class CartMenu {
     this.setComprador(comprador);
     this.setVendedor(vendedor);
     this.setTienda(tienda);
-    this.catalogo = null;
+    catalogo = null;
   }
 
   public Object[][] mostrarCatalogo(HistorialCompras historial){

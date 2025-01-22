@@ -103,7 +103,7 @@ public class ProductSelectionMenu {
 
         do{
 
-            if (fila == "1" || fila == "2" || fila == "3"){
+            if (fila.equals("1") || fila.equals("2") || fila.equals("3")){
                 System.out.println("¿Qué desea hacer?");
                 System.out.println("1. Agregar al carrito");
                 System.out.println("2. Ver información del producto");
@@ -133,7 +133,14 @@ public class ProductSelectionMenu {
                 case "3":
                     return true;
                 case "4":
-                    //Llamada a la lógica para calificar recomendaciones
+                    System.out.println("Le parece adecuada esta recomendación? 1. Sí - 2. No");
+                    String calificacion = scanner.nextLine();
+                    if (calificacion.equals("1")){
+
+                        new CartMenu(comprador, null, tienda).mostrarCatalogo(historial);
+                    
+                    }
+
                     return false;
                 default:
                     System.out.println("Opción inválida, intente de nuevo");

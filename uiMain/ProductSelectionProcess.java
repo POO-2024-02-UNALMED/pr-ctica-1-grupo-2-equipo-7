@@ -86,11 +86,15 @@ public class ProductSelectionProcess extends CartMenu{
 
 						boolean retorno = new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
 												fila, columna,llevar).display(comprador.getHistorialCompras());
+
+												//PRUEBA. BORRAR LUEGO
+												System.out.println(retorno);
 						if (retorno == false){
 							break;
 						} else {
 
-							mostrarCatalogo(comprador.getHistorialCompras());
+							//Instancia creada solo para usar el método mostrarCatalogo
+							new CartMenu(comprador, vendedor, tienda).mostrarCatalogo(comprador.getHistorialCompras());
 							continue;
 						}
 
@@ -108,7 +112,8 @@ public class ProductSelectionProcess extends CartMenu{
 							break;
 						} else {
 							//por el momento no funciona, en la casa lo organizo (21/01/25) (simón)
-							super.mostrarCatalogo(null);
+							//Instancia creada solo para usar el método mostrarCatalogo
+							new CartMenu(comprador, vendedor, tienda).mostrarCatalogo(null);
 							continue;
 						}
 						
