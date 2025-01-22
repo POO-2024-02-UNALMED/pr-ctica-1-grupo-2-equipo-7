@@ -3,6 +3,7 @@ package tienda;
 import compras.Reseña;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Producto implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
@@ -54,19 +55,31 @@ public class Producto implements Serializable{
     public String toString() {
     	return "Producto: " + nombre + "\n"
     			
-    			+ "Precio: " + precio + "\n";
+    			+ "Precio unitario: " + precio + "\n";
     			
     }
     public String toStringdif(){
         return "Producto: " + nombre + "\n"
     			+ "Categoria: " + categoria + "\n"
     			+ "Precio: " + precio + "\n"
-    			+ "Cantidad: " + cantidad + "\n";
+    			+ "Cantidad Disponible: " + cantidad + "\n";
     }
     
+    // Sobrescribir equals()
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Producto producto = (Producto) obj;
+        return Double.compare(producto.ID, ID) == 0 &&
+               nombre.equals(producto.nombre);
+    }
 
-    
-
+    // Sobrescribir hashCode()
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID);
+    }
 
     
     // Getters y setters

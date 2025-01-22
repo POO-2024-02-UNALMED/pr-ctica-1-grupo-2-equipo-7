@@ -90,10 +90,6 @@ public class BuyerMenu {
                 case 6:
                     System.out.println();
                     System.out.println(comprador.mostrarHistorialCompras());
-
-                    //LÍNEA DE PRUEBA, BORRAR LUEGO
-                    System.out.println(comprador.getHistorialCompras().getCantidades());
-                    System.out.println(comprador.getHistorialCompras().mostrarCategoriasMasCompradas());
                     break;
                 case 7:
                     System.out.println();

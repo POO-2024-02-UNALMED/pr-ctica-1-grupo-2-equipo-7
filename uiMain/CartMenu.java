@@ -9,7 +9,7 @@ import usuario.Comprador;
 import usuario.Vendedor;
 
 public class CartMenu {
-     private Comprador comprador;
+  private Comprador comprador;
   private Vendedor vendedor;
   private Tienda tienda;
   private Object[][] catalogo;
@@ -90,128 +90,126 @@ public class CartMenu {
   public void display() {
     Scanner scanner = new Scanner(System.in);
     int opcion;
-    
-    
 
 
     do {
 
-      System.out.println("===== MENÚ CARRITO =====");
-      System.out.println("1. Agregar productos/ver Inventario");
-      System.out.println("2. Eliminar productos del carrito");
-      System.out.println("3. Regresar");
-      System.out.println("4. Ver el carrito");
-      System.out.println("Seleccione una opción: ");
-      opcion = scanner.nextInt();
-      
+    System.out.println("===== MENÚ CARRITO =====");
+    System.out.println("1. Agregar productos/ver Catálogo");
+    System.out.println("2. Eliminar productos del carrito");
+    System.out.println("3. Ver el carrito");
+    System.out.println("4. Regresar");
+    System.out.print("Seleccione una opción: ");
+    opcion = scanner.nextInt();
+    
 
-      switch (opcion) {
+    switch (opcion) {
 
-      case 1:
-        //El método se encarga de mostrar por pantalla los productos, pero es necesario que
-        //retorne la matriz donde esto sucede para la debida creación del menú de selección
-         Object[][] catalogo = mostrarCatalogo(null);  
+    case 1:
+    //El método se encarga de mostrar por pantalla los productos, pero es necesario que
+    //retorne la matriz donde esto sucede para la debida creación del menú de selección
+        Object[][] catalogo = mostrarCatalogo(null);  
 
-                //Se le pregunta al usuario si desea ver recomendaciones en el catálogo
-                //a partir de la segunda compra para poder acceder a su historial
-					      if (comprador.getHistorialCompras().getFacturas().size() != 0){
+            //Se le pregunta al usuario si desea ver recomendaciones en el catálogo
+            //a partir de la segunda compra para poder acceder a su historial
+                        if (comprador.getHistorialCompras().getFacturas().size() != 0){
 
-						      System.out.println("\nDesea actualizar las recomendaciones? 1. Sí - 2. No");
-                  int respuesta = scanner.nextInt();
+                            System.out.println("\nDesea actualizar las recomendaciones? 1. Sí - 2. No");
+                int respuesta = scanner.nextInt();
 
-                  switch(respuesta){
-                    case 1:
-  
-                      //Llamada a lógica para mostrar recomendaciones
-                      catalogo = mostrarCatalogo(comprador.getHistorialCompras());
+                switch(respuesta){
+                case 1:
 
-                      //Menú de selección de productos
-                      boolean recomendaciones1 = true;
-                      new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones1).display();
-                      break;
+                    //Llamada a lógica para mostrar recomendaciones
+                    catalogo = mostrarCatalogo(comprador.getHistorialCompras());
 
-                    case 2:
-                      
-                      //lógica para ver sin recomendaciones (a partir de la segunda compra)
+                    //Menú de selección de productos
+                    boolean recomendaciones1 = true;
+                    new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones1).display();
+                    break;
 
-                      //Solo se mostrará la opción de calificar recomendaciones si para la selección
-                      //actual se eligió la opción de mostrar recomendaciones en primer lugar 
-                      mostrarCatalogo(null);        
+                case 2:
+                    
+                    //lógica para ver sin recomendaciones (a partir de la segunda compra)
 
-                      //Menú de selección de productos
-                      boolean recomendaciones2 = false;
-                      new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones2).display();
-                      break;
-                  }
+                    //Solo se mostrará la opción de calificar recomendaciones si para la selección
+                    //actual se eligió la opción de mostrar recomendaciones en primer lugar 
+                    mostrarCatalogo(null);        
 
-					      } else {
-
-                  //lógica para la primera compra
-
-                  //Menú de selección de productos
-                  
-                  boolean recomendaciones = false;
-                  new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones).display();
-
+                    //Menú de selección de productos
+                    boolean recomendaciones2 = false;
+                    new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones2).display();
+                    break;
                 }
-              break;
 
-      case 2:
-      System.out.println("A continuación te mostraremos tu carrito para que elijas qué quieres eliminar");
-      String a = this.comprador.getCarritoCompras().toString();
-      System.err.println(a);
-      
-      // Solicitar el nombre del producto a eliminar
-      System.out.println("Por favor, ingresa el nombre del producto a eliminar:");
-      
-      String eliminar = scanner.next(); // Leer el nombre del producto
-      
-      // Solicitar la cantidad de productos a eliminar
-      System.out.println("Ahora ingresa la cantidad:");
-      int count = 0;
-      while (true) {
-          if (scanner.hasNextInt()) {
-              count = scanner.nextInt();
-              scanner.nextLine(); // Consumir el salto de línea pendiente después de nextInt()
-              break; // Salir del bucle si la cantidad es válida
-          } else {
-              System.out.println("Por favor, ingresa un número válido para la cantidad.");
-              scanner.next(); // Limpiar la entrada no válida
-          }
-      }
-      
-      // Buscar el producto en el carrito
-      Producto producto = this.comprador.getCarritoCompras().busqueda(eliminar);
-      
-      // Validar si el producto existe
-      if (producto == null) {
-          System.out.println("El producto '" + eliminar + "' no se encuentra en el carrito.");
-      } else {
-          // Validar la cantidad
-          if (count <= 0) {
-              System.out.println("La cantidad debe ser mayor que 0.");
-          } else {
-              // Eliminar el producto
-              String o=this.comprador.getCarritoCompras().eliminarproducto(producto, count);
-              System.err.println(o);
-              
-          }
-      }
-      
+                        } else {
+
+                //lógica para la primera compra
+
+                //Menú de selección de productos
+                
+                boolean recomendaciones = false;
+                new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones).display();
+
+            }
+            break;
+
+    case 2:
+    System.out.println("A continuación te mostraremos tu carrito para que elijas qué quieres eliminar");
+    String a = this.comprador.getCarritoCompras().toString();
+    System.err.println(a);
+    
+    // Solicitar el nombre del producto a eliminar
+    System.out.println("Por favor, ingresa el nombre del producto a eliminar:");
+    
+    String eliminar = scanner.next(); // Leer el nombre del producto
+    
+    // Solicitar la cantidad de productos a eliminar
+    System.out.println("Ahora ingresa la cantidad:");
+    int count = 0;
+    while (true) {
+        if (scanner.hasNextInt()) {
+            count = scanner.nextInt();
+            scanner.nextLine(); // Consumir el salto de línea pendiente después de nextInt()
+            break; // Salir del bucle si la cantidad es válida
+        } else {
+            System.out.println("Por favor, ingresa un número válido para la cantidad.");
+            scanner.next(); // Limpiar la entrada no válida
+        }
+    }
+    
+    // Buscar el producto en el carrito
+    Producto producto = this.comprador.getCarritoCompras().busqueda(eliminar);
+    
+    // Validar si el producto existe
+    if (producto == null) {
+        System.out.println("El producto '" + eliminar + "' no se encuentra en el carrito.");
+    } else {
+        // Validar la cantidad
+        if (count <= 0) {
+            System.out.println("La cantidad debe ser mayor que 0.");
+        } else {
+            // Eliminar el producto
+            String o=this.comprador.getCarritoCompras().eliminarproducto(producto, count);
+            System.err.println(o);
+            
+        }
+    }
+    
+    
+
+    break;
+
+    case 3:
+    System.out.println(this.comprador.getCarritoCompras());
+    
+    case 4:
+    System.out.println("Volviendo al menú principal...");
+    break;
+    }
       
 
-        break;
-
-      case 3:
-      System.out.println("Volviendo al menú principal...");
-        break;
-      case 4:
-        System.out.println("A continuacion tu carrito de compras");
-        System.out.println(this.comprador.getCarritoCompras());
-      }
-      
-
-    } while (opcion != 3);
+    } while (opcion != 4);
   }
 
   //getters y setters

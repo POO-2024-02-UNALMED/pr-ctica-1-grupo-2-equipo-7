@@ -67,8 +67,7 @@ public class BuyProcess {
                         comprador.pago(comprador, vendedor, (int)precioConDescuento, "compra"); // Se inicia el proceso de pago.
                         comprador.getValorCupones().remove(cupon - 1); // Se elimina el cupón utilizado.
                         comprador.cantidadCupones -= 1; // Se disminuye la cantidad de cupones en 1.
-                        System.out.println();
-                        System.out.println("====== COMPRA ======");
+                        System.out.println("\n\n====== COMPRA ======");
                         System.out.println("Resumen de la compra:");
                         System.out.println(comprador.getHistorialCompras().mostrarFactura(comprador.getHistorialCompras().getFacturas().size())); // Se muestra por pantalla la factura usando el método mostrarFactura y lo que se pasa por parámetro es el ID de la factura. En este caso puntual coincide con el ultimo elemento de la lista que almacena las facturas, es decir el tamaño de la lista.
                         System.out.println("\n¡Muchas gracias por su compra!");

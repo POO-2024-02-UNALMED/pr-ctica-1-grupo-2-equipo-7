@@ -108,13 +108,15 @@ public class CarritoCompras implements Serializable{
 	}
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Carrito de ").append(this.getUsuario().getNombre()).append(":\n")
+		sb.append("Carrito de ").append(this.getUsuario().getNombre()).append(":\n\n")
 		  .append("Lista de productos:\n");
 	
 		for (int i = 0; i < this.getListaItems().size(); i++) {
-			sb.append("\t- ").append(this.getListaItems().get(i))
-			  .append("con cantidades de : ").append(this.cantidadPorProducto.get(i)).append("\n");
+			sb.append(this.getListaItems().get(i))
+			  .append("cantidad: ").append(this.cantidadPorProducto.get(i)).append("\n\n");
 		}
+		calcularTotal();
+		sb.append("total: " + this.precioTotal + "\n");
 	
 		return sb.toString();
 	}

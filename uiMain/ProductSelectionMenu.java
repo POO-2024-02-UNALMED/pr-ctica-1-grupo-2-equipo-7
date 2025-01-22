@@ -62,19 +62,18 @@ public class ProductSelectionMenu {
 						switch (opcion) {
 						case 1:
                             
-                        System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
-                        llevar=cantidad.nextLine();
-                        int numerico=Integer.parseInt(llevar);
-                        if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
-                            
-                        }else{
-                            llevar="1";
-                            System.out.println("Cantidad inválida , se te asignará una por default que es 1");
-                        }
-                           
-							String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
-                            System.out.println(o);
-							return false;
+                            System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
+                            llevar=cantidad.nextLine();
+                            int numerico=Integer.parseInt(llevar);
+                            if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                                
+                            }else{
+                                llevar="1";
+                                System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                            }
+                                String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                                System.out.println(o);
+                                return false;
 						case 2:
                             System.out.println(productoSeleccionado.toStringdif());
 							continue;
