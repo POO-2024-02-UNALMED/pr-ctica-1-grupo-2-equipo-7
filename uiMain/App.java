@@ -11,7 +11,7 @@ import tienda.Tienda;
 import usuario.Comprador;
 import usuario.Notificacion;
 import usuario.Vendedor;
-
+// import baseDatos.Deserializador;
 
 
 public class App {
@@ -94,7 +94,7 @@ public class App {
         Notificacion notificacion = new Notificacion(null, null, vendedor);
 
 
-        // Crear una instancia de MainMenu
+//         // Crear una instancia de MainMenu
         MainMenu mainMenu = new MainMenu(comprador, vendedor, tienda, inventario, notificacion);
 
         //INSTRUCCIONES PARA SEREALIZAR: Primero ejecuten la tienda comentando el mainMenu que se encuentra abajo (el que no tiene parametros).
@@ -105,8 +105,8 @@ public class App {
         //datos de atributos estáticos o métodos estáticos, la única forma de hacerlo por ahora sería convirtiendo todos esos atributos estáticos y métodos estáticos en no estáticos
         //Pero eso lo consultaré luego con ustedes.
 
-        //Deserializador.deserializarInventarioStatic();
-        //MainMenu mainMenu = new MainMenu();
+        // Deserializador.deserializarInventarioStatic();
+        // MainMenu mainMenu = new MainMenu();
         
         // Mostrar el menú principal
         mainMenu.display();

@@ -95,8 +95,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -105,8 +103,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -115,8 +111,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -125,8 +119,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -135,8 +127,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -145,8 +135,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -193,8 +181,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -203,8 +189,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -213,8 +197,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -223,8 +205,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -233,8 +213,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
@@ -243,8 +221,6 @@ public class BuyProcess {
                                     if (producto2.getNombre().equals(producto.getNombre())){
                                         producto2.setCantidad(producto.getCantidad());
                                         producto2.setCantidadVendida(producto.getCantidadVendida());
-                                        System.out.println("Cantidad " + producto2.getNombre() + ": " + producto2.getCantidad());
-                                        System.out.println("Cantidad vendida de " + producto2.getNombre() + ": " + producto2.getCantidadVendida());
                                     }
                                 }
                             }
