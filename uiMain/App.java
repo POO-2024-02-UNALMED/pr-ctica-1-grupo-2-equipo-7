@@ -40,10 +40,6 @@ public class App {
         inventario.añadirProducto(producto3);
         Comprador comprador = new Comprador("Carlos Bustamante" ,null, null);
         CarritoCompras carritoCompras = new CarritoCompras(comprador);
-        carritoCompras.añadirProducto(producto1, 2);
-        carritoCompras.añadirProducto(producto2, 2);
-        carritoCompras.añadirProducto(producto3, 2);
-        carritoCompras.calcularTotal();
         comprador.setCarritoCompras(carritoCompras);
         Fabrica fabrica = new Fabrica( inventario);
         CuentaBancaria cuentaBancariaComprador = new CuentaBancaria(comprador);
@@ -53,8 +49,6 @@ public class App {
         vendedor.setCuentaBancaria(cuentaBancariaVendedor);
         //Todo esto de acá es para simular procesos de compra.
          comprador.getCuentaBancaria().recargarCuenta(10000);
-         comprador.getValorCupones().add(15);
-         comprador.cantidadCupones +=1;
         
         
  //Productos instanciados para probar la muestra de productos por pantalla
