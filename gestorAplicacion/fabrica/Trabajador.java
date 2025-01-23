@@ -49,10 +49,4 @@ public class Trabajador implements Serializable{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    // metodos    
-    public String liberarTrabajador() {
-        estado = "Disponible";
-        return "Trabajador " + nombre + " ha sido liberado.";
-    }
 }
