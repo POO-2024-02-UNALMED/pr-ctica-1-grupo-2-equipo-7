@@ -1,29 +1,25 @@
 package uiMain;
 
-import compras.CarritoCompras;
-import compras.Reseña;
-import fabrica.Fabrica;
-import java.util.ArrayList;
-import pasarelaPago.CuentaBancaria;
-import tienda.Inventario;
-import tienda.Producto;
-import tienda.Tienda;
-import usuario.Comprador;
-import usuario.Notificacion;
-import usuario.Vendedor;
+// import compras.CarritoCompras;
+// import fabrica.Fabrica;
+// import java.util.ArrayList;
+// import pasarelaPago.CuentaBancaria;
+// import tienda.Inventario;
+// import tienda.Producto;
+// import tienda.Tienda;
+// import usuario.Comprador;
+// import usuario.Notificacion;
+// import usuario.Vendedor;
 import baseDatos.Deserializador;
 
 
 public class App {
     public static void main(String[] args) {
         //Aqui se realiza la serializacion para enviar la tienda ya cargada a el MainMenu (Esto es solo un ejemplo)
-//         ArrayList<Reseña> reseñas1 = new ArrayList<>();
-//         ArrayList<Reseña> reseñas2 = new ArrayList<>();
-//         ArrayList<Reseña> reseñas3 = new ArrayList<>();
 
-//         Producto producto1 = new Producto(9, 10, 0, 0, Producto.Categoria.TECNOLOGIA, 1, "Laptop", 1200, "Laptop de alto rendimiento", true, reseñas1);
-//         Producto producto2 = new Producto(200, 20, 0, 0, Producto.Categoria.ASEO, 2, "Jabón", 5, "Jabón antibacterial", false, reseñas2);
-//         Producto producto3 = new Producto(100, 15, 0, 0, Producto.Categoria.COMIDA, 3, "Galletas", 3, "Galletas de chocolate", false, reseñas3);
+//         Producto producto1 = new Producto(9, 10, 0, 0, Producto.Categoria.TECNOLOGIA, 1, "Laptop", 1200, "Laptop de alto rendimiento", true);
+//         Producto producto2 = new Producto(200, 20, 0, 0, Producto.Categoria.ASEO, 2, "Jabón", 5, "Jabón antibacterial", false);
+//         Producto producto3 = new Producto(100, 15, 0, 0, Producto.Categoria.COMIDA, 3, "Galletas", 3, "Galletas de chocolate", false);
         
        
 
@@ -55,7 +51,7 @@ public class App {
         
 //         Producto.Categoria[] categorias = Producto.Categoria.values();
         
-//         for (int i = 1; i < 100; i++) {
+//         for (int i = 0; i < 100; i++) {
 //             int cantidad = (i + 1) * 5;  // Solo un ejemplo de valor para cantidad
 //             int cantidadAlerta = (i + 1) * 2;  // Solo un ejemplo de valor para cantidadAlerta
 //             int ID = i + 1;
@@ -77,8 +73,7 @@ public class App {
 //                      nombre, 
 //                      precio, 
 //                      descripcion, 
-//                      retornable, 
-//                     null  // reseñas es null para el ejemplo
+//                      retornable
 //                  )); 
              
 //         }

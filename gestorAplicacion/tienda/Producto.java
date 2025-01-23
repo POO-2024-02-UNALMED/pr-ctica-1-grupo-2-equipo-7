@@ -1,8 +1,6 @@
 package tienda;
 
-import compras.Reseña;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Producto implements Serializable{
@@ -17,7 +15,6 @@ public class Producto implements Serializable{
     private int precio;
     String descripcion;
     boolean retornable;
-    ArrayList<Reseña> reseñas;
 
     public static enum Categoria {
         TECNOLOGIA("Tecnologia"),
@@ -38,7 +35,7 @@ public class Producto implements Serializable{
     }
 
     public Producto(int cantidad, int cantidadAlerta, int cantidadVendida, int cantidadDevuelta, Categoria categoria, int ID, String nombre, int precio, 
-                      String descripcion, boolean retornable, ArrayList<Reseña> reseñas) {
+                      String descripcion, boolean retornable) {
         this.cantidad = cantidad;
         this.cantidadVendida = 0;
         this.cantidadDevuelta = cantidadDevuelta;
@@ -49,7 +46,6 @@ public class Producto implements Serializable{
         this.precio = precio;
         this.descripcion = descripcion;
         this.retornable = retornable;
-        this.reseñas = new ArrayList<>();
     }
     
     public String toString() {
