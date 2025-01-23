@@ -472,9 +472,9 @@ public class Inventario implements Serializable{
     public static void ajusteProductos(Producto producto, String accion){
         String categoriaNombre = producto.getCategoria().getNombre();
         ArrayList<Producto> categoria = buscarCategoria(categoriaNombre);
-
+        
         for (Producto producto2 : categoria){
-            if (producto2.getNombre().equals(producto.getNombre())){
+            if (producto2.getID() == producto.getID()){
                 producto2.setCantidad(producto.getCantidad());
                 producto2.setCantidadVendida(producto.getCantidadVendida());           
                 if(accion.equalsIgnoreCase("devolucion")){

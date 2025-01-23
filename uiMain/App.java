@@ -55,7 +55,7 @@ public class App {
         
 //         Producto.Categoria[] categorias = Producto.Categoria.values();
         
-//         for (int i = 0; i < 100; i++) {
+//         for (int i = 1; i < 100; i++) {
 //             int cantidad = (i + 1) * 5;  // Solo un ejemplo de valor para cantidad
 //             int cantidadAlerta = (i + 1) * 2;  // Solo un ejemplo de valor para cantidadAlerta
 //             int ID = i + 1;
