@@ -5,12 +5,11 @@ import pasarelaPago.CuentaBancaria;
 import pasarelaPago.Transaccion;
 
 public abstract class Usuario implements Serializable{
-  private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
+    private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
 	private String membresia;
 	private int vacescomprado;
 	private int puntos;
     protected String nombre;
-    protected String correo;
     protected CuentaBancaria cuentaBancaria;
     protected ArrayList<Notificacion> notificaciones = new ArrayList<>();
 
@@ -27,13 +26,6 @@ public abstract class Usuario implements Serializable{
 	
     public void setNombre(String value) {
       this.nombre = value;
-    }
-
-    public String getCorreo() {
-      return this.correo;
-    }
-    public void setCorreo(String value) {
-      this.correo = value;
     }
 
     public CuentaBancaria getCuentaBancaria() {
