@@ -89,55 +89,7 @@ public class BuyProcess {
                             producto.setCantidadVendida(producto.getCantidadVendida() + comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
                             
                             // Esto es para solucionar el problema de la funcionalidad de Alejandro al serializarse
-                            String categoriaNombre = producto.getCategoria().getNombre();
-                            if (categoriaNombre.equalsIgnoreCase("tecnologia")){
-                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("aseo")){
-                                for (Producto producto2 : Inventario.getCategoriaAseo()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("comida")){
-                                for (Producto producto2 : Inventario.getCategoriaComida()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("papeleria")){
-                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("jugueteria")){
-                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("deportes")){
-                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
+                            Inventario.ajusteProductos(producto, "compra");
                         }
     
                         for (int i = 0; i < cantidadProductos.size(); i++){
@@ -175,55 +127,7 @@ public class BuyProcess {
                         producto.setCantidadVendida(producto.getCantidadVendida() + comprador.getCarritoCompras().getCantidadPorProducto(producto));// Se actualiza la cantidad vendida de cada producto en el inventario.
                         
                             // Esto es para solucionar el problema de la funcionalidad de Alejandro al serializarse
-                            String categoriaNombre = producto.getCategoria().getNombre();
-                            if (categoriaNombre.equalsIgnoreCase("tecnologia")){
-                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("aseo")){
-                                for (Producto producto2 : Inventario.getCategoriaAseo()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("comida")){
-                                for (Producto producto2 : Inventario.getCategoriaComida()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("papeleria")){
-                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("jugueteria")){
-                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
-                            if (categoriaNombre.equalsIgnoreCase("deportes")){
-                                for (Producto producto2 : Inventario.getCategoriaTecnologia()){
-                                    if (producto2.getNombre().equals(producto.getNombre())){
-                                        producto2.setCantidad(producto.getCantidad());
-                                        producto2.setCantidadVendida(producto.getCantidadVendida());
-                                    }
-                                }
-                            }
+                            Inventario.ajusteProductos(producto, "compra");
                     }
 
                     for (int i = 0; i < cantidadProductos.size(); i++){

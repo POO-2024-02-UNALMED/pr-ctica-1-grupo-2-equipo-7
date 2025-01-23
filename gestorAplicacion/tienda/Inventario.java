@@ -468,8 +468,38 @@ public class Inventario implements Serializable{
 
         return menosVendido;
     }
+
+    public static void ajusteProductos(Producto producto, String accion){
+        String categoriaNombre = producto.getCategoria().getNombre();
+        ArrayList<Producto> categoria = buscarCategoria(categoriaNombre);
+
+        for (Producto producto2 : categoria){
+            if (producto2.getNombre().equals(producto.getNombre())){
+                producto2.setCantidad(producto.getCantidad());
+                producto2.setCantidadVendida(producto.getCantidadVendida());           
+                if(accion.equalsIgnoreCase("devolucion")){
+                    producto2.setCantidadDevuelta(producto.getCantidadDevuelta());  
+                }
+            }
+        }     
+    }
     
-    
+    private static ArrayList<Producto> buscarCategoria(String nombre){
+        if(nombre.equalsIgnoreCase("tecnologia")){
+            return categoriaTecnologia;
+        }else if(nombre.equalsIgnoreCase("aseo")){
+            return categoriaAseo;
+        }else if(nombre.equalsIgnoreCase("comida")){
+            return categoriaComida;
+        }else if(nombre.equalsIgnoreCase("Papeleria")){
+            return categoriaPapeleria;
+        }else if(nombre.equalsIgnoreCase("jugueteria")){
+            return categoriaJuegueteria;
+        }else if(nombre.equalsIgnoreCase("deportes")){
+            return categoriaDeportes;
+        }
+        return null;
+    }
 
     // Getters y Setters
 
@@ -526,6 +556,7 @@ public class Inventario implements Serializable{
     
     public void reabastecerProductos(int cantidad, Producto producto) {
         producto.setCantidadVendida(producto.getCantidadVendida() - cantidad);
+        producto.setCantidadDevuelta(producto.getCantidadDevuelta() + cantidad);
         producto.reabastecerCantidad(cantidad);
     }
      
