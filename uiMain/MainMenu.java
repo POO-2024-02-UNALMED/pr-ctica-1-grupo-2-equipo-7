@@ -269,7 +269,7 @@ public class MainMenu {
                 //Menú de selección de productos
                 
                 boolean recomendaciones = false;
-                new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones).display();
+                productSelectionProcess();
 
             }
             break;
@@ -619,7 +619,7 @@ public class MainMenu {
 
 				if (Arrays.asList(columnas).contains(opcion)){
 					columna = opcion;
-					Producto productoSeleccionado = (Producto) catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2];
+					productoSeleccionado = (Producto) catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2];
 
 					
 
@@ -633,8 +633,7 @@ public class MainMenu {
 						//Se llama al método sobrecargado de display de ProductSelectionMenu
 						//Que permite calificar los productos recomendados
 
-						boolean retorno = new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
-												fila, columna,llevar).display(comprador.getHistorialCompras());
+						boolean retorno = productSelectionMenu();
 
 												
 						if (retorno == false){
@@ -653,8 +652,7 @@ public class MainMenu {
 						//Este display retorna un valor booleano dependiendo de la opción que se escoja,
 						//Esto con el fin de saber si se debe volver al menú de selección de productos o
 						//Al menú del carrito directamente
-						boolean retorno = new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
-												fila, columna,llevar).display();
+						boolean retorno = productSelectionMenu();
 
 						if (retorno == false){
 							break;
@@ -780,7 +778,7 @@ public class MainMenu {
                     String calificacion = scanner.nextLine();
                     if (calificacion.equals("1")){
 
-                        new CartMenu(comprador, null, tienda).mostrarCatalogo(historial);
+                        mostrarCatalogo(historial);
                     
                     }
 
