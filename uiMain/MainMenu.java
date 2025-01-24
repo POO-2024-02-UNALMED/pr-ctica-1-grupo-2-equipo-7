@@ -171,7 +171,7 @@ public class MainMenu {
                   break;
               case 5:
                   System.out.println();
-                  new VoucherMenu(comprador).display();
+                  voucherMenuDisplay();
                   break;
               case 6:
                   System.out.println();
@@ -330,7 +330,57 @@ public class MainMenu {
             }
         } while (opcion != 3);
     }
+
+    public void voucherMenuDisplay(){
+      Scanner scanner = new Scanner(System.in);
+      int opcion;
+
+      do {
+          System.out.println("===== MENÚ CUPONES =====");
+          System.out.println("Usted actualmente dispone de " + comprador.getValorCupones().size() + " cupones. ¿Que desea hacer?:");
+          System.out.println("1. Ver cupones disponibles");
+          System.out.println("2. Eliminar cupones");
+          System.out.println("3. Regresar al menú del comprador");
+          System.out.print("\nSeleccione una opción: ");
+          opcion = scanner.nextInt();
+          System.out.println();
+
+          switch (opcion) {
+              case 1:
+                  System.out.println("Cupones disponibles:");
+                  if (comprador.getValorCupones().size() == 0){
+                      System.out.println("No tiene cupones disponibles.\n");
+                  }
+                  else{
+                      System.out.println(comprador.mostrarCupones());
+                  }
+                  opcion = 3; // Forzar salida del ciclo después de ver los cupones
+                  break;
+              case 2:
+                  if (comprador.getValorCupones().size() == 0){
+                      System.out.println("No tiene cupones disponibles para eliminar.\n");
+                  }
+                  else{
+                      System.out.println("Cupones disponibles:");
+                      System.out.println(comprador.mostrarCupones());
+                      System.out.print("¿Cuál cupón deseas eliminar?: ");
+                      int cuponEliminar = scanner.nextInt();
+                      comprador.eliminarCupones(cuponEliminar);
+                      comprador.cantidadCupones -= 1;
+                      System.out.println("El cupón ha sido eliminado exitosamente.");
+                  }
+                  opcion = 3; 
+                  break; // Forzar salida del ciclo después de ver los cupones
+              case 3:
+                  System.out.println("Regresando al menú del comprador...");
+                  break;
+              default:
+                  System.out.println("Opción no válida. Intente nuevamente.");
+          }
+      } while (opcion != 3);
+  }
 }
+
 
 
 
