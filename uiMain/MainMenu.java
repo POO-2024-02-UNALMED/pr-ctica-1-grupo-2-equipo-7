@@ -6,6 +6,7 @@ import compras.CarritoCompras;
 import compras.HistorialCompras;
 import fabrica.Fabrica;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import pasarelaPago.Transaccion;
 import tienda.Inventario;
@@ -23,6 +24,10 @@ public class MainMenu {
     private Notificacion notificacion;
     private Fabrica fabrica;
     private Object[][] catalogo;
+    private boolean recomendaciones;
+    private String fila;
+    private String columna;
+    private Producto productoSeleccionado;
 
     public MainMenu(Comprador comprador, Vendedor vendedor, Tienda tienda, Inventario inventario, Notificacion notificacion){
         this.comprador = comprador;
@@ -31,6 +36,9 @@ public class MainMenu {
         this.inventario = inventario;
         this.notificacion = notificacion;
         this.catalogo = null;
+        this.recomendaciones = false;
+        this.fila = null;
+        this.columna = null;
     }
 
     public MainMenu(){
@@ -236,8 +244,8 @@ public class MainMenu {
                     catalogo = mostrarCatalogo(comprador.getHistorialCompras());
 
                     //Menú de selección de productos
-                    boolean recomendaciones1 = true;
-                    new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones1).display();
+                    recomendaciones = true;
+                    productSelectionProcess();
                     break;
 
                 case 2:
@@ -249,8 +257,8 @@ public class MainMenu {
                     mostrarCatalogo(null);        
 
                     //Menú de selección de productos
-                    boolean recomendaciones2 = false;
-                    new ProductSelectionProcess(comprador, vendedor, tienda, catalogo, recomendaciones2).display();
+                    recomendaciones = false;
+                    productSelectionProcess();
                     break;
                 }
 
@@ -566,6 +574,232 @@ public class MainMenu {
      }
 
      return catalogo;
+
+  }
+
+  public void productSelectionProcess(){
+    Scanner scanner1 = new Scanner(System.in);
+		
+		
+		String llevar="1";
+		String opcion;
+		String fila;
+		String columna;
+		String[] filas = {"1", "2", "3", "4", "5", "6"};
+		String[] columnas = {"A", "B", "C", "D", "E", "F"};
+		
+		
+		
+		do {
+			
+			System.out.println(" \nIngrese las coordenadas del producto que desea \n \n"
+								+ "Ingrese primero la fila (número) y luego la columna (letra) \n"
+								+ "en la que se encuentra el producto deseado \n");
+
+			System.out.println("Ingrese la fila para continuar o 0 para salir: ");
+			opcion = scanner1.nextLine();
+			
+			
+
+			if (opcion.equals("0")) {
+				break;
+			}
+
+			if (Arrays.asList(filas).contains(opcion)){
+				fila = opcion;
+
+
+				System.out.println("Ingrese la columna (en mayúscula) para continuar o 0 para salir: ");
+				opcion = scanner1.nextLine();
+				
+
+				if (opcion.equals("0")) {
+					break;
+				}
+
+				if (Arrays.asList(columnas).contains(opcion)){
+					columna = opcion;
+					Producto productoSeleccionado = (Producto) catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2];
+
+					
+
+					System.out.println("Producto seleccionado: " + productoSeleccionado.getNombre() + "\n");
+					
+
+
+					if (recomendaciones == true){
+						
+						//A partir de la segunda compra ya se tiene acceso al historial, por lo que
+						//Se llama al método sobrecargado de display de ProductSelectionMenu
+						//Que permite calificar los productos recomendados
+
+						boolean retorno = new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
+												fila, columna,llevar).display(comprador.getHistorialCompras());
+
+												
+						if (retorno == false){
+							break;
+						} else {
+
+							//Instancia creada solo para usar el método mostrarCatalogo
+							mostrarCatalogo(comprador.getHistorialCompras());
+							continue;
+						}
+
+					} else {
+
+						//En la primera compra no hay historial, por lo que no se pueden hacer recomendaciones
+
+						//Este display retorna un valor booleano dependiendo de la opción que se escoja,
+						//Esto con el fin de saber si se debe volver al menú de selección de productos o
+						//Al menú del carrito directamente
+						boolean retorno = new ProductSelectionMenu(comprador, tienda, catalogo, productoSeleccionado,
+												fila, columna,llevar).display();
+
+						if (retorno == false){
+							break;
+						} else {
+							//por el momento no funciona, en la casa lo organizo (21/01/25) (simón)
+							//Instancia creada solo para usar el método mostrarCatalogo
+							mostrarCatalogo(null);
+							continue;
+						}
+						
+					}
+
+		
+						} else {
+							System.out.println("Columna inválida, intente de nuevo");
+							continue;
+					}
+
+				} else {
+					System.out.println("Fila inválida, intente de nuevo");
+					continue;
+				}
+
+			} while (opcion != "0");
+
+  }
+
+  public boolean productSelectionMenu(){
+
+    //Si retorna true, se devuelve al menú de selección de productos 
+		//Si no, vuelve al menú del carrito
+
+        Scanner scanner = new Scanner(System.in);
+        Scanner cantidad=new Scanner(System.in);
+        int opcion;
+        String llevar;
+
+
+        do{
+
+        System.out.println("¿Qué desea hacer?");
+						System.out.println("1. Agregar al carrito");
+						System.out.println("2. Ver información del producto");
+						System.out.println("3. Regresar/Seleccionar otro producto");
+						System.out.println("Seleccione una opción: ");
+					    opcion = scanner.nextInt();
+
+						switch (opcion) {
+						case 1:
+                            
+                            System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
+                            llevar=cantidad.nextLine();
+                            int numerico=Integer.parseInt(llevar);
+                            if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                                
+                            }else{
+                                llevar="1";
+                                System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                            }
+                                String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                                System.out.println(o);
+                                return false;
+						case 2:
+                            System.out.println(productoSeleccionado.toStringdif());
+							continue;
+						case 3:
+                            return true; 
+						default:
+							System.out.println("Opción inválida, intente de nuevo");
+							continue;
+        }
+       
+    } while(opcion != 3);
+
+    return false;
+
+  }
+
+  public boolean productSelectionMenu(HistorialCompras historial){
+
+    //Si retorna true, se devuelve al menú de selección de productos 
+		//Si no, vuelve al menú del carrito
+
+        Scanner scanner = new Scanner(System.in);
+        Scanner cantidad=new Scanner(System.in);
+        String opcion;
+        String llevar;
+
+
+        do{
+
+            if (fila.equals("1") || fila.equals("2") || fila.equals("3")){
+                System.out.println("¿Qué desea hacer?");
+                System.out.println("1. Agregar al carrito");
+                System.out.println("2. Ver información del producto");
+                System.out.println("3. Seleccionar otro producto");
+                System.out.println("4. Calificar recomendación");
+                System.out.println("Seleccione una opción: ");
+                opcion = scanner.nextLine();
+
+                switch (opcion) {
+                case "1":
+
+                System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
+                llevar=cantidad.nextLine();
+                int numerico=Integer.parseInt(llevar);
+                if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                    
+                }else{
+                    llevar="1";
+                    System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                }
+                    this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                    System.out.println("Producto añadido correctamente");
+                    return false;
+                case "2":
+                    productoSeleccionado.toStringdif();
+                    continue;
+                case "3":
+                    return true;
+                case "4":
+                    System.out.println("Le parece adecuada esta recomendación? 1. Sí - 2. No");
+                    String calificacion = scanner.nextLine();
+                    if (calificacion.equals("1")){
+
+                        new CartMenu(comprador, null, tienda).mostrarCatalogo(historial);
+                    
+                    }
+
+                    return false;
+                default:
+                    System.out.println("Opción inválida, intente de nuevo");
+                    continue;
+                }
+            } else {
+                
+                display();
+                return false;
+                
+            }
+
+        } while(opcion != "3");
+
+        return false;
+
 
   }
 

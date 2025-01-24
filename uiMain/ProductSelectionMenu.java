@@ -29,14 +29,7 @@ public class ProductSelectionMenu {
         this.llevar=llevar;
 
     }
-    public ProductSelectionMenu(Comprador comprador, Tienda tienda, Object[][] catalogo,    
-        Producto productoSeleccionado, String fila, String columna) {
-        this.comprador = comprador;
-        this.tienda = tienda;
-        this.catalogo = catalogo;
-        this.productoSeleccionado = productoSeleccionado;
-        this.fila = fila;
-        this.columna = columna;
+
         
 
 }
