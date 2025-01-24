@@ -8,9 +8,11 @@ import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Random;
 import pasarelaPago.Transaccion;
 import tienda.Inventario;
-import tienda.Producto;
+import tienda.Producto;   
+import tienda.Producto.Categoria;
 import tienda.Tienda;
 import usuario.Comprador;
 import usuario.Notificacion;
@@ -28,6 +30,8 @@ public class MainMenu {
     private String fila;
     private String columna;
     private Producto productoSeleccionado;
+    private String[] filas = {"1", "2", "3", "4", "5", "6"};
+	private String[] columnas = {"A", "B", "C", "D", "E", "F"};
 
     public MainMenu(Comprador comprador, Vendedor vendedor, Tienda tienda, Inventario inventario, Notificacion notificacion){
         this.comprador = comprador;
@@ -78,40 +82,7 @@ public class MainMenu {
         } while (opcion != 3);
     }
 
-    public Comprador getComprador() {
-      return this.comprador;
-    }
-    public void setComprador(Comprador value) {
-      this.comprador = value;
-    }
-
-    public Vendedor getVendedor() {
-      return this.vendedor;
-    }
-    public void setVendedor(Vendedor value) {
-      this.vendedor = value;
-    }
-
-    public Tienda getTienda() {
-      return this.tienda;
-    }
-    public void setTienda(Tienda value) {
-      this.tienda = value;
-    }
-
-    public Inventario getInventario() {
-      return this.inventario;
-    }
-    public void setInventario(Inventario value) {
-      this.inventario = value;
-    }
-
-    public Notificacion getNotificacion() {
-      return this.notificacion;
-    }
-    public void setNotificacion(Notificacion value) {
-      this.notificacion = value;
-    }
+   
 
     public void buyerMenuDisplay(){
       Scanner scanner = new Scanner(System.in);
@@ -186,7 +157,16 @@ public class MainMenu {
                   break;
               case 6:
                   System.out.println();
-                  System.out.println(comprador.mostrarHistorialCompras());
+
+                  if (comprador.getHistorialCompras().getFacturas().size() == 0){ // Se verifica si el usuario no ha realizado compras
+                      System.out.println("Usted no ha realizado compras hasta el momento.\n");
+                  }
+                  else{
+                      System.out.println("Historial de compras:\n");
+                      System.out.println(comprador.mostrarHistorialCompras());
+                  }
+
+                  
                   break;
               case 7:
                   System.out.println();
@@ -228,7 +208,7 @@ public class MainMenu {
     case 1:
     //El método se encarga de mostrar por pantalla los productos, pero es necesario que
     //retorne la matriz donde esto sucede para la debida creación del menú de selección
-        Object[][] catalogo = mostrarCatalogo(null);  
+        Object[][] catalogo = mostrarCatalogo(null, false);  
 
             //Se le pregunta al usuario si desea ver recomendaciones en el catálogo
             //a partir de la segunda compra para poder acceder a su historial
@@ -241,7 +221,7 @@ public class MainMenu {
                 case 1:
 
                     //Llamada a lógica para mostrar recomendaciones
-                    catalogo = mostrarCatalogo(comprador.getHistorialCompras());
+                    catalogo = mostrarCatalogo(comprador.getHistorialCompras(), false);
 
                     //Menú de selección de productos
                     recomendaciones = true;
@@ -254,7 +234,7 @@ public class MainMenu {
 
                     //Solo se mostrará la opción de calificar recomendaciones si para la selección
                     //actual se eligió la opción de mostrar recomendaciones en primer lugar 
-                    mostrarCatalogo(null);        
+                    mostrarCatalogo(null, false);        
 
                     //Menú de selección de productos
                     recomendaciones = false;
@@ -268,7 +248,7 @@ public class MainMenu {
 
                 //Menú de selección de productos
                 
-                boolean recomendaciones = false;
+                recomendaciones = false;
                 productSelectionProcess();
 
             }
@@ -513,19 +493,26 @@ public class MainMenu {
       } while (opcion != 3);
   }
 
-  public Object[][] mostrarCatalogo(HistorialCompras historial){
+  public Object[][] mostrarCatalogo(HistorialCompras historial, boolean reemplazo){
+
+    //Reemplazo se usa para saber si se mostrará el catálogo luego que el usuario haya calificado
+    //alguna recomendación, en cuyo caso no se realizará el proceso de las recomendaciones nuevamente, 
+    //sino que se mostrará el catálogo como ha sido guardado hasta entonces, ya que en este caso solo se
+    //modifica un elemento
 
      // Llamada a lógica para mostrar el catálogo
      System.out.println(String.format("%72s", "===== CATÁLOGO ===== \n"));
 
      //Se guarda la matriz de productos en la variable catálogo
-     
-     if (historial != null){
-        catalogo = tienda.recomendarProductos(comprador);
 
+     if (historial == null){
+        catalogo = tienda.getInventario().crearCatalogo();
      } else {
-      catalogo = tienda.getInventario().crearCatalogo();
-     }
+        if (reemplazo == false){
+        catalogo = tienda.recomendarProductos(comprador);
+        }
+    }
+     
 
 
      //Se recorre la matriz para mostrar los productos uno por uno
@@ -583,10 +570,7 @@ public class MainMenu {
 		
 		String llevar="1";
 		String opcion;
-		String fila;
-		String columna;
-		String[] filas = {"1", "2", "3", "4", "5", "6"};
-		String[] columnas = {"A", "B", "C", "D", "E", "F"};
+		
 		
 		
 		
@@ -633,15 +617,13 @@ public class MainMenu {
 						//Se llama al método sobrecargado de display de ProductSelectionMenu
 						//Que permite calificar los productos recomendados
 
-						boolean retorno = productSelectionMenu();
+						boolean retorno = productSelectionMenu(comprador.getHistorialCompras());
 
 												
 						if (retorno == false){
 							break;
 						} else {
-
-							//Instancia creada solo para usar el método mostrarCatalogo
-							mostrarCatalogo(comprador.getHistorialCompras());
+							mostrarCatalogo(comprador.getHistorialCompras(), false);
 							continue;
 						}
 
@@ -657,9 +639,8 @@ public class MainMenu {
 						if (retorno == false){
 							break;
 						} else {
-							//por el momento no funciona, en la casa lo organizo (21/01/25) (simón)
-							//Instancia creada solo para usar el método mostrarCatalogo
-							mostrarCatalogo(null);
+							
+							mostrarCatalogo(null, false);
 							continue;
 						}
 						
@@ -741,60 +722,354 @@ public class MainMenu {
         String opcion;
         String llevar;
 
+        int categoriasARecomendar = 0;
 
-        do{
+        //Revisa cuántas categorías hay almacenadas en categoriasMascompradas del historial
+        //ejemplo: puede que guarde [TECNOLOGIA, null, null] porque solo se han
+        //comprado productos de la categoría TECNOLOGIA
+        for (int i = 0; i < 3; i++){
 
-            if (fila.equals("1") || fila.equals("2") || fila.equals("3")){
-                System.out.println("¿Qué desea hacer?");
-                System.out.println("1. Agregar al carrito");
-                System.out.println("2. Ver información del producto");
-                System.out.println("3. Seleccionar otro producto");
-                System.out.println("4. Calificar recomendación");
-                System.out.println("Seleccione una opción: ");
-                opcion = scanner.nextLine();
+            if (historial.getCategoriasMasCompradas()[i] != null){
 
-                switch (opcion) {
-                case "1":
+                categoriasARecomendar ++;
+               }
+           }
 
-                System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
-                llevar=cantidad.nextLine();
-                int numerico=Integer.parseInt(llevar);
-                if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
-                    
-                }else{
-                    llevar="1";
-                    System.out.println("Cantidad inválida , se te asignará una por default que es 1");
-                }
-                    this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
-                    System.out.println("Producto añadido correctamente");
-                    return false;
-                case "2":
-                    productoSeleccionado.toStringdif();
-                    continue;
-                case "3":
-                    return true;
-                case "4":
-                    System.out.println("Le parece adecuada esta recomendación? 1. Sí - 2. No");
-                    String calificacion = scanner.nextLine();
-                    if (calificacion.equals("1")){
+           switch (categoriasARecomendar){
 
-                        mostrarCatalogo(historial);
-                    
+            case 1 :
+
+            do{
+
+                if (fila.equals("1")){
+                    System.out.println("¿Qué desea hacer?");
+                    System.out.println("1. Agregar al carrito");
+                    System.out.println("2. Ver información del producto");
+                    System.out.println("3. Seleccionar otro producto");
+                    System.out.println("4. Calificar recomendación");
+                    System.out.println("Seleccione una opción: ");
+                    opcion = scanner.nextLine();
+    
+                    switch (opcion) {
+                    case "1":
+    
+                    System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
+                    llevar=cantidad.nextLine();
+                    int numerico=Integer.parseInt(llevar);
+                    if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                        
+                    }else{
+                        llevar="1";
+                        System.out.println("Cantidad inválida , se te asignará una por default que es 1");
                     }
+                        this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                        System.out.println("Producto añadido correctamente");
+                        return false;
+                    case "2":
+                        System.out.println(productoSeleccionado.toStringdif());
+                        continue;
+                    case "3":
+                        return true;
+                    case "4":
+                        System.out.println("Le parece adecuada esta recomendación? 1. Sí - 2. No");
+                        String calificacion = scanner.nextLine();
+                        if (calificacion.equals("1")){
 
+                            Producto reemplazo = Inventario.getListaCategorias().get(productoSeleccionado.getCategoria().ordinal()).get(10);
+                            ArrayList<Producto> categoriaDeProductoAReemplazar =  Inventario.getListaCategorias().get(reemplazo.getCategoria().ordinal());
+
+                            //Se añade un nuevo producto de la misma categoría al inicio de la fila
+                            catalogo[Integer.parseInt(fila)][2] = reemplazo;
+
+                            //Se mueve el reemplazo al final de la lista de su respectiva categoría
+                            //para que no se repita en recomendaciones futuras
+                            categoriaDeProductoAReemplazar.remove(reemplazo);
+                            categoriaDeProductoAReemplazar.add(reemplazo);
+
+                            System.out.println("Gracias por tu calificación! Se ha actualizado el catálogo con una nueva recomendación.");
+                            System.out.println("al inicio de la fila\n");
+                            System.out.println("Producto reemplazado en fila: " + fila + " columna: " +  "A\n");
+    
+                            mostrarCatalogo(historial, true);
+                            productSelectionProcess();
+                            return false;
+                        
+                        } else if (calificacion.equals("2")){
+
+                            Random random = new Random();
+
+                            //Se escoge de manera aleatoria una categoría diferente a la del producto seleccionado
+                            int categoriaNoDeseada = productoSeleccionado.getCategoria().ordinal();
+                            int categoriaDeseada = random.nextInt(6);
+
+                            while (categoriaDeseada == categoriaNoDeseada){
+                                categoriaDeseada = random.nextInt(6);
+                            }
+
+                            ArrayList<Producto> categoriaDeReemplazo = Inventario.getListaCategorias().get(categoriaDeseada);
+
+                            Producto reemplazo = categoriaDeReemplazo.get(10);
+                            
+                            //Se mueve el reemplazo al final de la lista de su respectiva categoría
+                            //para que no se repita en recomendaciones futuras
+                            ArrayList<Producto> categoriaDeProductoAReemplazar =  Inventario.getListaCategorias().get(reemplazo.getCategoria().ordinal());
+                            categoriaDeProductoAReemplazar.remove(reemplazo);
+                            categoriaDeProductoAReemplazar.add(reemplazo);
+
+
+                             //Se reemplaza el producto escogido por una nueva recomendación de diferente categoría
+                             //entre las otras dos más compradas
+                            catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2] = reemplazo;
+
+                            System.out.println("Gracias por tu calificación! Se ha actualizado el catálogo con una nueva recomendación");
+                            System.out.println("de una categoría diferente en la misma posición\n");
+                            System.out.println("Producto reemplazado en fila: " + fila + " columna: " +  columna + "\n");
+    
+                            mostrarCatalogo(historial, true);
+                            productSelectionProcess();
+                            return false;
+                        } else {
+                            System.out.println("Opción inválida, intente de nuevo");
+                            continue;
+                        }
+
+                    default:
+                        System.out.println("Opción inválida, intente de nuevo");
+                        continue;
+                    }
+                } else {
+                    
+                    productSelectionMenu();
                     return false;
-                default:
-                    System.out.println("Opción inválida, intente de nuevo");
-                    continue;
+                    
                 }
-            } else {
-                
-                display();
-                return false;
-                
-            }
+    
+            } while(opcion != "3");
+            
+            return false;
+            case 2:
+            
+            do{
 
-        } while(opcion != "3");
+                if (fila.equals("1") || fila.equals("2")){
+                    System.out.println("¿Qué desea hacer?");
+                    System.out.println("1. Agregar al carrito");
+                    System.out.println("2. Ver información del producto");
+                    System.out.println("3. Seleccionar otro producto");
+                    System.out.println("4. Calificar recomendación");
+                    System.out.println("Seleccione una opción: ");
+                    opcion = scanner.nextLine();
+    
+                    switch (opcion) {
+                    case "1":
+    
+                    System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
+                    llevar=cantidad.nextLine();
+                    int numerico=Integer.parseInt(llevar);
+                    if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                        
+                    }else{
+                        llevar="1";
+                        System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                    }
+                        this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                        System.out.println("Producto añadido correctamente");
+                        return false;
+                    case "2":
+                        System.out.println(productoSeleccionado.toStringdif());
+                        continue;
+                    case "3":
+                        return true;
+                    case "4":
+                        System.out.println("Le parece adecuada esta recomendación? 1. Sí - 2. No");
+                        String calificacion = scanner.nextLine();
+                        if (calificacion.equals("1")){
+
+                            Producto reemplazo = Inventario.getListaCategorias().get(productoSeleccionado.getCategoria().ordinal()).get(10);
+                            ArrayList<Producto> categoriaDeProductoAReemplazar =  Inventario.getListaCategorias().get(reemplazo.getCategoria().ordinal());
+
+                            //Se añade un nuevo producto de la misma categoría al inicio de la fila
+                            catalogo[Integer.parseInt(fila)][2] = reemplazo;
+
+                            //Se mueve el reemplazo al final de la lista de su respectiva categoría
+                            //para que no se repita en recomendaciones futuras
+                            categoriaDeProductoAReemplazar.remove(reemplazo);
+                            categoriaDeProductoAReemplazar.add(reemplazo);
+
+                            System.out.println("Gracias por tu calificación! Se ha actualizado el catálogo con una nueva recomendación.");
+                            System.out.println("al inicio de la fila\n");
+                            System.out.println("Producto reemplazado en fila: " + fila + " columna: " +  "A\n");
+    
+                            mostrarCatalogo(historial, true);
+                            productSelectionProcess();
+                            return false;
+                        
+                        } else if (calificacion.equals("2")){
+
+                            //Se consiguien las dos categorías más compradas
+                            Categoria[] categoriasMasCompradas = historial.getCategoriasMasCompradas();
+
+                            Categoria categoriaDeReemplazo;
+
+
+                            //El producto será reemplazado por uno de la otra categoría más comprada
+                            if (fila.equals("1")){
+                                categoriaDeReemplazo = categoriasMasCompradas[1];
+                            } else {
+                                categoriaDeReemplazo = categoriasMasCompradas[0];
+                            }
+
+                            Producto reemplazo = Inventario.getListaCategorias().get(categoriaDeReemplazo.ordinal()).get(10);
+                            
+                            //Se mueve el reemplazo al final de la lista de su respectiva categoría
+                            //para que no se repita en recomendaciones futuras
+                            ArrayList<Producto> categoriaDeProductoAReemplazar =  Inventario.getListaCategorias().get(reemplazo.getCategoria().ordinal());
+                            categoriaDeProductoAReemplazar.remove(reemplazo);
+                            categoriaDeProductoAReemplazar.add(reemplazo);
+
+
+                             //Se reemplaza el producto escogido por una nueva recomendación de diferente categoría
+                             //entre las otras dos más compradas
+                            catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2] = reemplazo;
+
+                            System.out.println("Gracias por tu calificación! Se ha actualizado el catálogo con una nueva recomendación");
+                            System.out.println("de una categoría diferente en la misma posición\n");
+                            System.out.println("Producto reemplazado en fila: " + fila + " columna: " +  columna + "\n");
+    
+                            mostrarCatalogo(historial, true);
+                            productSelectionProcess();
+                            return false;
+                        } else {
+                            System.out.println("Opción inválida, intente de nuevo");
+                            continue;
+                        }
+
+                    default:
+                        System.out.println("Opción inválida, intente de nuevo");
+                        continue;
+                    }
+                } else {
+                    
+                    productSelectionMenu();
+                    return false;
+                    
+                }
+    
+            } while(opcion != "3");
+
+
+            return false;
+            case 3:
+
+            do{
+
+                if (fila.equals("1") || fila.equals("2") || fila.equals("3")){
+                    System.out.println("¿Qué desea hacer?");
+                    System.out.println("1. Agregar al carrito");
+                    System.out.println("2. Ver información del producto");
+                    System.out.println("3. Seleccionar otro producto");
+                    System.out.println("4. Calificar recomendación");
+                    System.out.println("Seleccione una opción: ");
+                    opcion = scanner.nextLine();
+    
+                    switch (opcion) {
+                    case "1":
+    
+                    System.out.println("Ingresa la cantidad a llevar (máximo 5): ");
+                    llevar=cantidad.nextLine();
+                    int numerico=Integer.parseInt(llevar);
+                    if (numerico == 1 || numerico == 2 || numerico == 3 || numerico == 4 || numerico == 5){
+                        
+                    }else{
+                        llevar="1";
+                        System.out.println("Cantidad inválida , se te asignará una por default que es 1");
+                    }
+                        this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                        System.out.println("Producto añadido correctamente");
+                        return false;
+                    case "2":
+                        System.out.println(productoSeleccionado.toStringdif());
+                        continue;
+                    case "3":
+                        return true;
+                    case "4":
+                        System.out.println("Le parece adecuada esta recomendación? 1. Sí - 2. No");
+                        String calificacion = scanner.nextLine();
+                        if (calificacion.equals("1")){
+
+                            Producto reemplazo = Inventario.getListaCategorias().get(productoSeleccionado.getCategoria().ordinal()).get(10);
+                            ArrayList<Producto> categoriaDeProductoAReemplazar =  Inventario.getListaCategorias().get(reemplazo.getCategoria().ordinal());
+
+                            //Se añade un nuevo producto de la misma categoría al inicio de la fila
+                            catalogo[Integer.parseInt(fila)][2] = reemplazo;
+
+                            //Se mueve el reemplazo al final de la lista de su respectiva categoría
+                            //para que no se repita en recomendaciones futuras
+                            categoriaDeProductoAReemplazar.remove(reemplazo);
+                            categoriaDeProductoAReemplazar.add(reemplazo);
+
+                            System.out.println("Gracias por tu calificación! Se ha actualizado el catálogo con una nueva recomendación.");
+                            System.out.println("al inicio de la fila\n");
+                            System.out.println("Producto reemplazado en fila: " + fila + " columna: " +  "A\n");
+    
+                            mostrarCatalogo(historial, true);
+                            productSelectionProcess();
+                            return false;
+                        
+                        } else if (calificacion.equals("2")){
+
+                            //Se crea una lista con las otras dos categorías más compradas
+                            //para reemplazar este objeto por uno de alguna de estas
+                            ArrayList<Categoria> categoriaAEscoger = new ArrayList<>();
+                            for (int i = 0; i < 3; i++){
+                                categoriaAEscoger.add(historial.getCategoriasMasCompradas()[i]);
+                             } 
+                             categoriaAEscoger.remove(productoSeleccionado.getCategoria());
+
+                             //Se decide aleatoriamente de cuál de las otras dos categorías será el producto reemplazo
+                             Random random = new Random();
+                             Producto reemplazo = Inventario.getListaCategorias().get(categoriaAEscoger.get(random.nextInt(2)).ordinal()).get(10);
+
+                             //Se mueve el reemplazo al final de la lista de su respectiva categoría
+                            //para que no se repita en recomendaciones futuras
+                            ArrayList<Producto> categoriaDeProductoAReemplazar =  Inventario.getListaCategorias().get(reemplazo.getCategoria().ordinal());
+                            categoriaDeProductoAReemplazar.remove(reemplazo);
+                            categoriaDeProductoAReemplazar.add(reemplazo);
+
+
+                             //Se reemplaza el producto escogido por una nueva recomendación de diferente categoría
+                             //entre las otras dos más compradas
+                            catalogo[Integer.parseInt(fila)][Arrays.asList(columnas).indexOf(columna)+2] = reemplazo;
+
+                            System.out.println("Gracias por tu calificación! Se ha actualizado el catálogo con una nueva recomendación");
+                            System.out.println("de una categoría diferente en la misma posición\n");
+                            System.out.println("Producto reemplazado en fila: " + fila + " columna: " +  columna + "\n");
+    
+                            mostrarCatalogo(historial, true);
+                            productSelectionProcess();
+                            return false;
+                        } else {
+                            System.out.println("Opción inválida, intente de nuevo");
+                            continue;
+                        }
+
+                    default:
+                        System.out.println("Opción inválida, intente de nuevo");
+                        continue;
+                    }
+                } else {
+                    
+                    productSelectionMenu();
+                    return false;
+                    
+                }
+    
+            } while(opcion != "3");
+
+           }
+
+
+        
 
         return false;
 
@@ -851,6 +1126,43 @@ public class MainMenu {
                 break;
     } while (opcion != 4);
 }
+
+//getters y setters
+
+public Comprador getComprador() {
+    return this.comprador;
+  }
+  public void setComprador(Comprador value) {
+    this.comprador = value;
+  }
+
+  public Vendedor getVendedor() {
+    return this.vendedor;
+  }
+  public void setVendedor(Vendedor value) {
+    this.vendedor = value;
+  }
+
+  public Tienda getTienda() {
+    return this.tienda;
+  }
+  public void setTienda(Tienda value) {
+    this.tienda = value;
+  }
+
+  public Inventario getInventario() {
+    return this.inventario;
+  }
+  public void setInventario(Inventario value) {
+    this.inventario = value;
+  }
+
+  public Notificacion getNotificacion() {
+    return this.notificacion;
+  }
+  public void setNotificacion(Notificacion value) {
+    this.notificacion = value;
+  }
 
 
 }

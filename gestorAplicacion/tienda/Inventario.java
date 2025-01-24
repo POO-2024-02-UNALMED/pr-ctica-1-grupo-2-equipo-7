@@ -313,27 +313,48 @@ public class Inventario implements Serializable{
 
 
                for (int i = 0; i <= 5; i++){
-                   catalogo[1][i+2] = productosRecomendados1.get(i);
-                  productosTotal.remove(productosRecomendados1.get(i));
-                  productosTotal.add(productosRecomendados1.get(i));
+                    //Se añade el producto recomendado a su fila correspondiente
+                    Producto productoRecomendado = productosRecomendados1.get(i);
+                   catalogo[1][i+2] = productoRecomendado;
+
+                   //Se mueve el producto recomendado a la última posición de la lista de productos
+                //para que no se repita en las siguientes recomendaciones
+                  productosTotal.remove(productoRecomendado);
+                  productosTotal.add(productoRecomendado);
+                  listaCategorias.get(categoriaRecomendada1.ordinal()).remove(productoRecomendado);
+                listaCategorias.get(categoriaRecomendada1.ordinal()).add(productoRecomendado);
                }
 
                categoriaRecomendada2 = historial.getCategoriasMasCompradas()[1];
                productosRecomendados2 = listaCategorias.get(categoriaRecomendada2.ordinal());
 
                for (int i = 0; i <= 5; i++){
-                   catalogo[2][i+2] = productosRecomendados2.get(i);
-                   productosTotal.remove(productosRecomendados2.get(i));
-                   productosTotal.add(productosRecomendados2.get(i));
+                //Se añade el producto recomendado a su fila correspondiente
+                Producto productoRecomendado = productosRecomendados2.get(i);
+                   catalogo[2][i+2] = productoRecomendado;
+
+                   //Se mueve el producto recomendado a la última posición de la lista de productos
+                //para que no se repita en las siguientes recomendaciones
+                   productosTotal.remove(productoRecomendado);
+                   productosTotal.add(productoRecomendado);
+                   listaCategorias.get(categoriaRecomendada2.ordinal()).remove(productoRecomendado);
+                   listaCategorias.get(categoriaRecomendada2.ordinal()).add(productoRecomendado);
                }
 
                categoriaRecomendada3 = historial.getCategoriasMasCompradas()[2];
                productosRecomendados3 = listaCategorias.get(categoriaRecomendada3.ordinal());
 
                for (int i = 0; i <= 5; i++){
-                   catalogo[3][i+2] = productosRecomendados3.get(i);
-                   productosTotal.remove(productosRecomendados3.get(i));
+                //Se añade el producto recomendado a su fila correspondiente
+                    Producto productoRecomendado = productosRecomendados3.get(i);
+                   catalogo[3][i+2] = productoRecomendado;
+                   
+                //Se mueve el producto recomendado a la última posición de la lista de productos
+                //para que no se repita en las siguientes recomendaciones
+                   productosTotal.remove(productoRecomendado);
                    productosTotal.add(productosRecomendados3.get(i));
+                   listaCategorias.get(categoriaRecomendada3.ordinal()).remove(productoRecomendado);
+                   listaCategorias.get(categoriaRecomendada3.ordinal()).add(productoRecomendado);
                }
 
                // Se añaden los productos al resto de espacios de la matriz
