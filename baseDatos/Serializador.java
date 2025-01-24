@@ -92,6 +92,7 @@ public class Serializador {
             oos.writeObject(Inventario.getCategoriaPapeleria()); 
             oos.writeObject(Inventario.getCategoriaJuegueteria()); 
             oos.writeObject(Inventario.getCategoriaDeportes()); 
+            oos.writeObject(Inventario.getListaCategorias()); 
         } catch (IOException e) { 
             e.printStackTrace(); 
             } 

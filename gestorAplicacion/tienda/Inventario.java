@@ -228,6 +228,8 @@ public class Inventario implements Serializable{
                 catalogo[1][0] = "RECOMENDADO";
 
                 Categoria categoriaRecomendada = historial.getCategoriasMasCompradas()[0];
+
+
                 ArrayList<Producto> productosRecomendados = listaCategorias.get(categoriaRecomendada.ordinal());
 
     
@@ -577,5 +579,13 @@ public class Inventario implements Serializable{
 	public void setCatalogo(Object[][] catalogo) {
 		this.catalogo = catalogo;
 	}
+
+    public static void setListaCategoria(ArrayList<ArrayList<Producto>> listaCategorias){
+        Inventario.listaCategorias = listaCategorias;
+    }
+
+    public static ArrayList<ArrayList<Producto>> getListaCategorias(){
+        return listaCategorias;
+    }
 
 }

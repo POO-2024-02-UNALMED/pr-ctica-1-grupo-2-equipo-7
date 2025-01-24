@@ -97,6 +97,7 @@ public class Deserializador {
             Inventario.setCategoriaPapeleria((ArrayList<Producto>) ois.readObject()); 
             Inventario.setCategoriaJuegueteria((ArrayList<Producto>) ois.readObject()); 
             Inventario.setCategoriaDeportes((ArrayList<Producto>) ois.readObject()); 
+            Inventario.setListaCategoria((ArrayList<ArrayList<Producto>>) ois.readObject());
         } catch (IOException | ClassNotFoundException e) { 
             e.printStackTrace(); 
         } 
