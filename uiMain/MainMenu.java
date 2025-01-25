@@ -376,6 +376,8 @@ public class MainMenu {
                         Notificacion notificacion = new Notificacion("Se le informa que su compra por " + comprador.getCarritoCompras().getPrecioTotal() + " pesos ha sido realizada exitosamente.", "¡Compra realizada exitosamente!", comprador);
                         comprador.recibirNotificacion(notificacion); // Se envía una notificación al comprador informando que la compra ha sido realizada exitosamente.
 
+                        Notificacion notificacion2 = new Notificacion("Se le informa que el usuario " + comprador.getNombre() + " ha realizado una compra por " + comprador.getCarritoCompras().getPrecioTotal() + "pesos.", "Se le informa de una nueva compra", vendedor);
+                        vendedor.recibirNotificacion(notificacion2);
                         ArrayList<Boolean> cantidadProductos = new ArrayList<>(); // Se crea este ArrayList para almacenar si toca o no enviar una notificación al vendedor.
                         
                         for (Producto producto : comprador.getCarritoCompras().getListaItems()){
@@ -414,6 +416,9 @@ public class MainMenu {
 
                     Notificacion notificacion = new Notificacion("Se le informa que su compra por " + comprador.getCarritoCompras().getPrecioTotal() + " pesos ha sido realizada exitosamente.", "¡Compra realizada exitosamente!", comprador);
                     comprador.recibirNotificacion(notificacion); // Se envía una notificación al comprador informando que la compra ha sido realizada exitosamente.
+
+                    Notificacion notificacion2 = new Notificacion("Se le informa que el usuario " + comprador.getNombre() + " ha realizado una compra por " + comprador.getCarritoCompras().getPrecioTotal() + "pesos.", "Se le informa de una nueva compra", vendedor);
+                    vendedor.recibirNotificacion(notificacion2);
 
                     ArrayList<Boolean> cantidadProductos = new ArrayList<>(); // Se crea este ArrayList para almacenar si toca o no enviar una notificación al vendedor.
                     for (Producto producto : comprador.getCarritoCompras().getListaItems()){
@@ -693,9 +698,14 @@ public class MainMenu {
                                 llevar="1";
                                 System.out.println("Cantidad inválida , se te asignará una por default que es 1");
                             }
-                                String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
-                                System.out.println(o);
-                                return false;
+                                if (productoSeleccionado.getCantidad() <= 0){
+                                    System.out.println("Error. No hay más productos disponibles.");
+                                    continue;
+                                }else{
+                                    String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                                    System.out.println(o);
+                                    return false;
+                                }
 						case 2:
                             System.out.println(productoSeleccionado.toStringdif());
 							continue;
@@ -762,9 +772,15 @@ public class MainMenu {
                         llevar="1";
                         System.out.println("Cantidad inválida , se te asignará una por default que es 1");
                     }
+                    if (productoSeleccionado.getCantidad() <= 0){
+                        System.out.println("Error. No hay mas productos disponibles.");
+                        continue;
+                    }
+                    else{
                         this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
                         System.out.println("Producto añadido correctamente");
                         return false;
+                    }
                     case "2":
                         System.out.println(productoSeleccionado.toStringdif());
                         continue;
