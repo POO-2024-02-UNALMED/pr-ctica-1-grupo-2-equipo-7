@@ -132,7 +132,7 @@ public class MainMenu {
                   break;
               case 3: // Menú de devoluciones
                   System.out.println();
-                  new ReturnMenu(comprador, vendedor).display();
+                  returnMenuDisplay();
                   break;
               case 4:
 
@@ -320,8 +320,52 @@ public class MainMenu {
       return test;
     }
 
-  // Esto es para realizar la compra
-  public void buyProcessDisplay(){
+    // Proceso de reembolso
+    public void returnMenuDisplay(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("===== MENÚ DE DEVOLUCIONES =====");
+
+        System.out.print("¿Conoce el ID de la factura y del producto a devolver? (S/N): ");
+        Boolean conoceIdFactura = scanner.nextLine().trim().toUpperCase().equals("S") ? true : false;
+
+        System.out.println();
+
+        if (!conoceIdFactura) {
+            System.out.println("Por favor, consiga la información necesaria en el numeral 6 del MENÚ COMPRADOR.\n");
+            return; 
+        }
+
+        System.out.print("Ingrese el ID de la factura donde se encuentra el producto: ");
+        int idFactura = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Ingrese el ID del producto a devolver: ");
+        int idProducto = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Ingrese la cantidad a devolver: ");
+        int cantidadRetornar = Integer.parseInt(scanner.nextLine());
+        System.out.println();
+
+        String resultado = comprador.devolverProducto(idFactura, idProducto, cantidadRetornar, vendedor);
+
+        switch (resultado) {
+            case "FacturaInvalida":
+                System.out.println("La factura ingresada no fue encontrada.\n");
+                break;
+            case "ProductoInvalido":
+                System.out.println("El producto ingresado no cumple con los requisitos para devolución.\n" +
+                                    "Razones posibles:\n" +
+                                    "- No se encontró en la factura.\n" +
+                                    "- No es un producto retornable.\n" +
+                                    "- La cantidad especificada para devolver no es válida.");
+                break;
+            default:
+            System.out.println("La devolución se ha procesado correctamente, en sus notificaciones encontrará más información.\n");
+        }
+    }
+
+    // Esto es para realizar la compra
+    public void buyProcessDisplay(){
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
