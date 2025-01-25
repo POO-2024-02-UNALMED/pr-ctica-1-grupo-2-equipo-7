@@ -13,7 +13,7 @@ public class Vendedor extends Usuario implements Serializable{
     Inventario inventario;
     Fabrica fabrica;
     private ArrayList<ArrayList<Object>> ordenesPendientes; //alejandro funcionalidad 5 reporte
-    ArrayList<Integer> cantidades = new ArrayList<>();
+
 
     public Vendedor(String nombre, CuentaBancaria cuenta, Inventario inventario, Fabrica fabrica){
         super(nombre, cuenta);
@@ -23,27 +23,6 @@ public class Vendedor extends Usuario implements Serializable{
     }
 
     // getters y setters
-    public ArrayList<Integer> getCantidades() {
-        return cantidades;
-    }
-    
-    
-    // Genera un reporte detallado del inventario actual, incluyendo productos vendidos, no vendidos y cantidades vendidas.
-     
-    public ArrayList<String> generarReporteInventario() {
-        ArrayList<String> reporte = new ArrayList<>();
-        ArrayList<Producto> productos = inventario.getProductosTotal();
-
-        for (Producto producto : productos) {
-            if (producto.getCantidadVendida() > 0) {
-                reporte.add(producto.getNombre() + ": Vendido - " + producto.getCantidadVendida() + " unidades");
-            } else {
-                reporte.add(producto.getNombre() + ": No vendido - " + producto.getCantidad() + " unidades disponibles");
-            }
-        }
-
-        return reporte;
-    }
     //Permite al vendedor decidir qué productos y cuántas unidades solicitar a la fábrica.
 
     public String crearOrdenFabricacion() {
