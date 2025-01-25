@@ -355,11 +355,27 @@ public class MainMenu {
                         double precioConDescuento = precioTotal - (precioTotal * descuento); // Se aplica el descuento al precio total de la compra.
                         comprador.getCarritoCompras().setDescuentoAplicadoCompra(comprador.getValorCupones().get(cupon - 1)); // Se guarda el descuento aplicado a la compra en el carrito de compras.
 
-                        System.out.println("\nEl precio total de la compra es de: " + precioTotal + " pesos. Pero con descuento queda en: " + (int)precioConDescuento + " pesos. Ahora se prosigue con el pago.");
+                        System.out.println("\nEl precio total de la compra es de: " + precioTotal + " pesos. Pero con descuento queda en: " + (int)precioConDescuento + " pesos.");
 
                         comprador.getCarritoCompras().setPrecioTotal((int)precioConDescuento); // Se actualiza el precio total de la compra del carrito de compras con el descuento.
                         comprador.getCarritoCompras().restarProductosAlComprar(); // Se restan la cantidad de productos que el usuario va a comprar del atributo cantidad de cada instancia de Producto en el carrito de compras.
+                        System.out.println("Ahora vamos a ver que descuentos obtuviste por fidelidad y mayoreo ");
                         
+                        String pmd=comprador.getCarritoCompras().descuentoporproductomenosvendido();
+                        if(pmd!= null){
+                            System.out.println(comprador.getCarritoCompras().descuentoporproductomenosvendido());
+                        }
+                        
+                       String  verpunt=comprador.getCarritoCompras().verificardescuentopuntos();
+                       if(verpunt!= null){
+                        System.out.println(verpunt);
+                       }
+                       String descmember=comprador.getCarritoCompras().descuentomembresia();
+                       if(descmember!=null){
+                        System.out.println(descmember);
+                       }
+                       //comprador.getCarritoCompras().calcularTotal();
+                       System.out.println("\nEl precio total de la compra ahora es de: " + comprador.getCarritoCompras().getPrecioTotal()+ " pesos. Ahora se prosigue con el pago.");
                         comprador.pago(comprador, vendedor, (int)precioConDescuento, "compra"); // Se inicia el proceso de pago.
                         comprador.getValorCupones().remove(cupon - 1); // Se elimina el cupón utilizado.
                         comprador.cantidadCupones -= 1; // Se disminuye la cantidad de cupones en 1.
@@ -402,6 +418,23 @@ public class MainMenu {
                     comprador.getCarritoCompras().restarProductosAlComprar();
                     int precioTotal = comprador.getCarritoCompras().getPrecioTotal();
                     comprador.pago(comprador, vendedor, precioTotal, "compra");
+                    System.out.println("Ahora vamos a ver que descuentos obtuviste por fidelidad y mayoreo ");
+                        
+                    String pmd=comprador.getCarritoCompras().descuentoporproductomenosvendido();
+                    if(pmd!= null){
+                        System.out.println(comprador.getCarritoCompras().descuentoporproductomenosvendido());
+                    }
+                    
+                   String  verpunt=comprador.getCarritoCompras().verificardescuentopuntos();
+                   if(verpunt!= null){
+                    System.out.println(verpunt);
+                   }
+                   String descmember=comprador.getCarritoCompras().descuentomembresia();
+                   if(descmember!=null){
+                    System.out.println(descmember);
+                   }
+                   //comprador.getCarritoCompras().calcularTotal();
+                   System.out.println("\nEl precio total de la compra ahora es de: " + comprador.getCarritoCompras().getPrecioTotal()+ " pesos. Ahora se prosigue con el pago.");
                     System.out.println("====== COMPRA ======");
                     System.out.println("Resumen de la compra:");
                     System.out.println(comprador.getHistorialCompras().mostrarFactura(comprador.getHistorialCompras().getFacturas().size()));

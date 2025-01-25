@@ -50,7 +50,7 @@ public abstract class Usuario implements Serializable{
 	}
 
 	public void setVacescomprado(int vacescomprado) {
-		this.vacescomprado = vacescomprado;
+		this.vacescomprado += vacescomprado;
 	}
 
 	public int getPuntos() {

@@ -182,6 +182,7 @@ public class CarritoCompras implements Serializable{
 	//NOTA: ESTE MËTODO SOLO SE VA A USAR PARA LA FUNCIONALIDAD DE COMPRA
 	public void restarProductosAlComprar(){
 		 int contador=0;
+		 this.getUsuario().setVacescomprado(1);
 		 Usuario usuario = this.getUsuario();
 		 int suma=0;//recorremos la lista de las unidades que ha comprado el usuario para empezar a asignarle puntos
 		 for (int numero : cantidadPorProducto) {
@@ -203,7 +204,7 @@ public class CarritoCompras implements Serializable{
 		}else if(suma>20 ) {
 			contador+=6;
 		}
-		usuario.setPuntos(suma);
+		usuario.setPuntos(contador);
 		for (int i = 0; i < listaItems.size(); i++){
            Producto producto = this.listaItems.get(i);
            int cantidadComprada = this.cantidadPorProducto.get(i);
@@ -247,7 +248,7 @@ public class CarritoCompras implements Serializable{
 				   this.precioTotal=this.precioTotal-this.descuentoAplicadoCompra;
 				   this.usuario.setPuntos(0);
 				 
-				   return "Gracias a tu fidelidad obtuviste un descuento de" + this.descuentoAplicadoCompra + "usando tus puntos";
+				   return "Gracias a tu fidelidad obtuviste un descuento de " + this.descuentoAplicadoCompra + " usando tus puntos";
 				  
 			   }else if(puntos >=10 && puntos<20) {
 				   descuento=0.10;
@@ -255,7 +256,7 @@ public class CarritoCompras implements Serializable{
 				   this.precioTotal=this.precioTotal-this.descuentoAplicadoCompra;
 				   this.usuario.setPuntos(0);
 				  
-				   return "Gracias a tu fidelidad obtuviste un descuento de" + this.descuentoAplicadoCompra + "usando tus puntos";
+				   return "Gracias a tu fidelidad obtuviste un descuento de " + this.descuentoAplicadoCompra + " usando tus puntos";
 				 
 				   
 			   }else if(puntos>=20 && puntos<30) {
@@ -264,7 +265,7 @@ public class CarritoCompras implements Serializable{
 				   this.precioTotal=this.precioTotal-this.descuentoAplicadoCompra;
 				   this.usuario.setPuntos(0);
 				 
-				   return "Gracias a tu fidelidad obtuviste un descuento de" + this.descuentoAplicadoCompra + "usando tus puntos";
+				   return "Gracias a tu fidelidad obtuviste un descuento de " + this.descuentoAplicadoCompra + " usando tus puntos";
 				 
 			   }else if(puntos>=30) {
 				   descuento=0.20; 
@@ -272,7 +273,7 @@ public class CarritoCompras implements Serializable{
 				   this.precioTotal=this.precioTotal-this.descuentoAplicadoCompra;
 				   this.usuario.setPuntos(0);
 				  
-				   return "Gracias a tu fidelidad obtuviste un descuento de" + this.descuentoAplicadoCompra + "usando tus puntos";
+				   return "Gracias a tu fidelidad obtuviste un descuento de " + this.descuentoAplicadoCompra + " usando tus puntos";
 				  
 			   }
 			return null;
@@ -284,7 +285,7 @@ public class CarritoCompras implements Serializable{
 		        	   int descuento=producto.aplicardescuento(producto, 0.10);
 		        	   this.descuentoPorproductos=descuento;
 		        	   
-		        	   return "Por impulso de producto has obtenido un descuento de " + String.valueOf(descuento) + "en el producto " + producto.getNombre();
+		        	   return "Por impulso de producto has obtenido un descuento de " + String.valueOf(descuento) + " en el producto " + producto.getNombre();
 		        	   
 		        	   
 		        	   
@@ -318,7 +319,7 @@ public class CarritoCompras implements Serializable{
 				        	   int descuento = producto.aplicardescuento(producto, 0.05);
 				        	   this.descuentoPorproductos+=descuento;
 				        	  
-				        	   return "Felicidades, ahora eres miembro bronce, por esto recibes un descuento de " + String.valueOf(descuento) + "en el producto " + producto.getNombre();
+				        	   return "Felicidades, ahora eres miembro bronce, por esto recibes un descuento de " + String.valueOf(descuento) + " en el producto " + producto.getNombre();
 				        	   
 				        	   
 				           
@@ -329,7 +330,7 @@ public class CarritoCompras implements Serializable{
 					        	   int descuento = producto.aplicardescuento(producto, 0.05);
 					        	   this.descuentoPorproductos+=descuento;
 					        	   
-					        	   return "Felicidades, ahora eres miembro bronce, por esto recibes un descuento de " + String.valueOf(descuento) + "en el producto " + producto.getNombre();
+					        	   return "Felicidades, ahora eres miembro bronce, por esto recibes un descuento de " + String.valueOf(descuento) + " en el producto " + producto.getNombre();
 						   
 					   }
 				   }
@@ -343,7 +344,7 @@ public class CarritoCompras implements Serializable{
 				        	   int descuento = producto.aplicardescuento(producto, 1);
 				        	   this.descuentoPorproductos+=1;
 				        	   
-				        	   return "Felicidades, ahora eres miembro Oro, por esto recibes un obsequio de " +producto.getNombre() + "totalmente gratis";
+				        	   return "Felicidades, ahora eres miembro Oro, por esto recibes un obsequio de " +producto.getNombre() + " totalmente gratis";
 					   
 					   
 					   
@@ -364,7 +365,7 @@ public class CarritoCompras implements Serializable{
 				        	   int descuento1 = producto.aplicardescuento(producto, 1);
 				        	   this.descuentoPorproductos+=descuento1;
 					  
-				        	   return "Gracias a tu fidelidad eres un miembro platino y  obtuviste un descuento de" + this.descuentoAplicadoCompra + ", ademas de obtener el siguiente obsequio totalmentre gratis: "+ producto.getNombre();
+				        	   return "Gracias a tu fidelidad eres un miembro platino y  obtuviste un descuento de " + this.descuentoAplicadoCompra + ", ademas de obtener el siguiente obsequio totalmentre gratis: "+ producto.getNombre();
 					   
 				           }
 					   }
@@ -380,7 +381,7 @@ public class CarritoCompras implements Serializable{
 					        	   this.descuentoPorproductos+=descuento;
 					        	double retorno =   this.getPrecioTotal()*0.02;
 					        	usuario.getCuentaBancaria().recargarCuenta(retorno);//EL RETORNO DEL DINERO NO SE RESTA DEL CARRITO, SE LE GIRA AL CLIENTE Y YA 
-					        	   return "Por ser un cliente Bronce y llevar una compra mayorista hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre() + " y un reembolso del 0.02 para la rentabilidad";
+					        	   return " Por ser un cliente Bronce y llevar una compra mayorista hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre() + " y un reembolso del 0.02 para la rentabilidad";
 		 				   
 					   }
 				   }
