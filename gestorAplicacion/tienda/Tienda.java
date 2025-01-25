@@ -13,21 +13,7 @@ public class Tienda implements Serializable{
    private Inventario inventario;
    private boolean descuentoAleatorio;
    private ArrayList<Usuario> usuariosRegistrados;
-
-    public Tienda(String nombre, Inventario inventario, boolean descuentoAleatorio, ArrayList<Usuario> usuariosRegistrados) {
-        this.setNombre(nombre);
-        this.setInventario(inventario);
-        this.setDescuentoAleatorio(descuentoAleatorio);
-        this.setUsuariosRegistrados(usuariosRegistrados);
-    }
-
-    public Object[][] recomendarProductos(Usuario usuario) {
-
-		HistorialCompras historial = ((Comprador) usuario).getHistorialCompras();
-
-        return inventario.crearCatalogo(historial);
-    }
-
+	//getters y setters 
 	public String getNombre() {
 		return nombre;
 	}
@@ -62,3 +48,19 @@ public class Tienda implements Serializable{
 
 
 }
+
+    public Tienda(String nombre, Inventario inventario, boolean descuentoAleatorio, ArrayList<Usuario> usuariosRegistrados) {
+        this.setNombre(nombre);
+        this.setInventario(inventario);
+        this.setDescuentoAleatorio(descuentoAleatorio);
+        this.setUsuariosRegistrados(usuariosRegistrados);
+    }
+
+    public Object[][] recomendarProductos(Usuario usuario) {
+
+		HistorialCompras historial = ((Comprador) usuario).getHistorialCompras();
+
+        return inventario.crearCatalogo(historial);
+    }
+
+	
