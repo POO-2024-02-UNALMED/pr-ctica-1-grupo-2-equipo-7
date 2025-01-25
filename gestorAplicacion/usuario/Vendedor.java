@@ -38,14 +38,14 @@ public class Vendedor extends Usuario implements Serializable{
             }
             Producto producto = buscarProducto(nombreProducto);
              if (producto == null) {
-                return "Producto no encontrado: " + nombreProducto;
+                return "Producto no encontrado: " + nombreProducto  + "\nPor favor vuelva a ingresar todos los productos de nuevo";
                 
             }
 
             String entradaCantidad = scanner.nextLine();
             boolean esNumero = entradaCantidad.matches("\\d+");
             if (!esNumero) {
-                return "Cantidad inválida.\nvuelva a ingresa el producto con una cantidad valida";
+                return "Cantidad inválida.\nvuelva a ingresar todos los producto nuevamente con una cantidad valida";
             }
 
             int cantidad = Integer.parseInt(entradaCantidad);

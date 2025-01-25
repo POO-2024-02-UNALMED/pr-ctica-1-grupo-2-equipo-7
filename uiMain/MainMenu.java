@@ -1216,7 +1216,6 @@ public class MainMenu {
             else{
                 System.out.println();
                 System.out.println(vendedor.mostrarNotificaciones() + "\n"); // Si es así entonces se muestran las notificaciones.
-                vendedor.getNotificaciones().removeAll(vendedor.getNotificaciones());
             }
                 break;
             case 4:
