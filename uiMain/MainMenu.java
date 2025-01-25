@@ -7,8 +7,8 @@ import compras.HistorialCompras;
 import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 import pasarelaPago.Transaccion;
 import tienda.Inventario;
 import tienda.Producto;   
@@ -501,7 +501,7 @@ public class MainMenu {
     //modifica un elemento
 
      // Llamada a lógica para mostrar el catálogo
-     System.out.println(String.format("%72s", "===== CATÁLOGO ===== \n"));
+     System.out.println(String.format("%105s", "===== CATÁLOGO ===== \n"));
 
      //Se guarda la matriz de productos en la variable catálogo
 
@@ -522,12 +522,12 @@ public class MainMenu {
        for (int columna = 0; columna < catalogo[fila].length; columna++) {
          if (columna == 7) {
            if (catalogo[fila][columna] instanceof Producto) {
-             String salida = String.format("%-15s",((Producto) catalogo[fila][columna]).getNombre());
+             String salida = String.format("%-28s",((Producto) catalogo[fila][columna]).getNombre());
              System.out.println(salida);
             
            }else {
              
-               String salida = String.format("%-15s",catalogo[fila][columna]);
+               String salida = String.format("%-28s",catalogo[fila][columna]);
                System.out.println(salida);
            
            }
@@ -537,12 +537,12 @@ public class MainMenu {
 
              if (catalogo[fila][columna] instanceof Producto) {
 
-               String salida = String.format("%-15s",((Producto) catalogo[fila][columna]).getNombre());
+               String salida = String.format("%-28s",((Producto) catalogo[fila][columna]).getNombre());
                System.out.print(salida);
                System.out.print(" ");
              }else {
 
-               String salida = String.format("%-15s",catalogo[fila][columna]);
+               String salida = String.format("%-28s",catalogo[fila][columna]);
                System.out.print(salida);
                  System.out.print(" ");
              }
