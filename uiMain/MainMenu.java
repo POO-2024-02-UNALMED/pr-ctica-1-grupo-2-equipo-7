@@ -1155,12 +1155,21 @@ public class MainMenu {
             case 1:
                 System.out.println();
                 System.out.println(inventario.generarReporte());
-                System.out.println("A continucacion elija los productos que quiere crear en la fabrica para reponer en el inventario, seleccione un maximo de 50 unidades por orden");
-                System.out.println(vendedor.crearOrdenFabricacion());
-                String mensajeFabrica = "Se han entregado los productos."; 
-                String asuntoVendedor = "Orden De produccion";
-                vendedor.recibirNotificacion(new Notificacion(mensajeFabrica, asuntoVendedor, vendedor)); 
-            break;
+                System.out.println("A continucacion elija los productos que quiere crear en la fabrica para reponer en el inventario.\nSeleccione un maximo de 50 unidades por orden.\nIngrese primero el producto y luego la cantidad.");
+
+                String resultado;
+                do {
+                    resultado = vendedor.crearOrdenFabricacion();
+                    System.out.println(resultado); // Imprime siempre el mensaje, ya sea de éxito o error
+                } while (!resultado.startsWith("Orden creada con éxito.") && !resultado.equals("No se seleccionaron productos. La orden no se creó."));
+                
+                if (!vendedor.getOrdenesPendientes().isEmpty()) {
+                    String mensajeFabricaNotif = "Se han entregado los productos " ;
+                    String asuntoVendedor = "Orden De produccion";
+                    vendedor.recibirNotificacion(new Notificacion(mensajeFabricaNotif, asuntoVendedor, vendedor));
+                    vendedor.getOrdenesPendientes().removeAll(vendedor.getOrdenesPendientes());
+                }
+                break;
             case 2:
                 System.out.println();
                 System.out.println("========= CUENTA BANCARIA =========");
@@ -1174,6 +1183,7 @@ public class MainMenu {
             else{
                 System.out.println();
                 System.out.println(vendedor.mostrarNotificaciones() + "\n"); // Si es así entonces se muestran las notificaciones.
+                vendedor.getNotificaciones().removeAll(vendedor.getNotificaciones());
             }
                 break;
             case 4:

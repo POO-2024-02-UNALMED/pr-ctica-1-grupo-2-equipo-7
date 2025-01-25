@@ -13,6 +13,7 @@ public class Vendedor extends Usuario implements Serializable{
     Inventario inventario;
     Fabrica fabrica;
     private ArrayList<ArrayList<Object>> ordenesPendientes; //alejandro funcionalidad 5 reporte
+    ArrayList<Integer> cantidades = new ArrayList<>();
 
     public Vendedor(String nombre, CuentaBancaria cuenta, Inventario inventario, Fabrica fabrica){
         super(nombre, cuenta);
@@ -22,6 +23,10 @@ public class Vendedor extends Usuario implements Serializable{
     }
 
     // getters y setters
+    public ArrayList<Integer> getCantidades() {
+        return cantidades;
+    }
+    
     
     // Genera un reporte detallado del inventario actual, incluyendo productos vendidos, no vendidos y cantidades vendidas.
      
@@ -39,7 +44,7 @@ public class Vendedor extends Usuario implements Serializable{
 
         return reporte;
     }
-    // Permite al vendedor decidir qué productos y cuántas unidades solicitar a la fábrica.
+    //Permite al vendedor decidir qué productos y cuántas unidades solicitar a la fábrica.
 
     public String crearOrdenFabricacion() {
         Scanner scanner = new Scanner(System.in);
@@ -50,37 +55,42 @@ public class Vendedor extends Usuario implements Serializable{
             String nombreProducto = scanner.nextLine();
             if (nombreProducto.equalsIgnoreCase("fin")) {
                 break;
+            
             }
-
             Producto producto = buscarProducto(nombreProducto);
-            if (producto == null) {
+             if (producto == null) {
                 return "Producto no encontrado: " + nombreProducto;
+                
             }
 
             String entradaCantidad = scanner.nextLine();
             boolean esNumero = entradaCantidad.matches("\\d+");
             if (!esNumero) {
-                return "Entrada inválida, ingrese un número válido para la cantidad.";
+                return "Cantidad inválida.\nvuelva a ingresa el producto con una cantidad valida";
             }
 
             int cantidad = Integer.parseInt(entradaCantidad);
 
             productosSeleccionados.add(producto);
             cantidades.add(cantidad);
+            ArrayList<Object> orden = new ArrayList<>();
+            orden.add(productosSeleccionados);
+            orden.add(cantidades);
+            ordenesPendientes.add(orden);
+
+            
+        if(cantidad>50){
+            ordenesPendientes.removeAll(ordenesPendientes);
+        }
         }
 
         if (productosSeleccionados.isEmpty()) {
             return "No se seleccionaron productos. La orden no se creó.";
         }
-
-        ArrayList<Object> orden = new ArrayList<>();
-        orden.add(productosSeleccionados);
-        orden.add(cantidades);
-        ordenesPendientes.add(orden);
-
         String mensajeFabrica = fabrica.recibirOrden(productosSeleccionados, cantidades);
+        
             return "Orden creada con éxito. Productos seleccionados: " + productosSeleccionados.size() + ". \n"  + mensajeFabrica;
-            }
+        }
     
 
     private Producto buscarProducto(String nombre) {

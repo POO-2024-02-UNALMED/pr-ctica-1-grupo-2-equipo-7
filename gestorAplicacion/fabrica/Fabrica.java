@@ -13,7 +13,8 @@ public class Fabrica implements Serializable{
     private List<ArrayList<Object>> ordenesPendientes;
     Inventario inventario;
     Vendedor vendedor;
-    public Fabrica(Inventario inventario) {
+
+    public Fabrica(Inventario inventario, Vendedor vendedor) {
         this.trabajadores = new ArrayList<>();
         this.ordenesPendientes = new ArrayList<>();
         this.inventario = inventario;
@@ -25,6 +26,7 @@ public class Fabrica implements Serializable{
     }
     
     // getters y setters
+
    public List<ArrayList<Object>> getOrdenesPendientes() {
         return ordenesPendientes;
     }
@@ -35,7 +37,6 @@ public class Fabrica implements Serializable{
         ArrayList<Object> orden = new ArrayList<>();
         orden.add(productos);
         orden.add(cantidades);
-
 
          int trabajadoresRequeridos = calcularTrabajadoresRequeridos(cantidades);
          if (asignarTrabajadores(trabajadoresRequeridos)) {
@@ -54,7 +55,8 @@ public class Fabrica implements Serializable{
             int cantidad = cantidades.get(i);
             inventario.reabastecerProductos(cantidad, producto);
         }
-        return "Se han entregado los productos";
+        
+        return "Le mandaremos un correo cuando se entreguen sus productos";
     }
 
     private boolean asignarTrabajadores(int trabajadoresRequeridos) {
@@ -83,7 +85,6 @@ public class Fabrica implements Serializable{
             }
         }
     }
-
     
     private int calcularTrabajadoresRequeridos(ArrayList<Integer> cantidades) {
         int trabajadoresPorUnidad = 2; // 2 trabajadores por producto
