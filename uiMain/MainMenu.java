@@ -7,8 +7,8 @@ import compras.HistorialCompras;
 import fabrica.Fabrica;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 import pasarelaPago.Transaccion;
 import tienda.Inventario;
 import tienda.Producto;   
@@ -132,7 +132,7 @@ public class MainMenu {
                   break;
               case 3: // Menú de devoluciones
                   System.out.println();
-                  new ReturnMenu(comprador, vendedor).display();
+                  returnMenuDisplay();
                   break;
               case 4:
 
@@ -320,8 +320,52 @@ public class MainMenu {
       return test;
     }
 
-  // Esto es para realizar la compra
-  public void buyProcessDisplay(){
+    // Proceso de reembolso
+    public void returnMenuDisplay(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("===== MENÚ DE DEVOLUCIONES =====");
+
+        System.out.print("¿Conoce el ID de la factura y del producto a devolver? (S/N): ");
+        Boolean conoceIdFactura = scanner.nextLine().trim().toUpperCase().equals("S") ? true : false;
+
+        System.out.println();
+
+        if (!conoceIdFactura) {
+            System.out.println("Por favor, consiga la información necesaria en el numeral 6 del MENÚ COMPRADOR.\n");
+            return; 
+        }
+
+        System.out.print("Ingrese el ID de la factura donde se encuentra el producto: ");
+        int idFactura = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Ingrese el ID del producto a devolver: ");
+        int idProducto = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Ingrese la cantidad a devolver: ");
+        int cantidadRetornar = Integer.parseInt(scanner.nextLine());
+        System.out.println();
+
+        String resultado = comprador.devolverProducto(idFactura, idProducto, cantidadRetornar, vendedor);
+
+        switch (resultado) {
+            case "FacturaInvalida":
+                System.out.println("La factura ingresada no fue encontrada.\n");
+                break;
+            case "ProductoInvalido":
+                System.out.println("El producto ingresado no cumple con los requisitos para devolución.\n" +
+                                    "Razones posibles:\n" +
+                                    "- No se encontró en la factura.\n" +
+                                    "- No es un producto retornable.\n" +
+                                    "- La cantidad especificada para devolver no es válida.");
+                break;
+            default:
+            System.out.println("La devolución se ha procesado correctamente, en sus notificaciones encontrará más información.\n");
+        }
+    }
+
+    // Esto es para realizar la compra
+    public void buyProcessDisplay(){
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
@@ -392,6 +436,8 @@ public class MainMenu {
                         Notificacion notificacion = new Notificacion("Se le informa que su compra por " + comprador.getCarritoCompras().getPrecioTotal() + " pesos ha sido realizada exitosamente.", "¡Compra realizada exitosamente!", comprador);
                         comprador.recibirNotificacion(notificacion); // Se envía una notificación al comprador informando que la compra ha sido realizada exitosamente.
 
+                        Notificacion notificacion2 = new Notificacion("Se le informa que el usuario " + comprador.getNombre() + " ha realizado una compra por " + comprador.getCarritoCompras().getPrecioTotal() + "pesos.", "Se le informa de una nueva compra", vendedor);
+                        vendedor.recibirNotificacion(notificacion2);
                         ArrayList<Boolean> cantidadProductos = new ArrayList<>(); // Se crea este ArrayList para almacenar si toca o no enviar una notificación al vendedor.
                         
                         for (Producto producto : comprador.getCarritoCompras().getListaItems()){
@@ -447,6 +493,9 @@ public class MainMenu {
 
                     Notificacion notificacion = new Notificacion("Se le informa que su compra por " + comprador.getCarritoCompras().getPrecioTotal() + " pesos ha sido realizada exitosamente.", "¡Compra realizada exitosamente!", comprador);
                     comprador.recibirNotificacion(notificacion); // Se envía una notificación al comprador informando que la compra ha sido realizada exitosamente.
+
+                    Notificacion notificacion2 = new Notificacion("Se le informa que el usuario " + comprador.getNombre() + " ha realizado una compra por " + comprador.getCarritoCompras().getPrecioTotal() + "pesos.", "Se le informa de una nueva compra", vendedor);
+                    vendedor.recibirNotificacion(notificacion2);
 
                     ArrayList<Boolean> cantidadProductos = new ArrayList<>(); // Se crea este ArrayList para almacenar si toca o no enviar una notificación al vendedor.
                     for (Producto producto : comprador.getCarritoCompras().getListaItems()){
@@ -534,7 +583,7 @@ public class MainMenu {
     //modifica un elemento
 
      // Llamada a lógica para mostrar el catálogo
-     System.out.println(String.format("%72s", "===== CATÁLOGO ===== \n"));
+     System.out.println(String.format("%105s", "===== CATÁLOGO ===== \n"));
 
      //Se guarda la matriz de productos en la variable catálogo
 
@@ -555,12 +604,12 @@ public class MainMenu {
        for (int columna = 0; columna < catalogo[fila].length; columna++) {
          if (columna == 7) {
            if (catalogo[fila][columna] instanceof Producto) {
-             String salida = String.format("%-15s",((Producto) catalogo[fila][columna]).getNombre());
+             String salida = String.format("%-28s",((Producto) catalogo[fila][columna]).getNombre());
              System.out.println(salida);
             
            }else {
              
-               String salida = String.format("%-15s",catalogo[fila][columna]);
+               String salida = String.format("%-28s",catalogo[fila][columna]);
                System.out.println(salida);
            
            }
@@ -570,12 +619,12 @@ public class MainMenu {
 
              if (catalogo[fila][columna] instanceof Producto) {
 
-               String salida = String.format("%-15s",((Producto) catalogo[fila][columna]).getNombre());
+               String salida = String.format("%-28s",((Producto) catalogo[fila][columna]).getNombre());
                System.out.print(salida);
                System.out.print(" ");
              }else {
 
-               String salida = String.format("%-15s",catalogo[fila][columna]);
+               String salida = String.format("%-28s",catalogo[fila][columna]);
                System.out.print(salida);
                  System.out.print(" ");
              }
@@ -726,9 +775,14 @@ public class MainMenu {
                                 llevar="1";
                                 System.out.println("Cantidad inválida , se te asignará una por default que es 1");
                             }
-                                String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
-                                System.out.println(o);
-                                return false;
+                                if (productoSeleccionado.getCantidad() <= 0){
+                                    System.out.println("Error. No hay más productos disponibles.");
+                                    continue;
+                                }else{
+                                    String o = this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
+                                    System.out.println(o);
+                                    return false;
+                                }
 						case 2:
                             System.out.println(productoSeleccionado.toStringdif());
 							continue;
@@ -795,9 +849,15 @@ public class MainMenu {
                         llevar="1";
                         System.out.println("Cantidad inválida , se te asignará una por default que es 1");
                     }
+                    if (productoSeleccionado.getCantidad() <= 0){
+                        System.out.println("Error. No hay mas productos disponibles.");
+                        continue;
+                    }
+                    else{
                         this.comprador.getCarritoCompras().añadirProducto(productoSeleccionado, Integer.parseInt(llevar));
                         System.out.println("Producto añadido correctamente");
                         return false;
+                    }
                     case "2":
                         System.out.println(productoSeleccionado.toStringdif());
                         continue;
