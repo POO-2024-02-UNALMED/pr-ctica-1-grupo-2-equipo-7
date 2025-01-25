@@ -17,10 +17,6 @@ import baseDatos.Deserializador;
 public class App {
     public static void main(String[] args) {
         //Aqui se realiza la serializacion para enviar la tienda ya cargada a el MainMenu (Esto es solo un ejemplo)
-
-//         Producto producto1 = new Producto(9, 10, 0, 0, Producto.Categoria.TECNOLOGIA, 1, "Laptop", 1200, "Laptop de alto rendimiento", true);
-//         Producto producto2 = new Producto(200, 20, 0, 0, Producto.Categoria.ASEO, 2, "Jabón", 5, "Jabón antibacterial", false);
-//         Producto producto3 = new Producto(100, 15, 0, 0, Producto.Categoria.COMIDA, 3, "Galletas", 3, "Galletas de chocolate", false);
         
        
 
@@ -32,9 +28,6 @@ public class App {
 //         ArrayList<Producto> categoriaDeportes = new ArrayList<>();
 
 //         Inventario inventario = new Inventario(categoriaTecnologia, categoriaAseo, categoriaComida, categoriaPapeleria, categoriaJuegueteria, categoriaDeportes);
-//         inventario.añadirProducto(producto1);
-//         inventario.añadirProducto(producto2);
-//         inventario.añadirProducto(producto3);
 //         Comprador comprador = new Comprador("Carlos Bustamante" ,null, null);
 //         CarritoCompras carritoCompras = new CarritoCompras(comprador);
 //         comprador.setCarritoCompras(carritoCompras);
@@ -51,32 +44,79 @@ public class App {
 //  //Productos instanciados para probar la muestra de productos por pantalla
         
 //         Producto.Categoria[] categorias = Producto.Categoria.values();
-        
-//         for (int i = 3; i < 100; i++) {
-//             int cantidad = (i + 1) * 5;  // Solo un ejemplo de valor para cantidad
-//             int cantidadAlerta = (i + 1) * 2;  // Solo un ejemplo de valor para cantidadAlerta
+//         String[] nombresTecnologia = {"Celular Pro Max", "Laptop Ultra", "Tableta XForce", "Audífonos Infinity", "Cámara Vision", "Smartwatch Alpha", "Teclado Gamer", 
+//             "Mouse Speed", "Monitor Curve", "Drone Veloz", "Impresora 3D", "Router MaxNet", "Smart TV Plus", "Cargador Turbo", "Auriculares Sonic", "Memoria Flash",
+//             "Bocinas Boom", "Reproductor Blu-ray", "Consola Gamium", "Proyector HD"};
+
+//         String[] nombresAseo = {"Jabón Líquido", "Shampoo Revitalizante", "Cepillo Dental", "Pasta Dental Blanqueadora", "Desinfectante Multiusos", "Esponja Suave", 
+//             "Toallas Húmedas", "Gel Antibacterial", "Cera de Piso", "Limpiavidrios", "Desodorante en Spray", "Bálsamo Reparador", "Enjuague Bucal", "Lavaplatos Ecológico",
+//             "Detergente Líquido", "Ambientador Floral", "Papel Higiénico", "Toallas de Mano", "Cepillo para Uñas", "Limpiador de Piso"};
+
+//         String[] nombresComida = {"Manzana Roja", "Queso Cheddar", "Leche Deslactosada", "Yogur Griego", "Pan Integral", "Aceite de Oliva", "Cereal Multigrano", 
+//             "Galletas Waffer", "Mantequilla de Maní", "Pasta Integral", "Miel Orgánica", "Jugo de Naranja", "Avena Instantánea", "Mermelada de Fresa", 
+//             "Agua Mineral", "Frijoles Negros", "Atún en Lata", "Sopa de Pollo", "Barra de Granola", "Palomitas de Maíz"};
+
+//         String[] nombresPapeleria = {"Cuaderno A4", "Lápiz HB", "Bolígrafo Azul", "Borrador Mágico", "Libreta de Notas", "Carpeta de Anillas", "Goma de Borrar", "Tijeras Escolares",
+//             "Pegamento en Barra", "Cinta Adhesiva", "Regla de Medición", "Rotuladores de Colores", "Estuche de Lápices", "Bloc de Dibujo", "Marcadores Permanentes",
+//             "Papel de Colores", "Grapadora Compacta", "Perforadora de Papel", "Sobre de Cartón", "Compás de Precisión"};
+
+//         String[] nombresJugueteria = {"Muñeca Fashion", "Auto Rayo", "Pelota Saltarina", "Lego Constructor", "Puzzle 3D", "Figura de Acción", "Bicicleta Infantil",
+//             "Patinete Eléctrico", "Dron Junior", "Set de Tren", "Juguete de Cocina", "Castillo de Princesa", "Helicóptero RC", "Avión de Pasajeros", "Torre de Bloques",
+//             "Rompecabezas Animal", "Bate de Béisbol", "Robot Interactivo", "Tabla de Skate", "Cubo Rubik"};
+
+//         String[] nombresDeportes = {"Balón de Fútbol", "Raqueta de Tenis", "Gorra de Running", "Zapatillas Deportivas", "Guantes de Boxeo", "Pesa Kettlebell", "Bolsa de Deporte",
+//             "Gafas de Natación", "Bicicleta de Montaña", "Patineta Freestyle", "Mancuerna Ajustable", "Camiseta de futbol", "Pantalón de Yoga", "Protector Bucal", "Cuerda para Saltar",
+//             "Banco de Pesas", "Chaleco Reflectivo", "Casco de Ciclismo", "Balón de Baloncesto", "Reloj Deportivo"};
+
+//         Random random = new Random();
+
+//         for (int i = 0; i < 100; i++) {
+//             int cantidad = (i + 1) * 5;  // Ejemplo de valor para cantidad
+//             int cantidadAlerta = (i + 1) * 2;  // Ejemplo de valor para cantidadAlerta
 //             int ID = i + 1;
-//             String nombre = "Producto" + (i + 1);
-//             int precio = 10 + i * 3;  // Solo un ejemplo de precio
+//             int precio = 10 + i * 3;  // Ejemplo de precio
 //             String descripcion = "Descripcion del producto " + (i + 1);
 //             boolean retornable = (i % 2 == 0);  // Alterna retornabilidad
 
-//             // Alternar categorías cíclicamente
+//             // Determina la categoría y nombre del producto
 //             Producto.Categoria categoria = categorias[i % categorias.length];
+//             String nombre;
+            
+//             switch (categoria) {
+//                 case TECNOLOGIA:
+//                     nombre = nombresTecnologia[random.nextInt(nombresTecnologia.length)];
+//                     break;
+//                 case ASEO:
+//                     nombre = nombresAseo[random.nextInt(nombresAseo.length)];
+//                     break;
+//                 case COMIDA:
+//                     nombre = nombresComida[random.nextInt(nombresComida.length)];
+//                     break;
+//                 case PAPELERIA:
+//                     nombre = nombresPapeleria[random.nextInt(nombresPapeleria.length)];
+//                     break;
+//                 case JUGUETERIA:
+//                     nombre = nombresJugueteria[random.nextInt(nombresJugueteria.length)];
+//                     break;
+//                 case DEPORTES:
+//                     nombre = nombresDeportes[random.nextInt(nombresDeportes.length)];
+//                     break;
+//                 default:
+//                     nombre = "Producto" + (i + 1);
+//             }
 
-//              inventario.añadirProducto(new Producto(
-//                      cantidad, 
-//                      cantidadAlerta, 
-//                      0, 
-//                      0,
-//                      categoria, 
-//                      ID, 
-//                      nombre, 
-//                      precio, 
-//                      descripcion, 
-//                      retornable
-//                  )); 
-             
+//             inventario.añadirProducto(new Producto(
+//                     cantidad, 
+//                     cantidadAlerta, 
+//                     0, 
+//                     0, 
+//                     categoria, 
+//                     ID, 
+//                     nombre, 
+//                     precio, 
+//                     descripcion, 
+//                     retornable
+//             ));
 //         }
 
         
@@ -96,7 +136,7 @@ public class App {
         //Pero eso lo consultaré luego con ustedes.
 
         Deserializador.deserializarInventarioStatic();
-        MainMenu mainMenu = new MainMenu();
+       MainMenu mainMenu = new MainMenu();
         
         // Mostrar el menú principal
         mainMenu.display();
