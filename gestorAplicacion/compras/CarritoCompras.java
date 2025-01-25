@@ -278,6 +278,153 @@ public class CarritoCompras implements Serializable{
 			   }
 			return null;
 		}
+		public String descuentomembresia() {
+			if(this.getUsuario().getMembresia()==null) {//el usuario no posee membresia entonces se le asigna una membresia y el incentivo es mejor que si ya la tuviese 
+				if(this.usuario.getVacescomprado()>=3 && this.usuario.getVacescomprado()<6) {
+					usuario.setMembresia("Bronce");
+					Producto  economico=Inventario.buscarProductoMaseconomico();
+					for (Producto producto : this.listaItems) {
+						if(producto==economico) {// aqui buscamos el producto mas barato del inventario 
+							int descuento = producto.aplicardescuento(producto, 0.05);
+							this.descuentoPorproductos+=descuento;
+						   
+							return "Felicidades, ahora eres miembro bronce, por esto recibes un descuento de " + String.valueOf(descuento) + " en el producto " + producto.getNombre();
+							
+							
+						
+						}
+						} Producto  economico1=this.buscarProductoMaseconomico();// aqui el mas barato del carrito del cliente
+						for (Producto producto : this.listaItems) {
+							if(producto==economico1) {
+								int descuento = producto.aplicardescuento(producto, 0.05);
+								this.descuentoPorproductos+=descuento;
+								
+								return "Felicidades, ahora eres miembro bronce, por esto recibes un descuento de " + String.valueOf(descuento) + " en el producto " + producto.getNombre();
+						
+					}
+				}
+					
+				}else if(this.usuario.getVacescomprado()>=6 && this.usuario.getVacescomprado()<12) {
+					usuario.setMembresia("Oro");
+					Producto  economico=Inventario.buscarProductoMaseconomico();
+					String   o= this.añadirProducto(economico, 1);
+					for (Producto producto : this.listaItems) {
+						if(producto==economico) {// aqui buscamos el producto mas barato del inventario para obsequiarselo
+							int descuento = producto.aplicardescuento(producto, 1);
+							this.descuentoPorproductos+=1;
+							
+							return "Felicidades, ahora eres miembro Oro, por esto recibes un obsequio de " +producto.getNombre() + " totalmente gratis";
+					
+					
+					
+					
+				
+						}
+					}
+				
+				}else if(this.usuario.getVacescomprado()>=12) {
+					usuario.setMembresia("Platino");
+					double descuento=0.07;
+					this.descuentoAplicadoCompra=(int) (this.descuentoAplicadoCompra+(this.precioTotal*descuento));
+					this.precioTotal=this.precioTotal-this.descuentoAplicadoCompra;
+					Producto  economico=Inventario.buscarProductoMaseconomico();
+					String   o= this.añadirProducto(economico, 1);
+					for (Producto producto : this.listaItems) {
+						if(producto==economico) {// aqui buscamos el producto mas barato del inventario para obsequiarselo
+							int descuento1 = producto.aplicardescuento(producto, 1);
+							this.descuentoPorproductos+=descuento1;
+				   
+							return "Gracias a tu fidelidad eres un miembro platino y  obtuviste un descuento de " + this.descuentoAplicadoCompra + ", ademas de obtener el siguiente obsequio totalmentre gratis: "+ producto.getNombre();
+					
+						}
+					}
+				}
+			}else if(usuario.getMembresia() != null) {
+				if(usuario.getMembresia()=="Bronce") {
+					if(this.listaItems.size()>10) {//el usuario posee membresia y esta llevando al mayoreo
+						Producto  economico1=this.buscarProductoMaseconomico();// aqui el mas barato del carrito del cliente
+						
+						for (Producto producto : this.listaItems) {
+							if(producto==economico1) {
+								int descuento = producto.aplicardescuento(producto, 0.05);
+								this.descuentoPorproductos+=descuento;
+							 double retorno =   this.getPrecioTotal()*0.02;
+							 usuario.getCuentaBancaria().recargarCuenta(retorno);//EL RETORNO DEL DINERO NO SE RESTA DEL CARRITO, SE LE GIRA AL CLIENTE Y YA 
+								return " Por ser un cliente Bronce y llevar una compra mayorista hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre() + " y un reembolso del 0.02 para la rentabilidad";
+						 
+					}
+				}
+						
+			}else if(this.listaItems.size()< 10) {//el usuario solo posee membresia y no lleva al mayoreo
+				Producto  economico1=this.buscarProductoMaseconomico();// aqui el mas barato del carrito del cliente
+				
+				for (Producto producto : this.listaItems) {
+					if(producto==economico1) {
+						int descuento = producto.aplicardescuento(producto, 0.02);
+						this.descuentoPorproductos+=descuento;
+					   return "Por ser un cliente Bronce hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre();
+				
+			}
+
+				}
+			}
+			}else if(usuario.getMembresia()=="Oro") {
+				if(this.listaItems.size()>10) {//el usuario posee membresia y esta llevando al mayoreo
+					Producto  economico1=this.buscarProductoMaseconomico();// aqui el mas barato del carrito del cliente
+					
+					for (Producto producto : this.listaItems) {
+						if(producto==economico1) {
+						 int descuento = producto.aplicardescuento(producto, 0.10);
+						 this.descuentoPorproductos+=1;
+						 double retorno =   this.getPrecioTotal()*0.04;
+						 usuario.getCuentaBancaria().recargarCuenta(retorno);
+							return "Por ser un cliente Oro y llevar una compra mayorista hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre() + " y un reembolso del 0.04 para la rentabilidad";
+						
+				}
+					}
+				}else if(this.listaItems.size()< 10) {//el usuario solo posee membresia y no lleva al mayoreo
+					Producto  economico1=this.buscarProductoMaseconomico();
+					
+					for (Producto producto : this.listaItems) {
+						if(producto==economico1) {
+							int descuento = producto.aplicardescuento(producto, 0.05);
+							this.descuentoPorproductos+=descuento;
+						   return "Por ser un cliente Oro hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre();
+			}
+			}
+				}
+			}else if(usuario.getMembresia()=="Platino") {
+				if(this.listaItems.size()>10) {//el usuario posee membresia y esta llevando al mayoreo
+					Producto  economico1=this.buscarProductoMaseconomico();
+					
+					for (Producto producto : this.listaItems) {
+						if(producto==economico1) {
+						 int descuento = producto.aplicardescuento(producto, 0.15);
+						 this.descuentoPorproductos+=descuento;
+						 double retorno =   this.getPrecioTotal()*0.067;
+						 usuario.getCuentaBancaria().recargarCuenta(retorno);
+							return "Por ser un cliente Platino y llevar una compra mayorista hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre() + " y un reembolso del 0.067 para la rentabilidad";
+						
+				}
+					}
+				
+			}else if(this.listaItems.size()< 10) {//el usuario solo posee membresia y no lleva al mayoreo
+				Producto  economico1=this.buscarProductoMaseconomico();
+				
+				for (Producto producto : this.listaItems) {
+					if(producto==economico1) {
+						int descuento = producto.aplicardescuento(producto, 0.10);
+					   this.descuentoPorproductos+=1;
+					   return "Por ser un cliente Platino hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre();
+		}
+		}
+			}
+			}
+				
+			}
+		 return null;
+		
+	  }
 		 public String descuentoporproductomenosvendido() {//si el usuario lleva el producto menos vendido de la tienda le damos un descuento 
 			   Producto productoMenossVendido= Inventario.buscarProductoMenosVendido();
 			   for (Producto producto : this.listaItems) {
@@ -309,152 +456,6 @@ public class CarritoCompras implements Serializable{
 		           }
 				return maseconomico;
 		       }
-		 public String descuentomembresia() {
-			   if(this.getUsuario().getMembresia()==null) {//el usuario no posee membresia entonces se le asigna una membresia y el incentivo es mejor que si ya la tuviese 
-				   if(this.usuario.getVacescomprado()>=3 && this.usuario.getVacescomprado()<6) {
-					   usuario.setMembresia("Bronce");
-					   Producto  economico=Inventario.buscarProductoMaseconomico();
-					   for (Producto producto : this.listaItems) {
-				           if(producto==economico) {// aqui buscamos el producto mas barato del inventario 
-				        	   int descuento = producto.aplicardescuento(producto, 0.05);
-				        	   this.descuentoPorproductos+=descuento;
-				        	  
-				        	   return "Felicidades, ahora eres miembro bronce, por esto recibes un descuento de " + String.valueOf(descuento) + " en el producto " + producto.getNombre();
-				        	   
-				        	   
-				           
-				           }
-				           } Producto  economico1=this.buscarProductoMaseconomico();// aqui el mas barato del carrito del cliente
-						   for (Producto producto : this.listaItems) {
-					           if(producto==economico1) {
-					        	   int descuento = producto.aplicardescuento(producto, 0.05);
-					        	   this.descuentoPorproductos+=descuento;
-					        	   
-					        	   return "Felicidades, ahora eres miembro bronce, por esto recibes un descuento de " + String.valueOf(descuento) + " en el producto " + producto.getNombre();
-						   
-					   }
-				   }
-					   
-				   }else if(this.usuario.getVacescomprado()>=6 && this.usuario.getVacescomprado()<12) {
-					   usuario.setMembresia("Oro");
-					   Producto  economico=Inventario.buscarProductoMaseconomico();
-					   String   o= this.añadirProducto(economico, 1);
-					   for (Producto producto : this.listaItems) {
-				           if(producto==economico) {// aqui buscamos el producto mas barato del inventario para obsequiarselo
-				        	   int descuento = producto.aplicardescuento(producto, 1);
-				        	   this.descuentoPorproductos+=1;
-				        	   
-				        	   return "Felicidades, ahora eres miembro Oro, por esto recibes un obsequio de " +producto.getNombre() + " totalmente gratis";
-					   
-					   
-					   
-					   
-				   
-				           }
-					   }
-				   
-				   }else if(this.usuario.getVacescomprado()>=12) {
-					   usuario.setMembresia("Platino");
-					   double descuento=0.07;
-					   this.descuentoAplicadoCompra=(int) (this.descuentoAplicadoCompra+(this.precioTotal*descuento));
-					   this.precioTotal=this.precioTotal-this.descuentoAplicadoCompra;
-					   Producto  economico=Inventario.buscarProductoMaseconomico();
-					   String   o= this.añadirProducto(economico, 1);
-					   for (Producto producto : this.listaItems) {
-				           if(producto==economico) {// aqui buscamos el producto mas barato del inventario para obsequiarselo
-				        	   int descuento1 = producto.aplicardescuento(producto, 1);
-				        	   this.descuentoPorproductos+=descuento1;
-					  
-				        	   return "Gracias a tu fidelidad eres un miembro platino y  obtuviste un descuento de " + this.descuentoAplicadoCompra + ", ademas de obtener el siguiente obsequio totalmentre gratis: "+ producto.getNombre();
-					   
-				           }
-					   }
-				   }
-			   }else if(usuario.getMembresia() != null) {
-				   if(usuario.getMembresia()=="Bronce") {
-					   if(this.listaItems.size()>10) {//el usuario posee membresia y esta llevando al mayoreo
-						   Producto  economico1=this.buscarProductoMaseconomico();// aqui el mas barato del carrito del cliente
-						   
-						   for (Producto producto : this.listaItems) {
-					           if(producto==economico1) {
-					        	   int descuento = producto.aplicardescuento(producto, 0.05);
-					        	   this.descuentoPorproductos+=descuento;
-					        	double retorno =   this.getPrecioTotal()*0.02;
-					        	usuario.getCuentaBancaria().recargarCuenta(retorno);//EL RETORNO DEL DINERO NO SE RESTA DEL CARRITO, SE LE GIRA AL CLIENTE Y YA 
-					        	   return " Por ser un cliente Bronce y llevar una compra mayorista hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre() + " y un reembolso del 0.02 para la rentabilidad";
-		 				   
-					   }
-				   }
-						   
-			   }else if(this.listaItems.size()< 10) {//el usuario solo posee membresia y no lleva al mayoreo
-				   Producto  economico1=this.buscarProductoMaseconomico();// aqui el mas barato del carrito del cliente
-				   
-				   for (Producto producto : this.listaItems) {
-			           if(producto==economico1) {
-			        	   int descuento = producto.aplicardescuento(producto, 0.02);
-			        	   this.descuentoPorproductos+=descuento;
-			        	  return "Por ser un cliente Bronce hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre();
-				   
-			   }
-
-				   }
-			   }
-			   }else if(usuario.getMembresia()=="Oro") {
-				   if(this.listaItems.size()>10) {//el usuario posee membresia y esta llevando al mayoreo
-					   Producto  economico1=this.buscarProductoMaseconomico();// aqui el mas barato del carrito del cliente
-					   
-					   for (Producto producto : this.listaItems) {
-				           if(producto==economico1) {
-				        	int descuento = producto.aplicardescuento(producto, 0.10);
-				        	this.descuentoPorproductos+=1;
-				        	double retorno =   this.getPrecioTotal()*0.04;
-				        	usuario.getCuentaBancaria().recargarCuenta(retorno);
-				        	   return "Por ser un cliente Oro y llevar una compra mayorista hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre() + " y un reembolso del 0.04 para la rentabilidad";
-						   
-				   }
-					   }
-				   }else if(this.listaItems.size()< 10) {//el usuario solo posee membresia y no lleva al mayoreo
-					   Producto  economico1=this.buscarProductoMaseconomico();
-					   
-					   for (Producto producto : this.listaItems) {
-				           if(producto==economico1) {
-				        	   int descuento = producto.aplicardescuento(producto, 0.05);
-				        	   this.descuentoPorproductos+=descuento;
-				        	  return "Por ser un cliente Oro hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre();
-			   }
-			   }
-				   }
-			   }else if(usuario.getMembresia()=="Platino") {
-				   if(this.listaItems.size()>10) {//el usuario posee membresia y esta llevando al mayoreo
-					   Producto  economico1=this.buscarProductoMaseconomico();
-					   
-					   for (Producto producto : this.listaItems) {
-				           if(producto==economico1) {
-				        	int descuento = producto.aplicardescuento(producto, 0.15);
-				        	this.descuentoPorproductos+=descuento;
-				        	double retorno =   this.getPrecioTotal()*0.067;
-				        	usuario.getCuentaBancaria().recargarCuenta(retorno);
-				        	   return "Por ser un cliente Platino y llevar una compra mayorista hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre() + " y un reembolso del 0.067 para la rentabilidad";
-						   
-				   }
-					   }
-				   
-			   }else if(this.listaItems.size()< 10) {//el usuario solo posee membresia y no lleva al mayoreo
-				   Producto  economico1=this.buscarProductoMaseconomico();
-				   
-				   for (Producto producto : this.listaItems) {
-			           if(producto==economico1) {
-			        	   int descuento = producto.aplicardescuento(producto, 0.10);
-			        	  this.descuentoPorproductos+=1;
-			        	  return "Por ser un cliente Platino hoy te daremos un descuento de " + String.valueOf(descuento) + "en el producto "+ producto.getNombre();
-		   }
-		   }
-			   }
-			   }
-				   
-			   }
-			return null;
-		   
-		 }
+		 
     
 }
