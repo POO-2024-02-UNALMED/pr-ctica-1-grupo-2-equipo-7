@@ -92,4 +92,11 @@ public class Fabrica implements Serializable{
         return cantidadTotal * trabajadoresPorUnidad;
     }
 
+
+    public Vendedor getVendedor() {
+      return this.vendedor;
+    }
+    public void setVendedor(Vendedor value) {
+      this.vendedor = value;
+    }
 }

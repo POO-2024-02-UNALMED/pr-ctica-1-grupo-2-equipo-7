@@ -604,12 +604,12 @@ public class MainMenu {
        for (int columna = 0; columna < catalogo[fila].length; columna++) {
          if (columna == 7) {
            if (catalogo[fila][columna] instanceof Producto) {
-             String salida = String.format("%-28s",((Producto) catalogo[fila][columna]).getNombre());
+             String salida = String.format("%-22s",((Producto) catalogo[fila][columna]).getNombre());
              System.out.println(salida);
             
            }else {
              
-               String salida = String.format("%-28s",catalogo[fila][columna]);
+               String salida = String.format("%-22s",catalogo[fila][columna]);
                System.out.println(salida);
            
            }
@@ -619,12 +619,12 @@ public class MainMenu {
 
              if (catalogo[fila][columna] instanceof Producto) {
 
-               String salida = String.format("%-28s",((Producto) catalogo[fila][columna]).getNombre());
+               String salida = String.format("%-22s",((Producto) catalogo[fila][columna]).getNombre());
                System.out.print(salida);
                System.out.print(" ");
              }else {
 
-               String salida = String.format("%-28s",catalogo[fila][columna]);
+               String salida = String.format("%-22s",catalogo[fila][columna]);
                System.out.print(salida);
                  System.out.print(" ");
              }
