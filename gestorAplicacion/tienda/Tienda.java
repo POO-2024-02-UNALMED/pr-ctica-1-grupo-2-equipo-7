@@ -1,9 +1,8 @@
 package tienda;
 
+import compras.HistorialCompras;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import compras.HistorialCompras;
 import usuario.Comprador;
 import usuario.Usuario;
 
@@ -47,7 +46,7 @@ public class Tienda implements Serializable{
 	}
 
 
-}
+
 
     public Tienda(String nombre, Inventario inventario, boolean descuentoAleatorio, ArrayList<Usuario> usuariosRegistrados) {
         this.setNombre(nombre);
@@ -63,4 +62,4 @@ public class Tienda implements Serializable{
         return inventario.crearCatalogo(historial);
     }
 
-	
+}
