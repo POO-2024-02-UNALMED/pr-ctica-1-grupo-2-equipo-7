@@ -53,7 +53,7 @@ public class Fabrica implements Serializable{
         for (int i = 0; i < productos.size(); i++) {
             Producto producto = productos.get(i);
             int cantidad = cantidades.get(i);
-            inventario.reabastecerProductos(cantidad, producto);
+            inventario.ajusteProductos(producto, "orden fabricacion", cantidad);
         }
         
         return "Le mandaremos un correo cuando se entreguen sus productos";

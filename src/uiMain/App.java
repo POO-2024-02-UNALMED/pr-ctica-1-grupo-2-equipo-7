@@ -1,16 +1,16 @@
 package uiMain;
 
-import compras.CarritoCompras;
-import fabrica.Fabrica;
-import java.util.ArrayList;
-import java.util.Random;
-import pasarelaPago.CuentaBancaria;
-import tienda.Inventario;
-import tienda.Producto;
-import tienda.Tienda;
-import usuario.Comprador;
-import usuario.Notificacion;
-import usuario.Vendedor;
+// import compras.CarritoCompras;
+// import fabrica.Fabrica;
+// import java.util.ArrayList;
+// import java.util.Random;
+// import pasarelaPago.CuentaBancaria;
+// import tienda.Inventario;
+// import tienda.Producto;
+// import tienda.Tienda;
+// import usuario.Comprador;
+// import usuario.Notificacion;
+// import usuario.Vendedor;
 import baseDatos.Deserializador;
 
 

@@ -116,6 +116,6 @@ public class Vendedor extends Usuario implements Serializable{
 
     @Override
     public String consultarCuentaBancaria(){
-        return "Estado de tu cuenta bancaria:\n" + "Saldo: " + this.getCuentaBancaria().getSaldo();
+        return "Estado de la tienda:\n" + "Saldo: " + this.getCuentaBancaria().getSaldo();
     }
 }

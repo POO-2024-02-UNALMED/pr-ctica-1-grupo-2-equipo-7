@@ -506,6 +506,20 @@ public class Inventario implements Serializable{
             }
         }     
     }
+
+    public static void ajusteProductos(Producto producto, String accion, int cantidadReponer){
+        String categoriaNombre = producto.getCategoria().getNombre();
+        ArrayList<Producto> categoria = buscarCategoria(categoriaNombre);
+        
+        for (Producto producto2 : categoria){
+            if (producto2.getID() == producto.getID()){         
+                if(accion.equalsIgnoreCase("orden fabricacion")){
+                    producto2.reabastecerCantidad(cantidadReponer);
+                    producto.reabastecerCantidad(cantidadReponer);
+                }
+            }
+        }     
+    }
     
     private static ArrayList<Producto> buscarCategoria(String nombre){
         if(nombre.equalsIgnoreCase("tecnologia")){
