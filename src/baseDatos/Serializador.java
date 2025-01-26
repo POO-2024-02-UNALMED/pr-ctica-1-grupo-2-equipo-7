@@ -10,7 +10,7 @@ import tienda.Inventario;
 import uiMain.MainMenu;
 
 public class Serializador {
-    private static File rutaTemp = new File("baseDatos\\temp");
+    private static File rutaTemp = new File("src\\baseDatos\\temp");
 
     //Método encargado de serializar un objeto comprador:
     public static void serializar(MainMenu menu){
@@ -85,7 +85,7 @@ public class Serializador {
     }
 
     public static void serializarInventarioStatic() { 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("inventarioStatic.dat"))) { 
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\inventarioStatic.dat"))) { 
             oos.writeObject(Inventario.getCategoriaTecnologia()); 
             oos.writeObject(Inventario.getCategoriaAseo()); 
             oos.writeObject(Inventario.getCategoriaComida()); 

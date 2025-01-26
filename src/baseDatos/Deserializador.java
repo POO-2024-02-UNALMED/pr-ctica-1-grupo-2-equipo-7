@@ -16,7 +16,7 @@ import usuario.Vendedor;
 
 public class Deserializador {
     //Este atributo es para definir la ruta al directorio tem que contiene las clases.
-    private static File rutaTemp = new File("baseDatos\\temp");
+    private static File rutaTemp = new File("src\\baseDatos\\temp");
 
     //Este método se encarga de deserializar un objeto comprador.
     public static void deserealizar(MainMenu menu){
@@ -90,7 +90,7 @@ public class Deserializador {
     }
 
     public static void deserializarInventarioStatic() { 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("inventarioStatic.dat"))) { 
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\inventarioStatic.dat"))) { 
             Inventario.setCategoriaTecnologia((ArrayList<Producto>) ois.readObject()); 
             Inventario.setCategoriaAseo((ArrayList<Producto>) ois.readObject()); 
             Inventario.setCategoriaComida((ArrayList<Producto>) ois.readObject()); 

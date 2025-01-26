@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Trabajador implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
-    private int idTrabajador;
+    private final int idTrabajador;
     private String nombre;
     private String horario; 
     private String estado; 
@@ -22,9 +22,6 @@ public class Trabajador implements Serializable{
         return idTrabajador;
     }
 
-    public void setIdTrabajador(int idTrabajador) {
-        this.idTrabajador = idTrabajador;
-    }
 
     public String getNombre() {
         return nombre;
