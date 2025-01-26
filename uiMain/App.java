@@ -45,29 +45,29 @@ public class App {
  //Productos instanciados para probar la muestra de productos por pantalla
         
         Producto.Categoria[] categorias = Producto.Categoria.values();
-        String[] nombresTecnologia = {"Celular", "Laptop", "Tableta ", "Audífonos", "Cámara", "Smartwatch", "Teclado", 
+        String[] nombresTecnologia = {"Celular", "Laptop", "Tableta ", "Audifonos", "Camara", "Smartwatch", "Teclado", 
             "Mouse", "Monitor", "Drone", "Impresor", "Router", "Smart TV", "Cargador", "Auriculares", "Memoria Flash",
             "Bafle", "Reproductor Blu-ray", "Consola Gamium", "Proyector HD"};
 
-        String[] nombresAseo = {"Jabón Líquido", "Shampoo", "Cepillo Dental", "Pasta Dental", "Desinfectante", "Esponja", 
+        String[] nombresAseo = {"Jabon Liquido", "Shampoo", "Cepillo Dental", "Pasta Dental", "Desinfectante", "Esponja", 
             "Toallas", "Gel Antibacterial", "Cera de Piso", "Limpiavidrios", "Desodorante", "Hilo Dental", "Enjuague Bucal", "Lavaplatos",
-            "Detergente", "Ambientador", "Papel Higiénico", "Toallas", "Cepillo", "Clorox"};
+            "Detergente", "Ambientador", "Papel Higienico", "Toallas", "Cepillo", "Clorox"};
 
         String[] nombresComida = {"Manzana", "Queso", "Leche", "Yogur", "Pan", "Aceite", "Cereal", 
             "Galletas", "Mantequilla", "Pasta", "Miel", "Jugo de Naranja", "Avena", "Mermelada", 
-            "Agua", "Frijoles", "Atún", "Sopa de Pollo", "Barra de Granola", "Palomitas"};
+            "Agua", "Frijoles", "Atun", "Sopa de Pollo", "Barra de Granola", "Palomitas"};
 
-        String[] nombresPapeleria = {"Cuaderno A4", "Lápiz HB", "Bolígrafo Azul", "Borrador Mágico", "Libreta", "Carpeta", "Borrador", "Tijeras",
+        String[] nombresPapeleria = {"Cuaderno A4", "Lapiz HB", "Boligrafo Azul", "Borrador Magico", "Libreta", "Carpeta", "Borrador", "Tijeras",
             "Pegamento", "Cinta", "Regla", "Marcadores", "Lapices", "Bloc de Dibujo", "Corrector",
-            "Papel de Colores", "Grapadora", "Perforadora", "Cartulina", "Compás"};
+            "Papel de Colores", "Grapadora", "Perforadora", "Cartulina", "Compas"};
 
-        String[] nombresJugueteria = {"Muñeca ", "Auto Rayo", "Pelota Saltarina", "Lego ", "Puzzle", "Figura de Acción", "Bicicleta",
-            "Patinete", "Dron Junior", "Set de Tren", "Juguete de Cocina", "Castillo de Princesa", "Helicóptero RC", "Avión de Pasajeros", "Torre de Bloques",
-            "Rompecabezas", "Bate de Béisbol", "Robot Interactivo", "Tabla de Skate", "Cubo Rubik"};
+        String[] nombresJugueteria = {"Muñeca ", "Auto Rayo", "Pelota Saltarina", "Lego ", "Puzzle", "Figura de Accion", "Bicicleta",
+            "Patinete", "Dron Junior", "Set de Tren", "Juguete de Cocina", "Castillo de Princesa", "Helicoptero RC", "Avion de Pasajeros", "Torre de Bloques",
+            "Rompecabezas", "Bate de beisbol", "Robot Interactivo", "Tabla de Skate", "Cubo Rubik"};
 
-        String[] nombresDeportes = {"Balón de Fútbol", "Raqueta de Tenis", "Gorra de Running", "Tennis", "Guantes de Boxeo", "Pesa Kettlebell", "Bolsa de Deporte",
-            "Gafas de Natación", "Bicicleta de Montaña", "Patineta Freestyle", "Mancuerna Ajustable", "Camiseta de futbol", "Pantalón de Yoga", "Protector Bucal", "Cuerda para Saltar",
-            "Banco de Pesas", "Chaleco Reflectivo", "Casco de Ciclismo", "Balón de Baloncesto", "Reloj Deportivo"};
+        String[] nombresDeportes = {"Balon de Futbol", "Raqueta de Tenis", "Gorra de Running", "Tennis", "Guantes de Boxeo", "Pesa Kettlebell", "Bolsa de Deporte",
+            "Gafas de Natacion", "Bicicleta de Montaña", "Patineta Freestyle", "Mancuerna Ajustable", "Camiseta de futbol", "Pantalon de Yoga", "Protector Bucal", "Cuerda para Saltar",
+            "Banco de Pesas", "Chaleco Reflectivo", "Casco de Ciclismo", "Balon de Baloncesto", "Reloj Deportivo"};
 
         Random random = new Random();
 
