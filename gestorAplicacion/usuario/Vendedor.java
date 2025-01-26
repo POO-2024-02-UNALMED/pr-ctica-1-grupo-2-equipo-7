@@ -31,6 +31,7 @@ public class Vendedor extends Usuario implements Serializable{
         ArrayList<Integer> cantidades = new ArrayList<>();
 
         while (true) {
+            System.out.print("Ingrese el nombre: ");
             String nombreProducto = scanner.nextLine();
             if (nombreProducto.equalsIgnoreCase("fin")) {
                 break;
@@ -42,6 +43,7 @@ public class Vendedor extends Usuario implements Serializable{
                 
             }
 
+            System.out.print("Ingrese la cantidad: ");
             String entradaCantidad = scanner.nextLine();
             boolean esNumero = entradaCantidad.matches("\\d+");
             if (!esNumero) {

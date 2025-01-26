@@ -1188,7 +1188,7 @@ public class MainMenu {
             case 1:
                 System.out.println();
                 System.out.println(inventario.generarReporte());
-                System.out.println("A continucacion elija los productos que quiere crear en la fabrica para reponer en el inventario.\nPrimero elija el producto presione enter y luego la cantidad le da enter y puede elegir otro producto y repite el proceso.\nAsegurese que este correcto el nombre y la cantidad de cada producto ya que si se equivoca tiene que ingresar todo de nuevo.\nSeleccione un maximo de 50 unidades por orden.\nIngrese primero el producto y luego la cantidad.\nEscriba fin para terminar la orden y enviarla o tambien para salir");
+                System.out.println("A continucacion elija los productos que quiere crear en la fabrica para reponer en el inventario.\n- Primero elija el producto y posteriormente la cantidad, puede elegir otro producto y repite el proceso.\n- Asegurese que este correcto el nombre y la cantidad de cada producto ya que si se equivoca tiene que ingresar todo de nuevo.\n- Seleccione un maximo de 50 unidades por orden.\nEscriba fin para terminar la orden y enviarla ó para salir");
 
                 String resultado;
                 do {
