@@ -6,6 +6,7 @@ import java.util.List;
 import compras.HistorialCompras;
 import tienda.Producto.Categoria;
 import java.io.Serializable;
+import java.util.Random;
 
 
 
@@ -156,7 +157,9 @@ public class Inventario implements Serializable{
     	int columna = 2;
     	
     	for (int i = 0; i < 30; i++) {
-    		catalogo[fila][columna] = productosTotal.get(i);
+            Random random = new Random();
+             catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i);
+    		//catalogo[fila][columna] = productosTotal.get(i);
     		if (columna != 7) {
     			columna += 1;
     		} else {
