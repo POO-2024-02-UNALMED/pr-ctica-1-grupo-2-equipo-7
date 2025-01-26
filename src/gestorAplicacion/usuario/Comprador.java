@@ -24,6 +24,10 @@ public class Comprador extends Usuario implements Serializable{
         this.cantidadCupones += 1; // se le añade a la cantidad de cupones 1 por defecto.
     }
 
+    public Comprador(CarritoCompras carritoCompras, CuentaBancaria cuenta){
+        this("Pepito Perez", carritoCompras, cuenta);
+    }
+
     //getters y setters
 
     public CarritoCompras getCarritoCompras() {

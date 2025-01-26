@@ -22,6 +22,10 @@ public class Vendedor extends Usuario implements Serializable{
         this.ordenesPendientes = new ArrayList<>();  //alejandro funcionalidad 5 reporte
     }
 
+    public Vendedor(CuentaBancaria cuentaBancaria, Inventario inventario, Fabrica fabrica){
+        this("Fulanito", cuentaBancaria, inventario, fabrica);
+    }
+
     // getters y setters
     //Permite al vendedor decidir qué productos y cuántas unidades solicitar a la fábrica.
 
