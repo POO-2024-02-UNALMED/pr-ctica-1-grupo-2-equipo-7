@@ -48,10 +48,10 @@ public class Factura implements Serializable, Cupon{
         return producto;
     }
 
-    public Producto verificarProducto(int idProducto, int cantidadRetornar, boolean retornabilidad){
+    public Producto verificarProducto(int idProducto, int cantidadRetornar){
         Producto producto = carritoCompras.buscarProducto(idProducto);
         if(producto != null){
-            if(producto.isRetornable() == retornabilidad){
+            if(producto.isRetornable()){
                 int cantidadVendida = carritoCompras.getCantidadPorProducto(producto);
                 if (cantidadVendida >= cantidadRetornar && cantidadRetornar > 0) {
                     return producto;

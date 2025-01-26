@@ -50,7 +50,7 @@ public class Comprador extends Usuario implements Serializable{
         Usuario vendedor = vendedor2;
         Factura factura = historialCompras.buscarFactura(idFactura); // Verificar existencia de la factura
         if(factura != null){
-            Producto producto = factura.verificarProducto(idProducto, cantidadRetornar, true); // Verificar existencia del producto en la factura
+            Producto producto = factura.verificarProducto(idProducto, cantidadRetornar); // Verificar existencia del producto en la factura
             if(producto != null){
                 int descuento = factura.getCarritoCompras().getDescuentoAplicadoCompra(); // Obtener descuento aplicado a la compra
                 double valorDevolver = vendedor.devolucionDinero(this, producto.getPrecio(), descuento, cantidadRetornar); // Devolver dinero al comprador
