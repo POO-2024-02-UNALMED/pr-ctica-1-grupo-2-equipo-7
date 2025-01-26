@@ -158,7 +158,11 @@ public class Inventario implements Serializable{
     	
     	for (int i = 0; i < 30; i++) {
             Random random = new Random();
-             catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i);
+            if (i >= 20){
+                catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i - 20);
+            }else{
+                catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i);
+            }
     		//catalogo[fila][columna] = productosTotal.get(i);
     		if (columna != 7) {
     			columna += 1;
