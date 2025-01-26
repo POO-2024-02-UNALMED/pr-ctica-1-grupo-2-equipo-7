@@ -56,6 +56,8 @@ public class Producto implements Serializable{
     }
     public String toStringdif(){
         return "Producto: " + nombre + "\n"
+                + "ID: " + ID + "\n"
+                + "Retornable: " + retornable + "\n"
     			+ "Categoria: " + categoria + "\n"
     			+ "Precio: " + precio + "\n"
     			+ "Cantidad Disponible: " + cantidad + "\n";

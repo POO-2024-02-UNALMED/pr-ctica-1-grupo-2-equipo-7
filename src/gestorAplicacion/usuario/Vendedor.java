@@ -76,7 +76,7 @@ public class Vendedor extends Usuario implements Serializable{
         }
     
 
-    private Producto buscarProducto(String nombre) {
+    Producto buscarProducto(String nombre) {
         for (Producto producto : inventario.getProductosTotal()) {
             if (producto.getNombre().equalsIgnoreCase(nombre)) {
                 return producto;
@@ -97,7 +97,7 @@ public class Vendedor extends Usuario implements Serializable{
         return valorDevolver;
     }
 
-    public void devolverProducto(int cantidad, Producto producto){
+    public void reingresarProducto(int cantidad, Producto producto){
         inventario.reabastecerProductos(cantidad, producto);
     }
     

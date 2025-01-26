@@ -3,12 +3,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import pasarelaPago.CuentaBancaria;
 import pasarelaPago.Transaccion;
+import tienda.Producto;
 
 public abstract class Usuario implements Serializable{
     private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
-	private String membresia;
-	private int vacescomprado;
-	private int puntos;
+    private String membresia;
+    private int vacescomprado;
+    private int puntos;
     protected String nombre;
     protected CuentaBancaria cuentaBancaria;
     protected ArrayList<Notificacion> notificaciones = new ArrayList<>();
@@ -63,7 +64,7 @@ public abstract class Usuario implements Serializable{
 
     // metodos
 	
-    public void pago(Usuario usuarioRemitente, Usuario usuarioReceptor, double cantidadTransferir, String tipoTransaccion){
+    public static void pago(Usuario usuarioRemitente, Usuario usuarioReceptor, double cantidadTransferir, String tipoTransaccion){
         Transaccion transaccion = new Transaccion(usuarioRemitente, usuarioReceptor, tipoTransaccion);
         boolean verificacionSaldo = transaccion.verificarSaldo();
         transaccion.setEstadoCompra(verificacionSaldo);
@@ -89,11 +90,24 @@ public abstract class Usuario implements Serializable{
     
     public abstract String consultarCuentaBancaria(); // Método abstracto
 
-     public void recibirNotificacion(Notificacion notificacion){
+    public void recibirNotificacion(Notificacion notificacion){
       		notificaciones.add(notificacion);
-     }
+    }
 
-	
+    public double devolucionDinero(Usuario usuarioReceptor, double precioProducto, int descuento, int cantidadRetornar){
+        return 0;
+    }
+    
+    public String devolverProducto(int idFactura, int idProducto, int cantidadRetornar, Vendedor vendedor){
+        return "Proceso Invalido"; //Ligadura Dinamica
+    }
 
+    public void reingresarProducto(int cantidad, Producto producto){
+        
+    }
+
+    public String mostrarCupones(){
+        return "Cupones insuficientes";
+    }
 	
 }

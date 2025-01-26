@@ -16,6 +16,7 @@ import tienda.Producto.Categoria;
 import tienda.Tienda;
 import usuario.Comprador;
 import usuario.Notificacion;
+import usuario.Usuario;
 import usuario.Vendedor;
 
 public class MainMenu {
@@ -135,9 +136,6 @@ public class MainMenu {
                   returnMenuDisplay();
                   break;
               case 4:
-
-              //LÍNEA DE PRUEBA, BORRAR LUEGO
-                  // System.out.println(comprador.getCarritoCompras());
 
               System.out.println();
                   if (comprador.getCarritoCompras().getListaItems().size() == 0){ // Se verifica si el carrito de compras no esta vacío
@@ -322,6 +320,7 @@ public class MainMenu {
 
     // Proceso de reembolso
     public void returnMenuDisplay(){
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("===== MENÚ DE DEVOLUCIONES =====");
