@@ -322,7 +322,7 @@ public class MainMenu {
 
     // Proceso de reembolso
     public void returnMenuDisplay(){
-
+        Usuario comprador = this.comprador;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("===== MENÚ DE DEVOLUCIONES =====");

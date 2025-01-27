@@ -75,8 +75,8 @@ public abstract class Usuario implements Serializable{
         else if (transaccion.getEstadoCompra() == true && tipoTransaccion.equalsIgnoreCase("compra")){
           transaccion.generarFactura();
           transaccion.ejecutarTransaccion(cantidadTransferir);
-        }
-    }
+        } 
+    }//Ligadura Estática
 	
     public String mostrarNotificaciones(){
         int contador = 1;
@@ -95,7 +95,7 @@ public abstract class Usuario implements Serializable{
     }
 
     public double devolucionDinero(Usuario usuarioReceptor, double precioProducto, int descuento, int cantidadRetornar){
-        return 0;
+        return 0; //Ligadura Dinamica
     }
     
     public String devolverProducto(int idFactura, int idProducto, int cantidadRetornar, Vendedor vendedor){
