@@ -158,12 +158,12 @@ public class Inventario implements Serializable{
     	
     	for (int i = 0; i < 30; i++) {
             Random random = new Random();
-            if (i >= 20){
-                catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i - 20);
+            if (i >= 16){
+                catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i - 16);
             }else{
                 catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i);
             }
-    		//catalogo[fila][columna] = productosTotal.get(i);
+
     		if (columna != 7) {
     			columna += 1;
     		} else {
@@ -255,7 +255,12 @@ public class Inventario implements Serializable{
                 //24 espacios disponibles para productos no recomendados
     	
     	        for (int i = 0; i < 24; i++) {
-    		    catalogo[fila][columna] = productosTotal.get(i);
+                    Random random = new Random();
+                    if (i >= 16){
+                        catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i - 16);
+                    }else{
+                        catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i);
+                    }
     		    if (columna != 7) {
     			    columna += 1;
     		    } else {
@@ -298,7 +303,14 @@ public class Inventario implements Serializable{
                 //18 espacios disponibles para productos no recomendados
     	
     	        for (int i = 0; i < 18; i++) {
-    		    catalogo[fila][columna] = productosTotal.get(i);
+                    Random random = new Random();
+
+                    if (i >= 16){
+                        catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i - 16);
+                    }else{
+                        catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i);
+                    }
+                    
     		    if (columna != 7) {
     			    columna += 1;
     		    } else {
@@ -373,7 +385,9 @@ public class Inventario implements Serializable{
                //18 espacios disponibles para productos no recomendados
        
                for (int i = 0; i < 12; i++) {
-               catalogo[fila][columna] = productosTotal.get(i);
+                Random random = new Random();
+
+                catalogo[fila][columna] = listaCategorias.get(random.nextInt(6)).get(i);
                if (columna != 7) {
                    columna += 1;
                } else {
