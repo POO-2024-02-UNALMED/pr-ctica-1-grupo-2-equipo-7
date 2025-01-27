@@ -304,7 +304,7 @@ public class MainMenu {
     System.out.println(this.comprador.getCarritoCompras());
     
     case 4:
-    System.out.println("Volviendo al menú principal...");
+    System.out.println("Volviendo al menú del carrito...");
     break;
     }
       
