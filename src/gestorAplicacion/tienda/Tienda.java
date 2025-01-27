@@ -10,7 +10,6 @@ public class Tienda implements Serializable{
 	private static final long serialVersionUID = 1L; // Atributo obligatorio por implementar Serializable
    private String nombre; 
    private Inventario inventario;
-   private boolean descuentoAleatorio;
    private ArrayList<Usuario> usuariosRegistrados;
 	//getters y setters 
 	public String getNombre() {
@@ -29,13 +28,6 @@ public class Tienda implements Serializable{
 		this.inventario = inventario;
 	}
 
-	public boolean hasDescuentoAleatorio() {
-		return descuentoAleatorio;
-	}
-
-	public void setDescuentoAleatorio(boolean descuentoAleatorio) {
-		this.descuentoAleatorio = descuentoAleatorio;
-	}
 
 	public ArrayList<Usuario> getUsuariosRegistrados() {
 		return usuariosRegistrados;
@@ -51,7 +43,6 @@ public class Tienda implements Serializable{
     public Tienda(String nombre, Inventario inventario, boolean descuentoAleatorio, ArrayList<Usuario> usuariosRegistrados) {
         this.setNombre(nombre);
         this.setInventario(inventario);
-        this.setDescuentoAleatorio(descuentoAleatorio);
         this.setUsuariosRegistrados(usuariosRegistrados);
     }
 
