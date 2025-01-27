@@ -206,11 +206,18 @@ public class MainMenu {
     case 1:
     //El método se encarga de mostrar por pantalla los productos, pero es necesario que
     //retorne la matriz donde esto sucede para la debida creación del menú de selección
+    if (comprador.getHistorialCompras().getFacturas().size() == 0){
         Object[][] catalogo = mostrarCatalogo(null, false);  
+        //lógica para la primera compra
+
+                //Menú de selección de productos
+                
+                recomendaciones = false;
+                productSelectionProcess();
+    } else{
 
             //Se le pregunta al usuario si desea ver recomendaciones en el catálogo
             //a partir de la segunda compra para poder acceder a su historial
-                        if (comprador.getHistorialCompras().getFacturas().size() != 0){
 
                             System.out.println("\nDesea actualizar las recomendaciones? 1. Sí - 2. No");
                 int respuesta = scanner.nextInt();
@@ -240,14 +247,9 @@ public class MainMenu {
                     break;
                 }
 
-                        } else {
+                        
 
-                //lógica para la primera compra
-
-                //Menú de selección de productos
                 
-                recomendaciones = false;
-                productSelectionProcess();
 
             }
             break;
