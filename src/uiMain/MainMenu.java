@@ -421,7 +421,7 @@ public class MainMenu {
                        }
                        //comprador.getCarritoCompras().calcularTotal();
                        System.out.println("\nEl precio total de la compra ahora es de: " + comprador.getCarritoCompras().getPrecioTotal()+ " pesos. Ahora se prosigue con el pago.");
-                        comprador.pago(comprador, vendedor, (int)precioConDescuento, "compra"); // Se inicia el proceso de pago.
+                        ((Usuario) comprador).pago(comprador, vendedor, (int)precioConDescuento, "compra"); // Se inicia el proceso de pago, ligadura estatica
                         comprador.getValorCupones().remove(cupon - 1); // Se elimina el cupón utilizado.
                         comprador.cantidadCupones -= 1; // Se disminuye la cantidad de cupones en 1.
                         System.out.println("\n\n====== COMPRA ======");
