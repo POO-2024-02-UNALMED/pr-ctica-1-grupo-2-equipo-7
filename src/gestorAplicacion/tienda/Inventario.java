@@ -513,7 +513,7 @@ public class Inventario implements Serializable{
         return menosVendido;
     }
 
-    public static void ajusteProductos(Producto producto, String accion){
+    public static void ajusteProductos(Producto producto, String accion){ //Ajustar las distintas instancias de un producto debido a la serializacion
         String categoriaNombre = producto.getCategoria().getNombre();
         ArrayList<Producto> categoria = buscarCategoria(categoriaNombre);
         

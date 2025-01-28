@@ -48,12 +48,12 @@ public class Vendedor extends Usuario implements Serializable{
 
             String entradaCantidad = scanner.nextLine();
             boolean esNumero = entradaCantidad.matches("\\d+");
-            if (!esNumero) {
+            if (!esNumero || entradaCantidad.equals("0")) {
                 return "Cantidad inválida.\nvuelva a ingresar todos los producto nuevamente con una cantidad valida";
             }
 
             int cantidad = Integer.parseInt(entradaCantidad);
-
+            
             productosSeleccionados.add(producto);
             cantidades.add(cantidad);
             ArrayList<Object> orden = new ArrayList<>();

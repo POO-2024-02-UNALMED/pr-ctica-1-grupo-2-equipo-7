@@ -347,7 +347,7 @@ public class MainMenu {
         int cantidadRetornar = Integer.parseInt(scanner.nextLine());
         System.out.println();
 
-        String resultado = comprador.devolverProducto(idFactura, idProducto, cantidadRetornar, vendedor);
+        String resultado = comprador.devolverProducto(idFactura, idProducto, cantidadRetornar, vendedor); //Proceso de reembolso en si
 
         switch (resultado) {
             case "FacturaInvalida":
