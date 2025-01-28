@@ -421,7 +421,7 @@ public class MainMenu {
                        }
                        //comprador.getCarritoCompras().calcularTotal();
                        System.out.println("\nEl precio total de la compra ahora es de: " + comprador.getCarritoCompras().getPrecioTotal()+ " pesos. Ahora se prosigue con el pago.");
-                        ((Usuario) comprador).pago(comprador, vendedor, (int)precioConDescuento, "compra"); // Se inicia el proceso de pago, ligadura estatica
+                        ((Usuario) comprador).pago(comprador, vendedor, (int)precioConDescuento, "compra"); // Se inicia el proceso de pago, ligadura estática.
                         comprador.getValorCupones().remove(cupon - 1); // Se elimina el cupón utilizado.
                         comprador.cantidadCupones -= 1; // Se disminuye la cantidad de cupones en 1.
                         System.out.println("\n\n====== COMPRA ======");
@@ -464,7 +464,7 @@ public class MainMenu {
                 case 2:
                     comprador.getCarritoCompras().restarProductosAlComprar();
                     int precioTotal = comprador.getCarritoCompras().getPrecioTotal();
-                    comprador.pago(comprador, vendedor, precioTotal, "compra");
+                    ((Usuario)comprador).pago(comprador, vendedor, precioTotal, "compra");//Proceso de pago, Ligadura estatica
                     System.out.println("Ahora vamos a ver que descuentos obtuviste por fidelidad y mayoreo ");
                         
                     String pmd=comprador.getCarritoCompras().descuentoporproductomenosvendido();
